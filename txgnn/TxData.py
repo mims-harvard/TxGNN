@@ -17,6 +17,9 @@ warnings.filterwarnings("ignore")
 class TxData:
     
     def __init__(self, data_folder_path):
+        if not os.path.exists(data_folder_path):
+            os.mkdir(data_folder_path)
+            
         self.data_folder = data_folder_path # the data folder, contains the kg.csv
         data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/6180626', os.path.join(self.data_folder, 'kg.csv'))
         data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/6180617', os.path.join(self.data_folder, 'node.csv'))
@@ -46,7 +49,7 @@ class TxData:
             df = pd.read_csv(kg_path)
         else:
             if os.path.exists(os.path.join(self.data_folder, 'kg.csv')):
-                print('First time usage... Mapping RxData raw KG to directed csv... it takes several minutes...')
+                print('First time usage... Mapping TxData raw KG to directed csv... it takes several minutes...')
                 preprocess_kg(self.data_folder, split)
                 df = pd.read_csv(kg_path)
             else:

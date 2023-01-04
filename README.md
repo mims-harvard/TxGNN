@@ -1,16 +1,24 @@
-# TxGNN: Repurposing therapeutics for neglected diseases using geometric deep learning
+# TxGNN: Zero-shot prediction of therapeutic use with human-centered geometric deep learning 
 
-This repository hosts the official implementation of TxGNN, a method that can predict drug efficacy to disease with limited molecular underpinnings and few treatments by applying geomtric learning on multi-scale disease knowledge graph. 
+This repository hosts the official implementation of TxGNN, a method that can predict drug efficacy to disease with limited molecular underpinnings and few/zero treatments by applying geomtric learning on multi-scale disease knowledge graph. 
 
 ### Installation 
 
-Create your virtual environment using `virtualenv` or `conda` and then do `pip install TxGNN`
+```bash
+conda create --name txgnn_env python=3.8
+conda activate txgnn_env
+# Install PyTorch via https://pytorch.org/ with your CUDA versions
+conda install -c dglteam dgl-cuda{$CUDA_VERSION}==0.5.2 # checkout https://www.dgl.ai/pages/start.html for more info, as long as it is DGL 0.5.2
+pip install TxGNN
+```
+
+Note that if you want to use disease-area split, you should also install PyG following [this instruction](https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html) since some legacy data processing code uses PyG utility functions.
 
 ### Core API Interface
 Using the API, you can (1) reproduce the results in our paper and (2) train TxGNN on your own drug repurposing dataset using a few lines of code, and also generate graph explanations. 
 
 ```python
-from TxGNN import TxData, TxGNN, TxEval
+from txgnn import TxData, TxGNN, TxEval
 
 # Download/load knowledge graph dataset
 TxData = TxData(data_folder_path = './data')

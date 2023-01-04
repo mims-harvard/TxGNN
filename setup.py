@@ -5,7 +5,7 @@ from os import path
 from io import open  # for Python 2 and 3 compatibility
 
 # get __version__ from _version.py
-ver_file = path.join('TxGNN', 'version.py')
+ver_file = path.join('txgnn', 'version.py')
 with open(ver_file) as f:
     exec(f.read())
 

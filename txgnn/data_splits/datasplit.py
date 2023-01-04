@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import torch
-from torch_geometric.utils import k_hop_subgraph
 from .do_obo_parser import OBOReader as DO_Reader
 import os
 dirname = os.path.dirname(__file__)
@@ -72,7 +71,8 @@ class DataSplitter:
             num_random_edges = test_num_edges - drug_dis_edges.shape[1]
         else: 
             num_random_edges = test_num_edges
-        
+            
+        from torch_geometric.utils import k_hop_subgraph
         subgraph_nodes, filtered_edge_index, node_map, edge_mask = k_hop_subgraph(list(nodes), 2, self.edge_index) #one hop neighborhood
         sample_idx = np.random.choice(filtered_edge_index.shape[1], num_random_edges, replace=False)
         sample_edges = filtered_edge_index[:, sample_idx].numpy()

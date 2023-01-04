@@ -40,7 +40,7 @@ def dataverse_download(url, save_path):
     if os.path.exists(save_path):
         print('Found local copy...')
     else:
-        print("Downloading...")
+        print("Local copy not detected... Downloading...")
         response = requests.get(url, stream=True)
         total_size_in_bytes= int(response.headers.get('content-length', 0))
         block_size = 1024

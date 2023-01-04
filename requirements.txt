@@ -1,9 +1,6 @@
-dgl==0.5.2
 pandas
 numpy
 tqdm
 matplotlib
-torch
 scikit-learn
-torch-geometric
 goatools
