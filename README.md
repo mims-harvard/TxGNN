@@ -37,7 +37,6 @@ TxGNN.model_initialize(n_hid = 100,
                       proto_num = 3,
                       attention = False,
                       sim_measure = 'all_nodes_profile',
-                      bert_measure = 'disease_name',
                       agg_measure = 'rarity',
                       num_walks = 200,
                       walk_mode = 'bit',
@@ -121,6 +120,18 @@ TxGNN.save_graphmask_model('./graphmask_model_ckpt')
 TxGNN.load_pretrained_graphmask('./graphmask_model_ckpt')
 
 ```
+
+### Splits
+
+There are numerous splits prepared in . You can switch among them in the `TxData.prepare_split(split = 'XXX', seed = 42)` function.
+
+- `complex_disease` is the systematic split in the paper, where we first sample a set of diseases and then move all of their treatments to test set such that these diseases have zero treatments in training.
+- Disease area split first obtains a set of diseases in a disease area using disease ontology and move all of their treatments to the test set and then further removes a fraction of local neighborhood around these diseases to simulate the lack of molecular mechanism characterization of these diseases. There are five disease areas: `cell_proliferation`, `mental_health`, `cardiovascular`, `anemia`, `adrenal_gland`
+- `random` is namely random splits which it randomly shuffles across drug-disease pairs. In the end, most of diseases have seen some treatments in the training set.
+
+During deployment, when evaluate a specific disease, you may want to just mask this disease and use all of the other diseases. In this case, you can use `TxData.prepare_split(split = 'disease_eval', disease_eval_idx = 'XX')` where `disease_eval_idx` is the index of the disease of interest. 
+
+Another setting is to train the entire network without any disease masking. You can do that via `split = 'full_graph'`. This will automatically use 95% of data for training and 5% for validation set calculation to do early stopping. No test set is used. 
 
 
 ### Cite Us
