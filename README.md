@@ -1,4 +1,4 @@
-# TxGNN: Zero-shot prediction of therapeutic use with human-centered geometric deep learning 
+# TxGNN: Zero-shot prediction of therapeutic use with geometric deep learning and human centered design
 
 This repository hosts the official implementation of TxGNN, a method that can predict drug efficacy to disease with limited molecular underpinnings and few/zero treatments by applying geomtric learning on multi-scale disease knowledge graph. 
 
