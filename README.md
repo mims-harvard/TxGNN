@@ -1,4 +1,4 @@
-# TxGNN: Zero-shot prediction of therapeutic use with human-centered geometric deep learning 
+# TxGNN: Zero-shot prediction of therapeutic use with geometric deep learning and human centered design
 
 This repository hosts the official implementation of TxGNN, a method that can predict drug efficacy to disease with limited molecular underpinnings and few/zero treatments by applying geomtric learning on multi-scale disease knowledge graph. 
 
@@ -123,7 +123,7 @@ TxGNN.load_pretrained_graphmask('./graphmask_model_ckpt')
 
 ### Splits
 
-There are numerous splits prepared in . You can switch among them in the `TxData.prepare_split(split = 'XXX', seed = 42)` function.
+There are numerous splits prepared in TxGNN. You can switch among them in the `TxData.prepare_split(split = 'XXX', seed = 42)` function.
 
 - `complex_disease` is the systematic split in the paper, where we first sample a set of diseases and then move all of their treatments to test set such that these diseases have zero treatments in training.
 - Disease area split first obtains a set of diseases in a disease area using disease ontology and move all of their treatments to the test set and then further removes a fraction of local neighborhood around these diseases to simulate the lack of molecular mechanism characterization of these diseases. There are five disease areas: `cell_proliferation`, `mental_health`, `cardiovascular`, `anemia`, `adrenal_gland`
