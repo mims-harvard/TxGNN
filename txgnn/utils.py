@@ -26,7 +26,7 @@ from zipfile import ZipFile
 import warnings
 warnings.filterwarnings("ignore")
 
-device = torch.device("cuda:0")
+#device = torch.device("cuda:0")
 
 from .data_splits.datasplit import DataSplitter
 
@@ -249,7 +249,7 @@ def create_split(df, split, disease_eval_index, split_data_path, seed):
     
     return df_train, df_valid, df_test
     
-def construct_negative_graph_each_etype(graph, k, etype, method, weights):
+def construct_negative_graph_each_etype(graph, k, etype, method, weights, device):
     utype, _, vtype = etype
     src, dst = graph.edges(etype=etype)
     
@@ -276,10 +276,10 @@ def construct_negative_graph_each_etype(graph, k, etype, method, weights):
             neg_dst = torch.Tensor([])
     return {etype: (neg_src.to(device), neg_dst.to(device))}
 
-def construct_negative_graph(graph, k):
+def construct_negative_graph(graph, k, device):
     out = {}   
     for etype in graph.canonical_etypes:
-        out.update(construct_negative_graph_each_etype(graph, k, etype))
+        out.update(construct_negative_graph_each_etype(graph, k, etype, device))
     return dgl.heterograph(out, num_nodes_dict={ntype: graph.number_of_nodes(ntype) for ntype in graph.ntypes})
 
 class Minibatch_NegSampler(object):
@@ -306,7 +306,7 @@ class Minibatch_NegSampler(object):
         return result_dict
         
 class Full_Graph_NegSampler:
-    def __init__(self, g, k, method):
+    def __init__(self, g, k, method, device):
         if method == 'multinomial_src':
             self.weights = {
                 etype: g.out_degrees(etype=etype).float() ** 0.75
@@ -342,17 +342,17 @@ class Full_Graph_NegSampler:
             
         self.k = k
         self.method = method
-        
+        self.device = device
     def __call__(self, graph):
         out = {}   
         for etype in graph.canonical_etypes:
-            temp = construct_negative_graph_each_etype(graph, self.k, etype, self.method, self.weights)
+            temp = construct_negative_graph_each_etype(graph, self.k, etype, self.method, self.weights, self.device)
             if len(temp[etype][0]) != 0:
                 out.update(temp)
             
         return dgl.heterograph(out, num_nodes_dict={ntype: graph.number_of_nodes(ntype) for ntype in graph.ntypes})
         
-def evaluate_graph_construct(df_valid, g, neg_sampler, k):
+def evaluate_graph_construct(df_valid, g, neg_sampler, k, device):
     out = {}
     df_in = df_valid[['x_idx', 'relation', 'y_idx']]
     for etype in g.canonical_etypes:
@@ -365,7 +365,7 @@ def evaluate_graph_construct(df_valid, g, neg_sampler, k):
         out.update({etype: (src, dst)})
     g_valid = dgl.heterograph(out, num_nodes_dict={ntype: g.number_of_nodes(ntype) for ntype in g.ntypes})
     
-    ng = Full_Graph_NegSampler(g_valid, k, neg_sampler)
+    ng = Full_Graph_NegSampler(g_valid, k, neg_sampler, device)
     g_neg_valid = ng(g_valid)
     return g_valid, g_neg_valid
 
@@ -435,7 +435,7 @@ def evaluate(model, valid_data, G):
     scores = torch.sigmoid(logits_valid) 
     return get_all_metrics(valid_data.label.values, scores.cpu().detach().numpy(), rels)
 
-def evaluate_fb(model, g_pos, g_neg, G, dd_etypes, return_embed = False, mode = 'valid'):
+def evaluate_fb(model, g_pos, g_neg, G, dd_etypes, device, return_embed = False, mode = 'valid'):
     model.eval()
     pred_score_pos, pred_score_neg, pos_score, neg_score = model(G, g_neg, g_pos, pretrain_mode = False, mode = mode)
     
@@ -451,7 +451,7 @@ def evaluate_fb(model, g_pos, g_neg, G, dd_etypes, return_embed = False, mode = 
     else:
         return get_all_metrics_fb(pred_score_pos, pred_score_neg, scores.reshape(-1,).detach().cpu().numpy(), labels, G, True), loss.item()
     
-def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch, etypes_train, allowance, penalty_scaling, mode = 'validation', weight_bias_track = False, wandb = None):
+def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch, etypes_train, allowance, penalty_scaling, device, mode = 'validation', weight_bias_track = False, wandb = None):
     model.eval()
     G = G.to(device)
     with torch.no_grad():
@@ -501,6 +501,19 @@ def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch,
         )
         print("-------------------------------")
         
+        if mode == 'testing':
+            test_metrics = {}
+            pred_update = updated_predictions.detach().cpu().numpy()
+            pred_ori = original_predictions.detach().cpu().numpy()
+            y_ = np.array(labels)
+            
+            test_metrics['test auroc original'] = roc_auc_score(y_, pred_ori)
+            test_metrics['test auprc original'] = average_precision_score(y_, pred_ori)
+            test_metrics['test auroc update'] = roc_auc_score(y_, pred_update)
+            test_metrics['test auprc update'] = average_precision_score(y_, pred_update)
+            test_metrics['test %masked_L1'] = num_masked[0]/G.number_of_edges()
+            test_metrics['test %masked_L2'] = num_masked[1]/G.number_of_edges()
+            
         if weight_bias_track:
             wandb.log({mode + ' divergence': float(loss.mean().item()),
                        mode + ' penalty': float(f),
@@ -511,10 +524,12 @@ def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch,
 
         g_, f_ = float(loss.mean().item()), float(f)
         del original_predictions, updated_predictions, f, g, loss, pos_score, neg_score
-
-    return g_ + f_
+    if mode == 'testing':
+        return g_ + f_ , test_metrics
+    else:
+        return g_ + f_
     
-def evaluate_mb(model, g_pos, g_neg, G, dd_etypes, return_embed = False, mode = 'valid'):
+def evaluate_mb(model, g_pos, g_neg, G, dd_etypes, device, return_embed = False, mode = 'valid'):
     model.eval()
     #model = model.to('cpu')
     pred_score_pos, pred_score_neg, pos_score, neg_score = model.forward_minibatch(g_pos.to(device), g_neg.to(device), [G.to(device), G.to(device)], G.to(device), mode = mode, pretrain_mode = False)
@@ -767,7 +782,7 @@ def initialize_node_embedding(g, n_inp):
         g.nodes[ntype].data['inp'] = emb
     return g
 
-def disease_centric_evaluation(df, df_train, df_valid, df_test, data_path, G, model, disease_ids = None, relation = None, weight_bias_track = False, wandb = None, show_plot = False, verbose = False, return_raw = False, simulate_random = True, only_prediction = False):
+def disease_centric_evaluation(df, df_train, df_valid, df_test, data_path, G, model, device, disease_ids = None, relation = None, weight_bias_track = False, wandb = None, show_plot = False, verbose = False, return_raw = False, simulate_random = True, only_prediction = False):
     G = G.to(device)
     model = model.eval()
     from sklearn.metrics import accuracy_score, roc_curve, average_precision_score, recall_score, confusion_matrix, classification_report, roc_auc_score, f1_score, auc, precision_recall_curve

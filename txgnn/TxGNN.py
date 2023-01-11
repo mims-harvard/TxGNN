@@ -30,15 +30,16 @@ import warnings
 warnings.filterwarnings("ignore")
 
 torch.manual_seed(0)
-device = torch.device("cuda:0")
+#device = torch.device("cuda:0")
 
 class TxGNN:
     
     def __init__(self, data,
                        weight_bias_track = False,
                        proj_name = 'TxGNN',
-                       exp_name = 'TxGNN'):
-                
+                       exp_name = 'TxGNN',
+                       device = 'cuda:0'):
+        self.device = torch.device(device)
         self.weight_bias_track = weight_bias_track
         self.G = data.G
         self.df, self.df_train, self.df_valid, self.df_test = data.df, data.df_train, data.df_valid, data.df_test
@@ -84,8 +85,8 @@ class TxGNN:
         
         self.G = self.G.to('cpu')
         self.G = initialize_node_embedding(self.G, n_inp)
-        self.g_valid_pos, self.g_valid_neg = evaluate_graph_construct(self.df_valid, self.G, 'fix_dst', 1)
-        self.g_test_pos, self.g_test_neg = evaluate_graph_construct(self.df_test, self.G, 'fix_dst', 1)
+        self.g_valid_pos, self.g_valid_neg = evaluate_graph_construct(self.df_valid, self.G, 'fix_dst', 1, self.device)
+        self.g_test_pos, self.g_test_neg = evaluate_graph_construct(self.df_test, self.G, 'fix_dst', 1, self.device)
 
         self.config = {'n_hid': n_hid, 
                        'n_inp': n_inp, 
@@ -116,8 +117,9 @@ class TxGNN:
                    path_length = path_length,
                    split = self.split,
                    data_folder = self.data_folder,
-                   exp_lambda = exp_lambda             
-                  ).to(device)    
+                   exp_lambda = exp_lambda,
+                   device = self.device
+                  ).to(self.device)    
         self.best_model = self.model
         
     def pretrain(self, n_epoch = 1, learning_rate = 1e-3, batch_size = 1024, train_print_per_n = 20, sweep_wandb = None):
@@ -145,15 +147,15 @@ class TxGNN:
 
             for step, (nodes, pos_g, neg_g, blocks) in enumerate(dataloader):
 
-                blocks = [i.to(device) for i in blocks]
-                pos_g = pos_g.to(device)
-                neg_g = neg_g.to(device)
+                blocks = [i.to(self.device) for i in blocks]
+                pos_g = pos_g.to(self.device)
+                neg_g = neg_g.to(self.device)
                 pred_score_pos, pred_score_neg, pos_score, neg_score = self.model.forward_minibatch(pos_g, neg_g, blocks, self.G, mode = 'train', pretrain_mode = True)
 
                 scores = torch.cat((pos_score, neg_score)).reshape(-1,)
                 labels = [1] * len(pos_score) + [0] * len(neg_score)
 
-                loss = F.binary_cross_entropy(scores, torch.Tensor(labels).float().to(device))
+                loss = F.binary_cross_entropy(scores, torch.Tensor(labels).float().to(self.device))
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
@@ -199,8 +201,8 @@ class TxGNN:
         
         best_val_acc = 0
 
-        self.G = self.G.to(device)
-        neg_sampler = Full_Graph_NegSampler(self.G, 1, 'fix_dst')
+        self.G = self.G.to(self.device)
+        neg_sampler = Full_Graph_NegSampler(self.G, 1, 'fix_dst', self.device)
         torch.nn.init.xavier_uniform(self.model.w_rels) # reinitialize decoder
         
         optimizer = torch.optim.AdamW(self.model.parameters(), lr = learning_rate)
@@ -215,7 +217,7 @@ class TxGNN:
 
             scores = torch.sigmoid(torch.cat((pos_score, neg_score)).reshape(-1,))
             labels = [1] * len(pos_score) + [0] * len(neg_score)
-            loss = F.binary_cross_entropy(scores, torch.Tensor(labels).float().to(device))
+            loss = F.binary_cross_entropy(scores, torch.Tensor(labels).float().to(self.device))
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -254,7 +256,7 @@ class TxGNN:
             if (epoch) % valid_per_n == 0:
                 # validation tracking...
                 print('Validation.....')
-                (auroc_rel, auprc_rel, micro_auroc, micro_auprc, macro_auroc, macro_auprc), loss = evaluate_fb(self.model, self.g_valid_pos, self.g_valid_neg, self.G, self.dd_etypes, mode = 'valid')
+                (auroc_rel, auprc_rel, micro_auroc, micro_auprc, macro_auroc, macro_auprc), loss = evaluate_fb(self.model, self.g_valid_pos, self.g_valid_neg, self.G, self.dd_etypes, self.device, mode = 'valid')
 
                 if best_val_acc < macro_auroc:
                     best_val_acc = macro_auroc
@@ -296,7 +298,7 @@ class TxGNN:
         
         print('Testing...')
 
-        (auroc_rel, auprc_rel, micro_auroc, micro_auprc, macro_auroc, macro_auprc), loss, pred_pos, pred_neg = evaluate_fb(self.best_model, self.g_test_pos, self.g_test_neg, self.G, self.dd_etypes, True, mode = 'test')
+        (auroc_rel, auprc_rel, micro_auroc, micro_auprc, macro_auroc, macro_auprc), loss, pred_pos, pred_neg = evaluate_fb(self.best_model, self.g_test_pos, self.g_test_neg, self.G, self.dd_etypes, self.device, True, mode = 'test')
 
         print('Testing Loss %.4f Testing Micro AUROC %.4f Testing Micro AUPRC %.4f Testing Macro AUROC %.4f Testing Macro AUPRC %.4f' % (
             loss,
@@ -350,13 +352,13 @@ class TxGNN:
                 df_temp = df_in[df_in.relation == etype[1]]
             except:
                 print(etype[1])
-            src = torch.Tensor(df_temp.x_idx.values).to(device).to(dtype = torch.int64)
-            dst = torch.Tensor(df_temp.y_idx.values).to(device).to(dtype = torch.int64)
+            src = torch.Tensor(df_temp.x_idx.values).to(self.device).to(dtype = torch.int64)
+            dst = torch.Tensor(df_temp.y_idx.values).to(self.device).to(dtype = torch.int64)
             out.update({etype: (src, dst)})
         g_eval = dgl.heterograph(out, num_nodes_dict={ntype: g.number_of_nodes(ntype) for ntype in g.ntypes})
         
-        g_eval = g_eval.to(device)
-        g = g.to(device)
+        g_eval = g_eval.to(self.device)
+        g = g.to(self.device)
         self.model.eval()
         pred_score_pos, pred_score_neg, pos_score, neg_score = self.model(g, 
                                                                            g_eval, 
@@ -366,7 +368,7 @@ class TxGNN:
         return pred_score_pos
 
     def retrieve_embedding(self, path = None):
-        self.G = self.G.to(device)
+        self.G = self.G.to(self.device)
         h = self.model(self.G, self.G, return_h = True)
         for i,j in h.items():
             h[i] = j.detach().cpu()
@@ -464,7 +466,7 @@ class TxGNN:
             state_dict = new_state_dict
         
         self.model.load_state_dict(state_dict)
-        self.model = self.model.to(device)
+        self.model = self.model.to(self.device)
         self.best_model = self.model
         
     def train_graphmask(self, relation = 'indication',
@@ -506,9 +508,9 @@ class TxGNN:
         disable_all_gradients(self.graphmask_model)
         
         optimizer = torch.optim.Adam(self.graphmask_model.parameters(), lr=learning_rate)
-        self.graphmask_model.to(device)
+        self.graphmask_model.to(self.device)
         lagrangian_optimization = LagrangianOptimization(optimizer,
-                                                         device,
+                                                         self.device,
                                                          batch_size_multiplier=None)
 
         f_moving_average = MovingAverage(window_size=moving_average_window_size)
@@ -516,10 +518,10 @@ class TxGNN:
 
         best_sparsity = 1.01
 
-        neg_sampler = Full_Graph_NegSampler(self.G, 1, 'fix_dst')
+        neg_sampler = Full_Graph_NegSampler(self.G, 1, 'fix_dst', self.device)
         loss_fct = nn.MSELoss()
 
-        self.G = self.G.to(device)
+        self.G = self.G.to(self.device)
         
         ## iterate over layers. One at a time!
         for layer in reversed(list(range(self.graphmask_model.count_layers()))):
@@ -540,10 +542,10 @@ class TxGNN:
                 updated_predictions = torch.sigmoid(torch.cat((pos_score, neg_score)))
 
                 labels = [1] * len(pos_score) + [0] * len(neg_score)
-                loss_pred = F.binary_cross_entropy(updated_predictions, torch.Tensor(labels).float().to(device)).item()
+                loss_pred = F.binary_cross_entropy(updated_predictions, torch.Tensor(labels).float().to(self.device)).item()
 
-                original_predictions = original_predictions.to(device)
-                loss_pred_ori = F.binary_cross_entropy(original_predictions, torch.Tensor(labels).float().to(device)).item()
+                original_predictions = original_predictions.to(self.device)
+                loss_pred_ori = F.binary_cross_entropy(original_predictions, torch.Tensor(labels).float().to(self.device)).item()
                 # loss is the divergence between updated and original predictions
                 loss = loss_fct(original_predictions, updated_predictions)
 
@@ -577,15 +579,19 @@ class TxGNN:
                 del original_predictions, updated_predictions, f, g, loss, pos_score, neg_score, loss_pred_ori, loss_pred, neg_graph
                 
                 if epoch % valid_per_n == 0:
-                    loss_sum = evaluate_graphmask(self.graphmask_model, self.G, self.g_valid_pos, self.g_valid_neg, relation, epoch, mode = 'validation', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, weight_bias_track = self.weight_bias_track, wandb = self.wandb)
+                    loss_sum = evaluate_graphmask(self.graphmask_model, self.G, self.g_valid_pos, self.g_valid_neg, relation, epoch, mode = 'validation', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, device = self.device, weight_bias_track = self.weight_bias_track, wandb = self.wandb)
                     
                     if loss_sum < best_loss_sum:
                         # takes the best checkpoint
                         best_loss_sum = loss_sum
                         self.best_graphmask_model = copy.deepcopy(self.graphmask_model)
             
-        loss_sum = evaluate_graphmask(self.best_graphmask_model, self.G, self.g_test_pos, self.g_test_neg, relation, epoch, mode = 'testing', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, weight_bias_track = self.weight_bias_track, wandb = self.wandb)
-            
+        loss_sum, metrics = evaluate_graphmask(self.best_graphmask_model, self.G, self.g_test_pos, self.g_test_neg, relation, epoch, mode = 'testing', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, device = self.device, weight_bias_track = self.weight_bias_track, wandb = self.wandb)
+        
+        if self.weight_bias_track == 'True':
+            self.wandb.log(metrics)
+        return metrics
+    
     def save_graphmask_model(self, path):
         if not os.path.exists(path):
             os.mkdir(path)
@@ -622,7 +628,7 @@ class TxGNN:
             state_dict = new_state_dict
         
         self.graphmask_model.load_state_dict(state_dict)
-        self.graphmask_model = self.graphmask_model.to(device)
+        self.graphmask_model = self.graphmask_model.to(self.device)
         self.best_graphmask_model = self.graphmask_model
     
     

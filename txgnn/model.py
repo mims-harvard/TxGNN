@@ -15,15 +15,13 @@ import random
 
 import warnings
 warnings.filterwarnings("ignore")
-device = torch.device("cuda:0")
-
 from .utils import sim_matrix, exponential, obtain_disease_profile, obtain_protein_random_walk_profile, convert2str
 from .graphmask.multiple_inputs_layernorm_linear import MultipleInputsLayernormLinear
 from .graphmask.squeezer import Squeezer
 from .graphmask.sigmoid_penalty import SoftConcrete
 
 class DistMultPredictor(nn.Module):
-    def __init__(self, n_hid, w_rels, G, rel2idx, proto, proto_num, sim_measure, bert_measure, agg_measure, num_walks, walk_mode, path_length, split, data_folder, exp_lambda):
+    def __init__(self, n_hid, w_rels, G, rel2idx, proto, proto_num, sim_measure, bert_measure, agg_measure, num_walks, walk_mode, path_length, split, data_folder, exp_lambda, device):
         super().__init__()
         
         self.proto = proto
@@ -34,7 +32,7 @@ class DistMultPredictor(nn.Module):
         self.walk_mode = walk_mode
         self.path_length = path_length
         self.exp_lambda = exp_lambda
-        
+        self.device = device
         self.W = w_rels
         self.rel2idx = rel2idx
         
@@ -52,7 +50,7 @@ class DistMultPredictor(nn.Module):
             for i in self.node_types_dd:
                 temp_w = nn.Linear(n_hid * 2, 1)
                 nn.init.xavier_uniform_(temp_w.weight)
-                self.W_gate[i] = temp_w.to(device)
+                self.W_gate[i] = temp_w.to(self.device)
             self.k = proto_num
             self.m = nn.Sigmoid()
                    
@@ -119,7 +117,7 @@ class DistMultPredictor(nn.Module):
         score = torch.sum(h_u * h_r * h_v, dim=1)
         return {'score': score}
 
-    def forward(self, graph, G, h, pretrain_mode, mode, block = None, only_relation = None, device = 'cuda'):
+    def forward(self, graph, G, h, pretrain_mode, mode, block = None, only_relation = None):
         with graph.local_scope():
             scores = {}
             s_l = []
@@ -223,7 +221,7 @@ class DistMultPredictor(nn.Module):
                                 coef = torch.topk(sim, self.k).values[:, :]
                                 coef = F.normalize(coef, p=1, dim=1)
                                 embed = h_disease['disease_key'][torch.topk(sim, self.k).indices[:, :]]
-                            out = torch.mul(embed, coef.unsqueeze(dim = 2).to(device)).sum(dim = 1)
+                            out = torch.mul(embed, coef.unsqueeze(dim = 2).to(self.device)).sum(dim = 1)
 
                         if self.sim_measure in ['protein_profile', 'all_nodes_profile', 'protein_random_walk', 'bert', 'profile+bert']:
                             # for protein profile, we are only looking at diseases for now...
@@ -443,7 +441,7 @@ class HeteroRGCNLayer(nn.Module):
         return {ntype : G.nodes[ntype].data['h'] for ntype in G.ntypes}, penalty, self.num_masked
     
 class HeteroRGCN(nn.Module):
-    def __init__(self, G, in_size, hidden_size, out_size, attention, proto, proto_num, sim_measure, bert_measure, agg_measure, num_walks, walk_mode, path_length, split, data_folder, exp_lambda):
+    def __init__(self, G, in_size, hidden_size, out_size, attention, proto, proto_num, sim_measure, bert_measure, agg_measure, num_walks, walk_mode, path_length, split, data_folder, exp_lambda, device):
         super(HeteroRGCN, self).__init__()
 
         if attention:
@@ -457,7 +455,7 @@ class HeteroRGCN(nn.Module):
         nn.init.xavier_uniform_(self.w_rels, gain=nn.init.calculate_gain('relu'))
         rel2idx = dict(zip(G.canonical_etypes, list(range(len(G.canonical_etypes)))))
                
-        self.pred = DistMultPredictor(n_hid = hidden_size, w_rels = self.w_rels, G = G, rel2idx = rel2idx, proto = proto, proto_num = proto_num, sim_measure = sim_measure, bert_measure = bert_measure, agg_measure = agg_measure, num_walks = num_walks, walk_mode = walk_mode, path_length = path_length, split = split, data_folder = data_folder, exp_lambda = exp_lambda)
+        self.pred = DistMultPredictor(n_hid = hidden_size, w_rels = self.w_rels, G = G, rel2idx = rel2idx, proto = proto, proto_num = proto_num, sim_measure = sim_measure, bert_measure = bert_measure, agg_measure = agg_measure, num_walks = num_walks, walk_mode = walk_mode, path_length = path_length, split = split, data_folder = data_folder, exp_lambda = exp_lambda, device = device)
         self.attention = attention
         
         self.hidden_size = hidden_size

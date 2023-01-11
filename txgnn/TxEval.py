@@ -4,6 +4,7 @@ class TxEval:
     
     def __init__(self, model):
         self.df, self.df_train, self.df_valid, self.df_test, self.data_folder, self.G, self.best_model, self.weight_bias_track, self.wandb = model.df, model.df_train, model.df_valid, model.df_test, model.data_folder, model.G, model.best_model, model.weight_bias_track, model.wandb
+        self.device = model.device
         self.disease_rel_types = ['rev_contraindication', 'rev_indication', 'rev_off-label use']
         self.split = model.split
         
@@ -17,7 +18,7 @@ class TxEval:
         if disease_idxs == 'test_set':
             disease_idxs = None
         
-        self.out = disease_centric_evaluation(self.df, self.df_train, self.df_valid, self.df_test, self.data_folder, self.G, self.best_model, disease_idxs, relation, self.weight_bias_track, self.wandb, show_plot, verbose, return_raw, simulate_random, only_prediction)
+        self.out = disease_centric_evaluation(self.df, self.df_train, self.df_valid, self.df_test, self.data_folder, self.G, self.best_model,self.device, disease_idxs, relation, self.weight_bias_track, self.wandb, show_plot, verbose, return_raw, simulate_random, only_prediction)
         
         if save_result:
             import pickle, os
