@@ -79,6 +79,8 @@ TxGNN.save_model('./model_ckpt')
 To evaluate the model on the entire test set using disease-centric evaluation, you can type:
 
 ```python
+from txgnn import TxEval
+TxEval = TxEval(model = TxGNN)
 result = TxEval.eval_disease_centric(disease_idxs = 'test_set', 
                                      show_plot = False, 
                                      verbose = True, 
