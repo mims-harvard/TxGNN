@@ -1,6 +1,14 @@
 # TxGNN: Zero-shot prediction of therapeutic use with geometric deep learning and human centered design
 
-This repository hosts the official implementation of TxGNN, a method that can predict drug efficacy to disease with limited molecular underpinnings and few/zero treatments by applying geomtric learning on multi-scale disease knowledge graph. 
+This repository hosts the official implementation of TxGNN, a model for identifying therapeutic opportunities for diseases with limited treatment options and minimal molecular understanding that leverages recent advances in geometric deep learning and human-centered. 
+
+TxGNN is a graph neural network pre-trained on a comprehensive knowledge graph of 17,080 clinically-recognized diseases and 7,957 therapeutic candidates. The model can process various therapeutic tasks, such as indication and contraindication prediction, in a unified formulation. Once trained, we show that TxGNN can perform zero-shot inference on new diseases without additional parameters or fine-tuning on ground truth labels.
+
+### MedRxiv preprint is at [https://www.medrxiv.org/content/10.1101/2023.03.19.23287458](https://www.medrxiv.org/content/10.1101/2023.03.19.23287458)
+
+### TxGNN Explorer of model predictions and explanations is at [http://txgnn.org](http://txgnn.org/)
+
+![TxGNN](https://zitniklab.hms.harvard.edu/img/TxGNN-method.png)
 
 ### Installation 
 
@@ -139,5 +147,18 @@ Another setting is to train the entire network without any disease masking. You 
 
 ### Cite Us
 
+[MedRxiv preprint](https://www.medrxiv.org/content/10.1101/2023.03.19.23287458)
+
 ```
+@article{huang2023zeroshot,
+  title={Zero-shot Prediction of Therapeutic Use with Geometric Deep Learning and Clinician Centered Design},
+  author={Huang, Kexin and Chandak, Payal and Wang, Qianwen and Havaldar, Shreyas and Vaid, Akhil and Leskovec, Jure and Nadkarni, Girish and Glicksberg, Benjamin and Gehlenborg, Nils and Zitnik, Marinka},
+  journal = {medRxiv},
+  doi = {10.1101/2023.03.19.23287458},
+  volume={},
+  number={},
+  pages={},
+  year={2023},
+  publisher={}
+}
 ```
