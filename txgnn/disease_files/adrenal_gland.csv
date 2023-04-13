@@ -1,0 +1,13 @@
+,node_id,node_type,node_name,node_source
+112874,15999.0,disease,primary pigmented nodular adrenocortical disease,MONDO
+112910,16035.0,disease,Nelson syndrome,MONDO
+117092,20527.0,disease,ectopic Cushing syndrome,MONDO
+120967,6640.0,disease,adrenal gland hyperfunction,MONDO
+121051,9410.0,disease,Addison disease,MONDO
+121056,10264.0,disease,X-linked adrenal hypoplasia congenita,MONDO
+121057,4.0,disease,adrenocortical insufficiency,MONDO
+122156,3009.0,disease,hyperaldosteronism,MONDO
+122175,6015.0,disease,Waterhouse-Friderichsen syndrome,MONDO
+122796,7080.0,disease,glucocorticoid-remediable aldosteronism,MONDO
+123180,12675.0,disease,corticosteroid-binding globulin deficiency,MONDO
+123657,13400.0,disease,"Congenital adrenal insuffiency with 46, XY sex reversal OR 46,XY disorder of sex development-adrenal insufficiency due to CYP11A1 deficiency",MONDO

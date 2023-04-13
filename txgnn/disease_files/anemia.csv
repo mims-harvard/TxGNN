@@ -1,0 +1,66 @@
+,node_id,node_type,node_name,node_source
+113110,16242.0,disease,hemoglobin C disease,MONDO
+113111,16243.0,disease,hemoglobin E disease,MONDO
+115746,19050.0,disease,inherited hemoglobinopathy,MONDO
+115790,19107.0,disease,Rh deficiency syndrome,MONDO
+116016,19350.0,disease,hereditary spherocytosis,MONDO
+116051,19391.0,disease,Fanconi anemia,MONDO
+116061,19402.0,disease,beta thalassemia,MONDO
+116062,19403.0,disease,congenital dyserythropoietic anemia,MONDO
+116187,19537.0,disease,hemoglobin D disease,MONDO
+116444,19805.0,disease,twin to twin transfusion syndrome,MONDO
+120600,1357.0,disease,hypochromic anemia (disease),MONDO
+120601,1639.0,disease,deficiency anemia,MONDO
+120602,1245.0,disease,microcytic anemia,MONDO
+121088,2280.0,disease,anemia (disease),MONDO
+121089,2281.0,disease,macrocytic anemia (disease),MONDO
+121099,1117.0,disease,methemoglobinemia,MONDO
+121106,3664.0,disease,hemolytic anemia,MONDO
+121264,1529.0,disease,pancytopenia,MONDO
+121300,1700.0,disease,megaloblastic anemia (disease),MONDO
+121392,15909.0,disease,aplastic anemia,MONDO
+121410,15253.0,disease,Diamond-Blackfan anemia,MONDO
+121411,1713.0,disease,inherited aplastic anemia,MONDO
+121503,6760.0,disease,fetal erythroblastosis,MONDO
+121717,15194.0,disease,sideroblastic anemia,MONDO
+121890,984.0,disease,thalassemia,MONDO
+121961,1239.0,disease,anemia of prematurity,MONDO
+122275,10524.0,disease,X-linked sideroblastic anemia with ataxia,MONDO
+122517,10419.0,disease,X-linked sideroblastic anemia,MONDO
+122639,8447.0,disease,hereditary spherocytosis type 1,MONDO
+122854,10519.0,disease,alpha thalassemia-X-linked intellectual disability syndrome,MONDO
+123017,11584.0,disease,Fanconi anemia complementation group D1,MONDO
+124012,3689.0,disease,familial hemolytic anemia,MONDO
+124015,12985.0,disease,hereditary spherocytosis type 5,MONDO
+124044,14108.0,disease,Fanconi anemia complementation group Q,MONDO
+124094,9215.0,disease,Fanconi anemia complementation group A,MONDO
+124095,9213.0,disease,Fanconi anemia complementation group C,MONDO
+124096,9214.0,disease,Fanconi anemia complementation group D2,MONDO
+124097,10953.0,disease,Fanconi anemia complementation group E,MONDO
+124102,10351.0,disease,Fanconi anemia complementation group b,MONDO
+124105,11325.0,disease,Fanconi anemia complementation group f,MONDO
+124106,13565.0,disease,Fanconi anemia complementation group G,MONDO
+124265,6506.0,disease,congenital nonspherocytic hemolytic anemia,MONDO
+124486,11399.0,disease,alpha thalassemia,MONDO
+124487,7716.0,disease,alpha thalassemia-intellectual disability syndrome type 1,MONDO
+124488,13512.0,disease,hemoglobin H disease,MONDO
+124491,387.0,disease,hypochromic microcytic anemia (disease),MONDO
+124577,8422.0,disease,autosomal dominant sideroblastic anemia,MONDO
+125272,9950.0,disease,pyruvate kinase deficiency of red cells,MONDO
+125445,14986.0,disease,Fanconi anemia complementation group r,MONDO
+125446,13248.0,disease,Fanconi anemia complementation group O,MONDO
+125605,12981.0,disease,hereditary spherocytosis type 4,MONDO
+125681,10053.0,disease,hereditary spherocytosis type 3,MONDO
+125683,1240.0,disease,neonatal anemia,MONDO
+125684,913.0,disease,hereditary spherocytosis type 2,MONDO
+125911,14987.0,disease,Fanconi anemia complementation group U,MONDO
+126308,14985.0,disease,Fanconi anemia complementation group v,MONDO
+126662,14638.0,disease,Fanconi anemia complementation group T,MONDO
+126746,14487.0,disease,congenital sideroblastic anemia-B-cell immunodeficiency-periodic fever-developmental delay syndrome,MONDO
+126764,8785.0,disease,sideroblastic anemia 2,MONDO
+126765,14804.0,disease,sideroblastic anemia 3,MONDO
+126887,13566.0,disease,Fanconi anemia complementation group L,MONDO
+126904,12186.0,disease,Fanconi anemia complementation group i,MONDO
+127194,12565.0,disease,Fanconi anemia complementation group N,MONDO
+127298,12187.0,disease,Fanconi anemia complementation group j,MONDO
+127322,13499.0,disease,Fanconi anemia complementation group P,MONDO

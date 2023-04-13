@@ -1,0 +1,288 @@
+,node_id,node_type,node_name,node_source
+113327,16483.0,disease,intracranial berry aneurysm,MONDO
+113427,16587.0,disease,arrhythmogenic right ventricular cardiomyopathy,MONDO
+113644,16820.0,disease,Moyamoya disease,MONDO
+114774,17990.0,disease,catecholaminergic polymorphic ventricular tachycardia,MONDO
+114775,17991.0,disease,Takayasu arteritis,MONDO
+114836,18054.0,disease,familial atrial fibrillation,MONDO
+114867,18089.0,disease,double outlet right ventricle,MONDO
+115587,18870.0,disease,arterial calcification of infancy,MONDO
+115599,18882.0,disease,vasculitis,MONDO
+115616,18901.0,disease,left ventricular noncompaction (disease),MONDO
+115632,18920.0,disease,peripartum cardiomyopathy,MONDO
+115840,19159.0,disease,Loeffler endocarditis,MONDO
+115849,19170.0,disease,polyarteritis nodosa,MONDO
+115859,19180.0,disease,hereditary hemorrhagic telangiectasia,MONDO
+116101,19443.0,disease,dextro-looped transposition of the great arteries,MONDO
+116145,19490.0,disease,progressive familial heart block,MONDO
+116166,19514.0,disease,hepatic veno-occlusive disease,MONDO
+116176,19526.0,disease,erythema elevatum diutinum,MONDO
+116867,20290.0,disease,atrioventricular septal defect,MONDO
+116868,20291.0,disease,hypoplastic right heart syndrome,MONDO
+117009,20439.0,disease,patent foramen ovale (disease),MONDO
+118631,24523.0,disease,aortic valve disease 1,MONDO
+118681,24573.0,disease,familial hypertrophic cardiomyopathy,MONDO
+118868,25514.0,disease,livedoid vasculopathy,MONDO
+120508,5044.0,disease,hypertensive disorder,MONDO
+120509,1134.0,disease,essential hypertension,MONDO
+120574,8538.0,disease,temporal arteritis,MONDO
+120593,4981.0,disease,atrial fibrillation (disease),MONDO
+120594,5009.0,disease,congestive heart failure,MONDO
+120634,4995.0,disease,cardiovascular disease,MONDO
+120635,5267.0,disease,heart disease,MONDO
+120637,5279.0,disease,pulmonary embolism (disease),MONDO
+120683,4781.0,disease,acute myocardial infarction,MONDO
+120684,5068.0,disease,myocardial infarction (disease),MONDO
+120685,6716.0,disease,coronary thrombosis,MONDO
+120686,3678.0,disease,silent myocardial infarction,MONDO
+120699,5299.0,disease,brain ischemia,MONDO
+120700,5264.0,disease,transient ischemic attack (disease),MONDO
+120721,8364.0,disease,Raynaud disease,MONDO
+120729,2277.0,disease,arteriosclerosis disorder,MONDO
+120730,5311.0,disease,atherosclerosis,MONDO
+120731,6658.0,disease,arteriolosclerosis,MONDO
+120887,11479.0,disease,postural orthostatic tachycardia syndrome,MONDO
+120942,5294.0,disease,peripheral vascular disease,MONDO
+120943,5295.0,disease,intermittent vascular claudication,MONDO
+120944,5386.0,disease,peripheral arterial disease,MONDO
+121000,992.0,disease,heart conduction disease,MONDO
+121009,5010.0,disease,coronary artery disease,MONDO
+121010,11057.0,disease,cerebrovascular disorder,MONDO
+121019,1823.0,disease,sick sinus syndrome,MONDO
+121022,468.0,disease,third-degree atrioventricular block,MONDO
+121039,2442.0,disease,long QT syndrome,MONDO
+121065,1370.0,disease,pericardial effusion (disease),MONDO
+121066,5783.0,disease,hemopericardium (disease),MONDO
+121067,6951.0,disease,retinal vein occlusion,MONDO
+121068,2303.0,disease,central retinal vein occlusion,MONDO
+121074,831.0,disease,thrombotic disease,MONDO
+121081,467.0,disease,second-degree atrioventricular block,MONDO
+121096,6711.0,disease,constrictive pericarditis (disease),MONDO
+121127,6659.0,disease,arteriosclerosis obliterans,MONDO
+121132,2679.0,disease,cerebral infarction,MONDO
+121133,6021.0,disease,Prinzmetal angina,MONDO
+121154,465.0,disease,atrioventricular block (disease),MONDO
+121188,4596.0,disease,cor pulmonale,MONDO
+121189,8685.0,disease,Wolff-Parkinson-white syndrome (disease),MONDO
+121262,1576.0,disease,telangiectasis,MONDO
+121263,1574.0,disease,capillary disease,MONDO
+121273,5904.0,disease,pericarditis (disease),MONDO
+121274,944.0,disease,cerebral artery occlusion,MONDO
+121275,6686.0,disease,brain stem infarction,MONDO
+121280,6727.0,disease,diastolic heart failure,MONDO
+121284,1613.0,disease,vertebrobasilar insufficiency,MONDO
+121307,5081.0,disease,preeclampsia,MONDO
+121308,1072.0,disease,mild pre-eclampsia,MONDO
+121324,745.0,disease,cardiac arrest,MONDO
+121329,4745.0,disease,priapism,MONDO
+121338,2800.0,disease,thrombophlebitis,MONDO
+121363,2869.0,disease,heart valve disease,MONDO
+121384,4872.0,disease,hemorrhoid,MONDO
+121386,6945.0,disease,renal artery obstruction,MONDO
+121397,5852.0,disease,mitral valve stenosis,MONDO
+121398,5149.0,disease,pulmonary hypertension,MONDO
+121399,1999.0,disease,primary pulmonary hypertension,MONDO
+121436,4994.0,disease,cardiomyopathy,MONDO
+121437,5045.0,disease,hypertrophic cardiomyopathy,MONDO
+121438,6746.0,disease,endomyocardial fibrosis,MONDO
+121453,8647.0,disease,hypertrophic cardiomyopathy 1,MONDO
+121476,4496.0,disease,myocarditis,MONDO
+121477,7240.0,disease,"progressive familial heart block, type 1A",MONDO
+121508,6981.0,disease,subacute bacterial endocarditis,MONDO
+121513,6955.0,disease,rheumatic heart disease,MONDO
+121534,11484.0,disease,catecholaminergic polymorphic ventricular tachycardia 1,MONDO
+121535,12762.0,disease,catecholaminergic polymorphic ventricular tachycardia 2,MONDO
+121536,13529.0,disease,catecholaminergic polymorphic ventricular tachycardia 3,MONDO
+121537,13966.0,disease,catecholaminergic polymorphic ventricular tachycardia 4,MONDO
+121538,14191.0,disease,catecholaminergic polymorphic ventricular tachycardia 5,MONDO
+121540,4717.0,disease,peliosis hepatis,MONDO
+121541,5385.0,disease,vascular disease,MONDO
+121561,1612.0,disease,carotid stenosis,MONDO
+121562,6690.0,disease,carotid artery thrombosis,MONDO
+121572,4910.0,disease,mitral valve prolapse (disease),MONDO
+121574,1298.0,disease,congenital mitral valve insufficiency,MONDO
+121575,6936.0,disease,pulmonary valve stenosis,MONDO
+121583,4978.0,disease,aortic stenosis,MONDO
+121584,13902.0,disease,aortic valve disease 2,MONDO
+121585,8504.0,disease,supravalvular aortic stenosis (disease),MONDO
+121586,5201.0,disease,restrictive cardiomyopathy,MONDO
+121609,5021.0,disease,dilated cardiomyopathy,MONDO
+121610,7269.0,disease,dilated cardiomyopathy 1A,MONDO
+121611,10542.0,disease,dilated cardiomyopathy 3B,MONDO
+121612,10771.0,disease,histiocytoid cardiomyopathy,MONDO
+121613,10951.0,disease,dilated cardiomyopathy 1B,MONDO
+121614,11003.0,disease,dilated cardiomyopathy 1E,MONDO
+121615,11094.0,disease,dilated cardiomyopathy 1C,MONDO
+121616,11095.0,disease,dilated cardiomyopathy 1D,MONDO
+121617,11400.0,disease,dilated cardiomyopathy 1G,MONDO
+121618,11425.0,disease,dilated cardiomyopathy 1H,MONDO
+121619,11482.0,disease,dilated cardiomyopathy 1I,MONDO
+121620,11567.0,disease,dilated cardiomyopathy 1K,MONDO
+121621,11702.0,disease,dilated cardiomyopathy 1L,MONDO
+121622,11840.0,disease,dilated cardiomyopathy 1M,MONDO
+121623,12062.0,disease,dilated cardiomyopathy 1O,MONDO
+121624,12362.0,disease,dilated cardiomyopathy 1P,MONDO
+121625,12364.0,disease,dilated cardiomyopathy 1Q,MONDO
+121626,12667.0,disease,dilated cardiomyopathy 1W,MONDO
+121627,12704.0,disease,dilated cardiomyopathy 1X,MONDO
+121628,12744.0,disease,dilated cardiomyopathy 1Y,MONDO
+121629,12745.0,disease,dilated cardiomyopathy 1Z,MONDO
+121630,12746.0,disease,dilated cardiomyopathy 2A,MONDO
+121631,12808.0,disease,dilated cardiomyopathy 1AA,MONDO
+121632,13030.0,disease,dilated cardiomyopathy 1BB,MONDO
+121633,13147.0,disease,dilated cardiomyopathy 1CC,MONDO
+121634,13168.0,disease,dilated cardiomyopathy 1DD,MONDO
+121635,13198.0,disease,dilated cardiomyopathy 1EE,MONDO
+121636,13211.0,disease,dilated cardiomyopathy 1FF,MONDO
+121637,13261.0,disease,dilated cardiomyopathy 1R,MONDO
+121638,13262.0,disease,dilated cardiomyopathy 1S,MONDO
+121639,13339.0,disease,dilated cardiomyopathy 1GG,MONDO
+121640,13371.0,disease,dilated cardiomyopathy 1U,MONDO
+121641,13373.0,disease,dilated cardiomyopathy 1V,MONDO
+121642,13479.0,disease,dilated cardiomyopathy 1HH,MONDO
+121643,13848.0,disease,dilated cardiomyopathy 2B,MONDO
+121644,14073.0,disease,dilated cardiomyopathy 1II,MONDO
+121645,14095.0,disease,dilated cardiomyopathy 1JJ,MONDO
+121646,14100.0,disease,dilated cardiomyopathy 1KK,MONDO
+121647,14396.0,disease,dilated cardiomyopathy 1NN,MONDO
+121674,5356.0,disease,coronary vasospasm,MONDO
+121691,1221.0,disease,esophageal varices,MONDO
+121695,11514.0,disease,tricuspid atresia (disease),MONDO
+121709,4625.0,disease,phlebitis,MONDO
+121733,1632.0,disease,intracranial arteriosclerosis,MONDO
+121735,565.0,disease,infective endocarditis,MONDO
+121736,5025.0,disease,endocarditis (disease),MONDO
+121765,1641.0,disease,severe pre-eclampsia,MONDO
+121855,8889.0,disease,thromboangiitis obliterans,MONDO
+121860,1133.0,disease,malignant essential hypertension,MONDO
+121861,6846.0,disease,malignant hypertension,MONDO
+121875,5453.0,disease,congenital heart disease,MONDO
+121876,5080.0,disease,portal hypertension,MONDO
+121891,8585.0,disease,HELLP syndrome,MONDO
+121893,2907.0,disease,intracranial thrombosis,MONDO
+121903,1297.0,disease,cardiac tamponade,MONDO
+121912,8638.0,disease,varicose disease,MONDO
+121965,8542.0,disease,tetralogy of fallot,MONDO
+121992,1954.0,disease,thrombophlebitis migrans,MONDO
+122000,9937.0,disease,pulmonary venoocclusive disease,MONDO
+122005,6786.0,disease,hepatic vein thrombosis,MONDO
+122016,9934.0,disease,congenital alveolar capillary dysplasia,MONDO
+122042,945.0,disease,venous insufficiency (disease),MONDO
+122052,11827.0,disease,patent ductus arteriosus,MONDO
+122061,5291.0,disease,brain aneurysm,MONDO
+122101,6809.0,disease,intracranial embolism,MONDO
+122109,991.0,disease,left bundle branch block,MONDO
+122158,1956.0,disease,capillary leak syndrome,MONDO
+122185,6812.0,disease,intracranial vasospasm,MONDO
+122329,6044.0,disease,nephrosclerosis,MONDO
+122330,5396.0,disease,thoracic aortic aneurysm,MONDO
+122347,6664.0,disease,atrial heart septal defect,MONDO
+122349,12799.0,disease,hypertrophic cardiomyopathy 11,MONDO
+122350,13011.0,disease,atrial heart septal defect 5,MONDO
+122389,960.0,disease,diabetic peripheral angiopathy,MONDO
+122404,6857.0,disease,middle cerebral artery infarction,MONDO
+122434,5160.0,disease,aortic aneurysm (disease),MONDO
+122435,6643.0,disease,alcoholic cardiomyopathy,MONDO
+122438,1105.0,disease,renal hypertension,MONDO
+122442,5350.0,disease,abdominal aortic aneurysm,MONDO
+122444,5269.0,disease,carotid artery disease,MONDO
+122464,7191.0,disease,Behcet disease,MONDO
+122640,8646.0,disease,long QT syndrome 1,MONDO
+122641,15263.0,disease,Brugada syndrome,MONDO
+122642,11001.0,disease,Brugada syndrome 1,MONDO
+122822,4876.0,disease,myocardial stunning,MONDO
+123095,12742.0,disease,Brugada syndrome 3,MONDO
+123106,13015.0,disease,Brugada syndrome 5,MONDO
+123107,12743.0,disease,Brugada syndrome 4,MONDO
+123133,14548.0,disease,long QT syndrome 14,MONDO
+123134,14550.0,disease,long QT syndrome 15,MONDO
+123167,12736.0,disease,long QT syndrome 9,MONDO
+123189,820.0,disease,cerebral cavernous malformation,MONDO
+123393,5648.0,disease,aortic valve insufficiency,MONDO
+123605,7194.0,disease,familial bicuspid aortic valve,MONDO
+123606,4933.0,disease,hypoplastic left heart syndrome,MONDO
+123610,3803.0,disease,aortic valve disease,MONDO
+123614,7173.0,disease,atrial heart septal defect 7,MONDO
+123636,5394.0,disease,brain infarction,MONDO
+123680,5355.0,disease,coronary restenosis,MONDO
+123904,12506.0,disease,arrhythmogenic right ventricular dysplasia 11,MONDO
+123908,12434.0,disease,arrhythmogenic right ventricular dysplasia 10,MONDO
+123910,11831.0,disease,arrhythmogenic right ventricular dysplasia 8,MONDO
+124041,11541.0,disease,dilated cardiomyopathy 1J,MONDO
+124080,2692.0,disease,intracranial sinus thrombosis,MONDO
+124084,2695.0,disease,sagittal sinus thrombosis,MONDO
+124231,14883.0,disease,hypertrophic cardiomyopathy 26,MONDO
+124233,2407.0,disease,capillary hemangioma,MONDO
+124249,6827.0,disease,lateral medullary syndrome,MONDO
+124298,7172.0,disease,atrial heart septal defect 1,MONDO
+124302,11938.0,disease,atrial heart septal defect 2,MONDO
+124308,13770.0,disease,atrial heart septal defect 9,MONDO
+124324,13463.0,disease,dextro-looped transposition of the great arteries 3,MONDO
+124342,6714.0,disease,coronary aneurysm,MONDO
+124400,3653.0,disease,stork bite,MONDO
+124493,6855.0,disease,mesenteric vascular occlusion,MONDO
+124567,6715.0,disease,coronary stenosis,MONDO
+124659,6805.0,disease,intermediate coronary syndrome,MONDO
+124720,12684.0,disease,arrhythmogenic right ventricular dysplasia 12,MONDO
+124728,14621.0,disease,Brugada syndrome 9,MONDO
+124731,2441.0,disease,Jervell-Lange Nielsen syndrome,MONDO
+124732,13372.0,disease,long QT syndrome 5,MONDO
+124735,13367.0,disease,long QT syndrome 2,MONDO
+124738,8222.0,disease,Andersen-Tawil syndrome,MONDO
+124742,13279.0,disease,long QT syndrome 13,MONDO
+124756,453.0,disease,short QT syndrome,MONDO
+124832,10975.0,disease,arrhythmogenic right ventricular dysplasia 2,MONDO
+125010,7268.0,disease,hypertrophic cardiomyopathy 4,MONDO
+125021,13197.0,disease,hypertrophic cardiomyopathy 14,MONDO
+125022,13567.0,disease,atrial heart septal defect 3,MONDO
+125024,9144.0,disease,Ebstein anomaly (disease),MONDO
+125035,12112.0,disease,hypertrophic cardiomyopathy 10,MONDO
+125036,12111.0,disease,hypertrophic cardiomyopathy 8,MONDO
+125107,6947.0,disease,renovascular hypertension (disease),MONDO
+125275,12180.0,disease,arrhythmogenic right ventricular dysplasia 9,MONDO
+125279,5568.0,disease,cholesterol embolism,MONDO
+125290,13475.0,disease,hypertrophic cardiomyopathy 18,MONDO
+125316,6987.0,disease,subvalvular aortic stenosis,MONDO
+125543,12737.0,disease,long QT syndrome 10,MONDO
+125544,11377.0,disease,long QT syndrome 3,MONDO
+125646,13062.0,disease,long QT syndrome 12,MONDO
+125761,10842.0,disease,multiple cutaneous and mucosal venous malformations,MONDO
+125771,8209.0,disease,Char syndrome,MONDO
+125781,7152.0,disease,arrhythmogenic right ventricular dysplasia 1,MONDO
+125811,13123.0,disease,atrial heart septal defect 6,MONDO
+125816,13195.0,disease,hypertrophic cardiomyopathy 13,MONDO
+125817,13369.0,disease,hypertrophic cardiomyopathy 7,MONDO
+125820,7266.0,disease,hypertrophic cardiomyopathy 2,MONDO
+125830,7267.0,disease,hypertrophic cardiomyopathy 3,MONDO
+125848,13412.0,disease,hypertrophic cardiomyopathy 9,MONDO
+125885,13200.0,disease,hypertrophic cardiomyopathy 15,MONDO
+125916,15661.0,disease,dextrocardia (disease),MONDO
+125943,12804.0,disease,hypertrophic cardiomyopathy 12,MONDO
+126002,11843.0,disease,hypertrophic cardiomyopathy 25,MONDO
+126221,13370.0,disease,long QT syndrome 6,MONDO
+126226,13145.0,disease,Brugada syndrome 6,MONDO
+126234,13148.0,disease,Brugada syndrome 8,MONDO
+126252,12738.0,disease,long QT syndrome 11,MONDO
+126300,13750.0,disease,atrial heart septal defect 8,MONDO
+126407,11305.0,disease,cerebral cavernous malformation 3,MONDO
+126463,12728.0,disease,Brugada syndrome 2,MONDO
+126498,12128.0,disease,dextro-looped transposition of the great arteries 1,MONDO
+126631,7130.0,disease,congenital total pulmonary venous return anomaly,MONDO
+126664,908.0,disease,arrhythmogenic right ventricular dysplasia 13,MONDO
+126783,10946.0,disease,hypertrophic cardiomyopathy 6,MONDO
+126806,13455.0,disease,hypertrophic cardiomyopathy 16,MONDO
+126808,8436.0,disease,Sneddon syndrome,MONDO
+126853,11474.0,disease,progressive familial heart block type IB,MONDO
+126948,13146.0,disease,Brugada syndrome 7,MONDO
+126996,12654.0,disease,atrial heart septal defect 4,MONDO
+127007,13474.0,disease,hypertrophic cardiomyopathy 17,MONDO
+127168,11459.0,disease,arrhythmogenic right ventricular dysplasia 5,MONDO
+127242,6767.0,disease,gastric antral vascular ectasia,MONDO
+127288,11304.0,disease,cerebral cavernous malformation 2,MONDO
+127390,13477.0,disease,hypertrophic cardiomyopathy 20,MONDO
+142364,2070.0,disease,ventricular septal defect (disease),MONDO
+142366,7001.0,disease,tricuspid valve prolapse (disease),MONDO
+142405,1065.0,disease,supine hypotensive syndrome,MONDO
+142416,5997.0,disease,tricuspid valve stenosis,MONDO
+142430,1662.0,disease,right bundle branch block (disease),MONDO
+142435,980.0,disease,aortic atherosclerosis (disease),MONDO

@@ -1,0 +1,231 @@
+,node_id,node_type,node_name,node_source
+112886,16011.0,disease,fetal alcohol syndrome,MONDO
+114090,17276.0,disease,frontotemporal dementia,MONDO
+115860,19181.0,disease,non-syndromic X-linked intellectual disability,MONDO
+116154,19502.0,disease,autosomal recessive non-syndromic intellectual disability,MONDO
+116716,20119.0,disease,X-linked syndromic intellectual disability,MONDO
+117472,21107.0,disease,narcolepsy,MONDO
+117843,21668.0,disease,disorder involving pain,MONDO
+118551,24358.0,disease,complex sleep apnea,MONDO
+118557,24377.0,disease,"circadian rhythm sleep disorder, delayed sleep phase type",MONDO
+119013,30907.0,disease,"intellectual disability, X-linked 106",MONDO
+119014,30908.0,disease,"intellectual disability, X-linked, syndromic, 35",MONDO
+119015,30909.0,disease,"intellectual disability, X-linked, syndromic, Houge type",MONDO
+119016,30910.0,disease,"intellectual disability, autosomal dominant 45",MONDO
+119017,30911.0,disease,"intellectual disability, autosomal dominant 46",MONDO
+119018,30912.0,disease,"intellectual disability, autosomal dominant 47",MONDO
+119019,30913.0,disease,"intellectual disability, autosomal dominant 48",MONDO
+119020,30914.0,disease,"intellectual disability, autosomal dominant 49",MONDO
+119021,30915.0,disease,"intellectual disability, autosomal recessive 61",MONDO
+119022,30916.0,disease,"intellectual disability, autosomal dominant 50",MONDO
+119023,30917.0,disease,"intellectual disability, autosomal dominant 51",MONDO
+119024,30918.0,disease,"intellectual disability, autosomal dominant 52",MONDO
+119025,30919.0,disease,"intellectual disability, autosomal dominant 53",MONDO
+119026,30920.0,disease,"intellectual disability, autosomal dominant 54",MONDO
+119027,30921.0,disease,"intellectual disability, autosomal dominant 55, with seizures",MONDO
+119028,30922.0,disease,"intellectual disability, autosomal dominant 56",MONDO
+119419,33312.0,disease,schizophrenia 19,MONDO
+119443,33492.0,disease,Coffin-Siris syndrome 6,MONDO
+120265,56797.0,disease,neurodevelopmental disorder with midbrain and hindbrain malformations,MONDO
+120579,2050.0,disease,depressive disorder,MONDO
+120580,5379.0,disease,neurotic disorder,MONDO
+120581,1442.0,disease,dysthymic disorder,MONDO
+120614,1196.0,disease,psychologic dyspareunia,MONDO
+120723,1821.0,disease,hypoactive sexual desire disorder,MONDO
+120727,5090.0,disease,schizophrenia (disease),MONDO
+120738,12048.0,disease,endogenous depression,MONDO
+120739,2009.0,disease,major depressive disorder,MONDO
+120808,1780.0,disease,premature ejaculation (disease),MONDO
+120912,5618.0,disease,anxiety disorder,MONDO
+120913,3699.0,disease,phobic disorder,MONDO
+120917,5351.0,disease,anorexia nervosa,MONDO
+120926,1315.0,disease,neurocirculatory asthenia,MONDO
+120928,5362.0,disease,erectile dysfunction (disease),MONDO
+120962,1942.0,disease,generalized anxiety disorder,MONDO
+120963,7079.0,disease,alcohol dependence,MONDO
+120964,2046.0,disease,alcohol abuse,MONDO
+121070,4985.0,disease,bipolar disorder,MONDO
+121087,6730.0,disease,drug psychosis,MONDO
+121112,2494.0,disease,substance-related disorder,MONDO
+121113,2491.0,disease,substance abuse,MONDO
+121184,5485.0,disease,psychotic disorder,MONDO
+121185,1265.0,disease,schizophreniform disorder,MONDO
+121187,5487.0,disease,schizoaffective disorder,MONDO
+121240,8575.0,disease,nicotine dependence,MONDO
+121253,5146.0,disease,post-traumatic stress disorder,MONDO
+121256,5383.0,disease,panic disorder,MONDO
+121341,8114.0,disease,obsessive-compulsive disorder,MONDO
+121374,1627.0,disease,dementia (disease),MONDO
+121407,5303.0,disease,drug dependence,MONDO
+121408,4938.0,disease,substance dependence,MONDO
+121415,7147.0,disease,obstructive sleep apnea syndrome,MONDO
+121416,5296.0,disease,sleep apnea syndrome,MONDO
+121419,7661.0,disease,Tourette syndrome,MONDO
+121443,5452.0,disease,bulimia nervosa,MONDO
+121502,694.0,disease,seasonal affective disorder,MONDO
+121550,2039.0,disease,cognitive disorder,MONDO
+121597,3709.0,disease,agoraphobia,MONDO
+121663,1152.0,disease,amnestic disorder,MONDO
+121664,3040.0,disease,retrograde amnesia,MONDO
+121667,5567.0,disease,substance withdrawal syndrome,MONDO
+121681,1186.0,disease,depersonalization disorder,MONDO
+121683,2420.0,disease,tic disorder,MONDO
+121687,5530.0,disease,opiate dependence,MONDO
+121688,5367.0,disease,heroin dependence,MONDO
+121689,5531.0,disease,morphine dependence,MONDO
+121706,2411.0,disease,narcissistic personality disorder,MONDO
+121725,1156.0,disease,borderline personality disorder (disease),MONDO
+121726,1521.0,disease,intermittent explosive disorder,MONDO
+121731,2134.0,disease,physiological sexual disorder,MONDO
+121732,595.0,disease,sexual and gender identity disorders,MONDO
+121761,2330.0,disease,alcoholic psychosis,MONDO
+121822,4681.0,disease,learning disability,MONDO
+121823,1071.0,disease,intellectual disability,MONDO
+121832,5260.0,disease,autism (disease),MONDO
+121835,5929.0,disease,postpartum depression,MONDO
+121840,5566.0,disease,neonatal abstinence syndrome,MONDO
+121901,1247.0,disease,social phobia,MONDO
+121909,5302.0,disease,attention deficit disorder,MONDO
+121941,7488.0,disease,Lewy body dementia,MONDO
+121949,4359.0,disease,delusional disorder,MONDO
+121950,1484.0,disease,paranoid schizophrenia,MONDO
+121986,14092.0,disease,schizophrenia 18,MONDO
+122036,495.0,disease,oppositional defiant disorder (disease),MONDO
+122179,2443.0,disease,bruxism (disease),MONDO
+122304,3969.0,disease,amphetamine abuse,MONDO
+122405,2444.0,disease,melancholia,MONDO
+122410,5689.0,disease,cannabis dependence,MONDO
+122411,4456.0,disease,cocaine abuse,MONDO
+122412,5186.0,disease,cocaine dependence,MONDO
+122433,2905.0,disease,mutism (disease),MONDO
+122585,14035.0,disease,severe intellectual disability-progressive spastic diplegia syndrome,MONDO
+122646,395.0,disease,alcohol-related birth defect,MONDO
+122647,393.0,disease,partial fetal alcohol syndrome,MONDO
+122690,1185.0,disease,dissociative amnesia,MONDO
+122743,14088.0,disease,advanced sleep phase syndrome 2,MONDO
+122852,10407.0,disease,syndromic X-linked intellectual disability Turner type,MONDO
+122858,13656.0,disease,"intellectual disability, autosomal dominant 9",MONDO
+122860,5258.0,disease,autism spectrum disorder,MONDO
+122904,1866.0,disease,bipolar I disorder,MONDO
+122993,14699.0,disease,"intellectual disability, autosomal dominant 40",MONDO
+123063,1225.0,disease,opioid abuse,MONDO
+123131,5912.0,disease,phencyclidine abuse,MONDO
+123135,1726.0,disease,childhood disintegrative disease,MONDO
+123238,12946.0,disease,"intellectual disability, autosomal dominant 3",MONDO
+123239,10648.0,disease,major affective disorder 2,MONDO
+123297,665.0,disease,apraxia,MONDO
+123320,3406.0,disease,sleep-wake disorder,MONDO
+123367,10473.0,disease,X-linked intellectual disability-cardiomegaly-congestive heart failure syndrome,MONDO
+123559,2025.0,disease,psychiatric disorder,MONDO
+123596,15609.0,disease,advanced sleep phase syndrome,MONDO
+123874,13805.0,disease,"intellectual disability, autosomal dominant 13",MONDO
+123893,14580.0,disease,"intellectual disability, autosomal dominant 33",MONDO
+123896,1162.0,disease,impulse control disorder,MONDO
+123897,1520.0,disease,kleptomania,MONDO
+123900,11662.0,disease,pathological gambling,MONDO
+123902,1098.0,disease,separation anxiety disorder,MONDO
+123903,2419.0,disease,transient tic disorder,MONDO
+123931,13578.0,disease,DYRK1A-related intellectual disability syndrome,MONDO
+123981,14617.0,disease,"intellectual disability, autosomal dominant 38",MONDO
+123993,10726.0,disease,Rett syndrome,MONDO
+124001,10258.0,disease,MEHMO syndrome,MONDO
+124014,13658.0,disease,"intellectual disability, autosomal dominant 11",MONDO
+124174,4922.0,disease,developmental coordination disorder,MONDO
+124212,10398.0,disease,syndromic X-linked intellectual disability 14,MONDO
+124416,14855.0,disease,"intellectual disability, autosomal dominant 42",MONDO
+124432,10654.0,disease,Partington syndrome,MONDO
+124434,10402.0,disease,syndromic X-linked intellectual disability 94,MONDO
+124438,11842.0,disease,Grn-related frontotemporal lobar degeneration with Tdp43 inclusions,MONDO
+124441,13655.0,disease,"intellectual disability, autosomal dominant 8",MONDO
+124442,4730.0,disease,speech disorder,MONDO
+124443,13509.0,disease,"intellectual disability, autosomal dominant 6",MONDO
+124509,14858.0,disease,"intellectual disability, autosomal dominant 43",MONDO
+124516,7863.0,disease,Kleine-Levin syndrome,MONDO
+124543,13189.0,disease,trichotillomania,MONDO
+124607,3117.0,disease,somatoform disorder,MONDO
+124608,1830.0,disease,somatization disorder,MONDO
+124624,10333.0,disease,corpus callosum agenesis-intellectual disability-coloboma-micrognathia syndrome,MONDO
+124627,10664.0,disease,syndromic X-linked intellectual disability Snyder type,MONDO
+124684,10283.0,disease,syndromic X-linked intellectual disability Lubs type,MONDO
+124882,1164.0,disease,antisocial personality disorder,MONDO
+124883,2028.0,disease,personality disorder (disease),MONDO
+124896,10235.0,disease,X-linked intellectual disability-psychosis-macroorchidism syndrome,MONDO
+124898,13266.0,disease,"intellectual disability, autosomal dominant 20",MONDO
+125104,10501.0,disease,syndromic X-linked intellectual disability 34,MONDO
+125146,10337.0,disease,X-linked intellectual disability-cerebellar hypoplasia syndrome,MONDO
+125147,12054.0,disease,schizophrenia 12,MONDO
+125328,14605.0,disease,microcephaly-corpus callosum hypoplasia-intellectual disability-facial dysmorphism syndrome,MONDO
+125331,14602.0,disease,intellectual disability-macrocephaly-hypotonia-behavioral abnormalities syndrome,MONDO
+125360,10943.0,disease,schizophrenia 4,MONDO
+125364,10533.0,disease,Arts syndrome,MONDO
+125419,14512.0,disease,PURA-related severe neonatal hypotonia-seizures-encephalopathy syndrome due to a point mutation,MONDO
+125471,15452.0,disease,Coffin-Siris syndrome,MONDO
+125610,2027.0,disease,avoidant personality disorder,MONDO
+125611,1157.0,disease,dependent personality disorder,MONDO
+125612,5259.0,disease,Asperger syndrome,MONDO
+125628,13804.0,disease,"intellectual disability, autosomal dominant 12",MONDO
+125630,13821.0,disease,"intellectual disability, autosomal dominant 16",MONDO
+125633,13820.0,disease,"intellectual disability, autosomal dominant 15",MONDO
+125641,693.0,disease,bipolar II disorder,MONDO
+125675,14376.0,disease,"intellectual disability, autosomal dominant 27",MONDO
+125756,8414.0,disease,SCZD1,MONDO
+125839,14892.0,disease,micrognathia-recurrent infections-behavioral abnormalities-mild intellectual disability syndrome,MONDO
+125867,10461.0,disease,syndromic X-linked intellectual disability Nascimento type,MONDO
+125939,14558.0,disease,autosomal dominant intellectual disability-craniofacial anomalies-cardiac defects syndrome,MONDO
+125965,10355.0,disease,syndromic X-linked intellectual disability Claes-Jensen type,MONDO
+125969,13819.0,disease,"intellectual disability, autosomal dominant 14",MONDO
+125985,10306.0,disease,"X-linked intellectual disability, Cabezas type",MONDO
+126004,10417.0,disease,syndromic X-linked intellectual disability Najm type,MONDO
+126036,12960.0,disease,"intellectual disability, autosomal dominant 5",MONDO
+126042,11442.0,disease,advanced sleep phase syndrome 1,MONDO
+126051,10574.0,disease,syndromic X-linked intellectual disability 5,MONDO
+126217,5638.0,disease,agnosia,MONDO
+126228,3265.0,disease,adjustment disorder,MONDO
+126245,10653.0,disease,Renpenning syndrome,MONDO
+126246,14599.0,disease,"intellectual disability, autosomal dominant 34",MONDO
+126256,10319.0,disease,syndromic X-linked intellectual disability Hedera type,MONDO
+126298,13657.0,disease,"intellectual disability, autosomal dominant 10",MONDO
+126311,12869.0,disease,"intellectual disability, autosomal dominant 22",MONDO
+126312,10278.0,disease,Christianson syndrome,MONDO
+126320,14357.0,disease,"intellectual disability, autosomal dominant 24",MONDO
+126337,14213.0,disease,intellectual disability-feeding difficulties-developmental delay-microcephaly syndrome,MONDO
+126357,14486.0,disease,"intellectual disability, autosomal dominant 30",MONDO
+126446,14678.0,disease,"intellectual disability, autosomal dominant 39",MONDO
+126458,14606.0,disease,intellectual disability-microcephaly-strabismus-behavioral abnormalities syndrome,MONDO
+126459,10286.0,disease,syndromic X-linked intellectual disability Siderius type,MONDO
+126468,11552.0,disease,SCZD10,MONDO
+126500,14379.0,disease,ADNP-related multiple congenital anomalies - intellectual disability - autism spectrum disorder,MONDO
+126517,723.0,disease,stutter disorder,MONDO
+126588,14482.0,disease,"intellectual disability, autosomal dominant 29",MONDO
+126590,14361.0,disease,autism spectrum disorder due to AUTS2 deficiency,MONDO
+126644,14358.0,disease,AHDC1-related intellectual disability - obstructive sleep apnea - mild dysmorphism syndrome,MONDO
+126649,10277.0,disease,syndromic X-linked intellectual disability Shashi type,MONDO
+126753,10427.0,disease,syndromic X-linked intellectual disability Raymond type,MONDO
+126898,14336.0,disease,intellectual disability-facial dysmorphism syndrome due to SETD5 haploinsufficiency,MONDO
+126933,14006.0,disease,Schuurs-Hoeijmakers syndrome,MONDO
+126944,7974.0,disease,"intellectual disability, autosomal dominant 1",MONDO
+126961,10665.0,disease,Wilson-Turner syndrome,MONDO
+126964,10666.0,disease,Miles-Carpenter syndrome,MONDO
+127019,14034.0,disease,severe intellectual disability-poor language-strabismus-grimacing face-long fingers syndrome,MONDO
+127070,4617.0,disease,recurrent hypersomnia,MONDO
+127193,14842.0,disease,"intellectual disability, autosomal dominant 41",MONDO
+127255,1712.0,disease,alexia,MONDO
+127256,5489.0,disease,dyslexia (disease),MONDO
+127257,1697.0,disease,reading disorder,MONDO
+127314,10537.0,disease,Borjeson-Forssman-Lehmann syndrome,MONDO
+127328,12947.0,disease,"intellectual disability, autosomal dominant 4",MONDO
+127359,13498.0,disease,schizophrenia 15,MONDO
+127363,11960.0,disease,schizophrenia 11,MONDO
+127416,724.0,disease,specific language impairment,MONDO
+127607,10353.0,disease,"deafness-intellectual disability, Martin-Probst type syndrome",MONDO
+127700,4648.0,disease,vascular dementia,MONDO
+142372,1552.0,disease,dyscalculia (disease),MONDO
+142373,4750.0,disease,language disorder,MONDO
+142419,671.0,disease,finger agnosia (disease),MONDO
+142420,3038.0,disease,dysgraphia (disease),MONDO
+142421,680.0,disease,astereognosia (disease),MONDO
+142422,3227.0,disease,prosopagnosia (disease),MONDO
+142423,2904.0,disease,echolalia (disease),MONDO
+142424,1617.0,disease,transient global amnesia (disease),MONDO
+142431,2613.0,disease,histrionic personality disorder (disease),MONDO
+142449,685.0,disease,visual agnosia (disease),MONDO

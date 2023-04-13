@@ -1,0 +1,599 @@
+,node_id,node_type,node_name,node_source
+113092,16222.0,disease,spindle cell hemangioma,MONDO
+113123,16262.0,disease,leiomyosarcoma of the corpus uteri,MONDO
+113479,16642.0,disease,meningioma (disease),MONDO
+113516,16681.0,disease,gliosarcoma,MONDO
+113517,16682.0,disease,giant cell glioblastoma,MONDO
+113518,16683.0,disease,gliomatosis cerebri,MONDO
+113519,16684.0,disease,anaplastic astrocytoma,MONDO
+113522,16687.0,disease,protoplasmic astrocytoma,MONDO
+113523,16688.0,disease,fibrillary astrocytoma,MONDO
+113524,16689.0,disease,gemistocytic astrocytoma,MONDO
+113525,16690.0,disease,pleomorphic xanthoastrocytoma,MONDO
+113526,16691.0,disease,pilocytic astrocytoma,MONDO
+113527,16692.0,disease,pilomyxoid astrocytoma,MONDO
+113528,16693.0,disease,subependymal giant cell astrocytoma,MONDO
+113529,16695.0,disease,oligodendroglioma,MONDO
+113532,16698.0,disease,ependymoma,MONDO
+113533,16699.0,disease,myxopapillary ependymoma,MONDO
+113536,16702.0,disease,oligoastrocytoma,MONDO
+113540,16706.0,disease,chordoid glioma of the third ventricle,MONDO
+113541,16707.0,disease,astroblastoma,MONDO
+113548,16715.0,disease,ependymoblastoma,MONDO
+113550,16718.0,disease,choroid plexus carcinoma,MONDO
+113553,16722.0,disease,pineoblastoma,MONDO
+113560,16730.0,disease,gangliocytoma,MONDO
+113562,16733.0,disease,ganglioglioma,MONDO
+113573,16746.0,disease,meningeal melanocytoma,MONDO
+113575,16748.0,disease,hemangioblastoma,MONDO
+113581,16755.0,disease,neurofibroma,MONDO
+113583,16757.0,disease,malignant triton tumor,MONDO
+113612,16787.0,disease,epithelioid trophoblastic tumor,MONDO
+113648,16824.0,disease,myofibromatosis,MONDO
+113795,16974.0,disease,thymoma type B,MONDO
+113796,16975.0,disease,thymoma type AB,MONDO
+113803,16982.0,disease,angiosarcoma (disease),MONDO
+113864,17043.0,disease,congenital mesoblastic nephroma,MONDO
+113869,17048.0,disease,pseudomyxoma peritonei,MONDO
+114194,17386.0,disease,pleomorphic rhabdomyosarcoma,MONDO
+114195,17387.0,disease,epithelioid sarcoma,MONDO
+114389,17582.0,disease,pituitary adenocarcinoma (disease),MONDO
+114397,17590.0,disease,carcinoma of the ampulla of vater,MONDO
+114407,17600.0,disease,hairy cell leukemia variant,MONDO
+114411,17604.0,disease,marginal zone lymphoma,MONDO
+114591,17795.0,disease,ameloblastoma,MONDO
+114608,17814.0,disease,primary bone lymphoma,MONDO
+114620,17827.0,disease,malignant peripheral nerve sheath tumor,MONDO
+114637,17844.0,disease,Sezary syndrome,MONDO
+114674,17884.0,disease,papillary renal cell carcinoma,MONDO
+114675,17885.0,disease,chromophobe renal cell carcinoma,MONDO
+114837,18055.0,disease,pediatric hepatocellular carcinoma,MONDO
+114936,18160.0,disease,hereditary retinoblastoma,MONDO
+114947,18171.0,disease,malignant germ cell tumor of ovary,MONDO
+114952,18177.0,disease,glioblastoma (disease),MONDO
+114993,18223.0,disease,systemic Epstein-Barr virus-positive T-cell lymphoproliferative disease of childhood,MONDO
+115040,18270.0,disease,extraskeletal Ewing sarcoma,MONDO
+115094,18327.0,disease,glomus tumor,MONDO
+115116,18352.0,disease,squamous cell carcinoma of penis,MONDO
+115128,18364.0,disease,malignant epithelial tumor of ovary,MONDO
+115130,18368.0,disease,primary peritoneal serous/papillary carcinoma,MONDO
+115131,18369.0,disease,immature ovarian teratoma,MONDO
+115245,18492.0,disease,hereditary clear cell renal cell carcinoma,MONDO
+115259,18510.0,disease,small intestine neuroendocrine neoplasm,MONDO
+115261,18513.0,disease,squamous cell carcinoma of colon,MONDO
+115262,18515.0,disease,squamous cell carcinoma of rectum,MONDO
+115265,18521.0,disease,squamous cell carcinoma of pancreas,MONDO
+115266,18523.0,disease,pancreatic mucinous cystadenoma,MONDO
+115267,18525.0,disease,solid pseudopapillary carcinoma of pancreas,MONDO
+115402,18666.0,disease,hepatoblastoma,MONDO
+115425,18689.0,disease,plasma cell leukemia,MONDO
+115463,18734.0,disease,verrucous hemangioma,MONDO
+115564,18843.0,disease,embryonal carcinoma of the central nervous system,MONDO
+115589,18872.0,disease,acute megakaryoblastic leukemia,MONDO
+115591,18874.0,disease,acute myeloid leukemia,MONDO
+115593,18876.0,disease,mantle cell lymphoma,MONDO
+115598,18881.0,disease,myelodysplastic syndrome,MONDO
+115617,18902.0,disease,hepatocellular adenoma,MONDO
+115620,18905.0,disease,diffuse large B-cell lymphoma,MONDO
+115621,18906.0,disease,follicular lymphoma,MONDO
+115622,18907.0,disease,craniopharyngioma,MONDO
+115623,18908.0,disease,non-Hodgkin lymphoma,MONDO
+115645,18935.0,disease,hairy cell leukemia,MONDO
+115646,18936.0,disease,osteoblastoma (disease),MONDO
+115654,18944.0,disease,gestational trophoblastic neoplasm,MONDO
+115671,18961.0,disease,familial melanoma,MONDO
+115708,19004.0,disease,kidney Wilms tumor,MONDO
+115727,19024.0,disease,mast cell sarcoma,MONDO
+115728,19025.0,disease,extracutaneous mastocytoma,MONDO
+115737,19035.0,disease,pancreatoblastoma,MONDO
+115774,19086.0,disease,carcinoma of esophagus,MONDO
+115775,19087.0,disease,cholangiocarcinoma,MONDO
+115816,19134.0,disease,central neurocytoma,MONDO
+116052,19392.0,disease,syringocystadenoma papilliferum,MONDO
+116063,19404.0,disease,perineurioma,MONDO
+116109,19451.0,disease,chronic neutrophilic leukemia,MONDO
+116119,19462.0,disease,splenic marginal zone lymphoma,MONDO
+116122,19465.0,disease,nodal marginal zone B-cell lymphoma,MONDO
+116126,19469.0,disease,T-cell large granular lymphocyte leukemia,MONDO
+116127,19470.0,disease,aggressive NK-cell leukemia,MONDO
+116128,19471.0,disease,adult T-cell leukemia/lymphoma,MONDO
+116136,19480.0,disease,Langerhans cell sarcoma,MONDO
+116138,19483.0,disease,methotrexate-associated lymphoproliferative disorders,MONDO
+116148,19496.0,disease,neuroendocrine neoplasm,MONDO
+116442,19803.0,disease,angioma serpiginosum,MONDO
+116595,19960.0,disease,VIPoma,MONDO
+116596,19962.0,disease,thyroid lymphoma,MONDO
+116680,20076.0,disease,myeloproliferative neoplasm,MONDO
+116886,20311.0,disease,chronic myelomonocytic leukemia,MONDO
+116887,20312.0,disease,atypical chronic myeloid leukemia,MONDO
+116894,20322.0,disease,acute biphenotypic leukemia,MONDO
+116895,20323.0,disease,primary mediastinal large B-cell lymphoma,MONDO
+116897,20325.0,disease,anaplastic large cell lymphoma,MONDO
+116906,20334.0,disease,mast cell leukemia,MONDO
+117080,20513.0,disease,spermatocytic seminoma,MONDO
+117114,20550.0,disease,gestational choriocarcinoma,MONDO
+117115,20552.0,disease,placental site trophoblastic tumor,MONDO
+117123,20560.0,disease,atypical teratoid rhabdoid tumor,MONDO
+117125,20562.0,disease,pleomorphic liposarcoma,MONDO
+117197,20658.0,disease,infiltrating ureter transitional cell carcinoma,MONDO
+117409,21039.0,disease,extraskeletal Ewing sarcoma/peripheral primitive neuroectodermal tumor,MONDO
+117417,21048.0,disease,benign mastocytoma,MONDO
+117430,21063.0,disease,malignant colon neoplasm,MONDO
+117436,21069.0,disease,malignant endocrine neoplasm,MONDO
+117456,21090.0,disease,lipid-rich breast carcinoma,MONDO
+117463,21097.0,disease,intraductal breast papilloma,MONDO
+117467,21101.0,disease,appendix L-cell glucagon-like peptide-producing neuroendocrine tumor,MONDO
+117483,21118.0,disease,intestinal neoplasm,MONDO
+117518,21169.0,disease,epithelioid hemangioma,MONDO
+117533,21191.0,disease,malignant ependymoma,MONDO
+117816,21636.0,disease,astrocytic tumor,MONDO
+118458,24240.0,disease,eccrine carcinoma,MONDO
+118459,24245.0,disease,ductal eccrine adenocarcinoma,MONDO
+118522,24323.0,disease,glomangiomyoma,MONDO
+118527,24331.0,disease,colorectal carcinoma,MONDO
+118532,24336.0,disease,vulvar adenocarcinoma,MONDO
+118687,24609.0,disease,vulvar squamous cell carcinoma,MONDO
+118742,24677.0,disease,pancreatic insulinoma,MONDO
+118770,24889.0,disease,benign mesonephroma,MONDO
+118773,24892.0,disease,soft tissue amyloid neoplasm,MONDO
+118906,27772.0,disease,lung colloid adenocarcinoma,MONDO
+119002,30604.0,disease,cystic partially differentiated nephroblastoma,MONDO
+119621,42487.0,disease,uterine cervix carcinoma in situ,MONDO
+120015,44767.0,disease,childhood adrenal gland pheochromocytoma,MONDO
+120149,45059.0,disease,cribriform carcinoma of breast,MONDO
+120270,56804.0,disease,benign neoplasm of peripheral nervous system,MONDO
+120504,7254.0,disease,breast cancer,MONDO
+120520,4949.0,disease,neoplasm of mature B-cells,MONDO
+120528,4095.0,disease,B-cell neoplasm,MONDO
+120551,5086.0,disease,renal cell carcinoma (disease),MONDO
+120552,5005.0,disease,clear cell renal carcinoma,MONDO
+120553,430.0,disease,mature T-cell and NK-cell non-Hodgkin lymphoma,MONDO
+120558,7256.0,disease,hepatocellular carcinoma,MONDO
+120559,2691.0,disease,liver cancer,MONDO
+120560,6210.0,disease,fibrolamellar hepatocellular carcinoma,MONDO
+120571,5233.0,disease,non-small cell lung carcinoma (disease),MONDO
+120572,8903.0,disease,lung cancer,MONDO
+120573,6474.0,disease,transitional cell carcinoma,MONDO
+120585,8170.0,disease,ovarian cancer,MONDO
+120586,2752.0,disease,ovarian adenocarcinoma,MONDO
+120587,3792.0,disease,ovarian carcinosarcoma,MONDO
+120588,3795.0,disease,ovarian small cell carcinoma,MONDO
+120589,5601.0,disease,ovarian mucinous adenocarcinoma,MONDO
+120590,5744.0,disease,yolk sac tumor,MONDO
+120591,6045.0,disease,ovarian clear cell adenocarcinoma,MONDO
+120592,6335.0,disease,ovarian endometrioid adenocarcinoma,MONDO
+120606,5105.0,disease,melanoma (disease),MONDO
+120607,5012.0,disease,cutaneous melanoma (disease),MONDO
+120610,5055.0,disease,Kaposi's sarcoma (disease),MONDO
+120613,11996.0,disease,"chronic myelogenous leukemia, BCR-ABL1 positive",MONDO
+120656,5089.0,disease,sarcoma,MONDO
+120657,4992.0,disease,cancer,MONDO
+120669,5575.0,disease,colorectal cancer,MONDO
+120691,4948.0,disease,B-cell chronic lymphocytic leukemia,MONDO
+120692,2083.0,disease,Richter syndrome,MONDO
+120695,5060.0,disease,liposarcoma,MONDO
+120696,4967.0,disease,acute lymphoblastic leukemia (disease),MONDO
+120701,607.0,disease,primary cutaneous T-cell non-Hodgkin lymphoma,MONDO
+120705,8420.0,disease,seborrheic keratosis,MONDO
+120707,9693.0,disease,plasma cell myeloma,MONDO
+120741,6244.0,disease,HER2 positive breast carcinoma,MONDO
+120775,5034.0,disease,thyroid gland follicular carcinoma,MONDO
+120777,5075.0,disease,thyroid gland papillary carcinoma,MONDO
+120779,2512.0,disease,papillary adenocarcinoma,MONDO
+120791,5097.0,disease,squamous cell lung carcinoma,MONDO
+120805,9891.0,disease,acquired polycythemia vera,MONDO
+120806,5615.0,disease,plasmacytoma,MONDO
+120854,5627.0,disease,head and neck cancer,MONDO
+120855,5096.0,disease,squamous cell carcinoma,MONDO
+120856,500.0,disease,tongue squamous cell carcinoma,MONDO
+120867,4555.0,disease,kidney angiomyolipoma,MONDO
+120870,3864.0,disease,chronic lymphocytic leukemia/small lymphocytic lymphoma,MONDO
+120871,4379.0,disease,female breast carcinoma,MONDO
+120889,6500.0,disease,hemangioma,MONDO
+120900,15523.0,disease,epithelioid hemangioendothelioma,MONDO
+120901,2013.0,disease,lymphangioma,MONDO
+120902,6375.0,disease,placental hemangioma,MONDO
+120906,2974.0,disease,cervical cancer,MONDO
+120907,2877.0,disease,cervical carcinosarcoma,MONDO
+120908,5131.0,disease,cervical carcinoma,MONDO
+120910,4989.0,disease,breast carcinoma,MONDO
+120918,5447.0,disease,testicular cancer,MONDO
+120919,10108.0,disease,testicular germ cell tumor,MONDO
+120920,3669.0,disease,testicular seminoma,MONDO
+120921,3001.0,disease,seminoma,MONDO
+120945,5374.0,disease,bone marrow neoplasm,MONDO
+120949,8315.0,disease,prostate cancer,MONDO
+120950,5159.0,disease,prostate carcinoma,MONDO
+120951,2629.0,disease,bone osteosarcoma,MONDO
+120956,5173.0,disease,actinic keratosis (disease),MONDO
+120957,2527.0,disease,keratoacanthoma,MONDO
+120959,6563.0,disease,inverted follicular keratosis,MONDO
+120960,6579.0,disease,melanoacanthoma,MONDO
+120965,5062.0,disease,lymphoma,MONDO
+120975,11719.0,disease,gastrointestinal stromal tumor,MONDO
+120977,4632.0,disease,obsolete Hodgkin's granuloma,MONDO
+120978,4952.0,disease,Hodgkins lymphoma,MONDO
+120980,4626.0,disease,Hodgkin's paragranuloma,MONDO
+120988,4974.0,disease,adrenal gland pheochromocytoma,MONDO
+120989,8233.0,disease,phaeochromocytoma,MONDO
+120990,920.0,disease,duodenum cancer,MONDO
+120991,956.0,disease,small intestine cancer,MONDO
+120992,1340.0,disease,heart cancer,MONDO
+120993,2817.0,disease,adrenal gland cancer,MONDO
+121014,1879.0,disease,anus cancer,MONDO
+121015,5341.0,disease,skin basal cell carcinoma,MONDO
+121016,2206.0,disease,sweat gland cancer,MONDO
+121017,4993.0,disease,carcinoma,MONDO
+121018,6962.0,disease,sebaceous adenocarcinoma,MONDO
+121048,7926.0,disease,Waldenstrom macroglobulinemia,MONDO
+121049,432.0,disease,lymphoplasmacytic lymphoma,MONDO
+121111,1657.0,disease,brain cancer,MONDO
+121114,4721.0,disease,liver neoplasm,MONDO
+121181,2447.0,disease,endometrial carcinoma (disease),MONDO
+121182,11962.0,disease,endometrial cancer,MONDO
+121183,6003.0,disease,uterine corpus cancer,MONDO
+121246,7886.0,disease,uterine corpus leiomyoma,MONDO
+121247,1572.0,disease,leiomyoma,MONDO
+121248,6312.0,disease,myofibroma,MONDO
+121266,2108.0,disease,thyroid cancer,MONDO
+121268,7958.0,disease,familial medullary thyroid carcinoma,MONDO
+121270,15277.0,disease,medullary thyroid gland carcinoma,MONDO
+121302,9691.0,disease,mycosis fungoides,MONDO
+121365,5112.0,disease,malignant pleural mesothelioma,MONDO
+121366,6292.0,disease,malignant mesothelioma (disease),MONDO
+121376,1056.0,disease,gastric cancer,MONDO
+121378,4950.0,disease,gastric carcinoma,MONDO
+121388,12883.0,disease,acute promyelocytic leukemia,MONDO
+121396,6047.0,disease,pancreatic adenocarcinoma,MONDO
+121440,5440.0,disease,embryonal carcinoma,MONDO
+121468,1187.0,disease,urinary bladder cancer,MONDO
+121469,4986.0,disease,urinary bladder carcinoma,MONDO
+121471,4114.0,disease,urinary bladder small cell neuroendocrine carcinoma,MONDO
+121491,2109.0,disease,pituitary cancer,MONDO
+121509,5212.0,disease,rhabdomyosarcoma (disease),MONDO
+121512,5636.0,disease,adenosarcoma,MONDO
+121518,1012.0,disease,obsolete breast fibroadenosis,MONDO
+121531,2501.0,disease,brain glioblastoma,MONDO
+121581,1256.0,disease,arteriovenous hemangioma/malformation,MONDO
+121591,5029.0,disease,essential thrombocythemia,MONDO
+121594,1528.0,disease,vulva cancer,MONDO
+121603,5059.0,disease,leukemia (disease),MONDO
+121652,8433.0,disease,small cell lung carcinoma,MONDO
+121653,3436.0,disease,lung oat cell carcinoma,MONDO
+121669,3127.0,disease,embryoma,MONDO
+121707,7243.0,disease,Burkitt lymphoma,MONDO
+121727,5070.0,disease,neoplasm (disease),MONDO
+121728,2898.0,disease,skin cancer,MONDO
+121729,2531.0,disease,skin neoplasm,MONDO
+121842,5219.0,disease,breast fibrocystic disease,MONDO
+121843,4808.0,disease,benign mammary dysplasia,MONDO
+121885,10643.0,disease,acute leukemia (disease),MONDO
+121914,12817.0,disease,Ewing sarcoma,MONDO
+121916,2954.0,disease,superficial multifocal basal cell carcinoma,MONDO
+121953,2571.0,disease,primary central nervous system lymphoma,MONDO
+121963,3540.0,disease,acute T cell leukemia,MONDO
+121964,7576.0,disease,esophageal cancer,MONDO
+122003,4643.0,disease,myeloid leukemia,MONDO
+122027,5072.0,disease,neuroblastoma,MONDO
+122028,1416.0,disease,female reproductive organ cancer,MONDO
+122043,7896.0,disease,acute monocytic leukemia,MONDO
+122074,15075.0,disease,thyroid gland carcinoma,MONDO
+122106,2714.0,disease,central nervous system cancer,MONDO
+122145,6295.0,disease,malignant urinary system neoplasm,MONDO
+122146,4180.0,disease,benign urinary system neoplasm,MONDO
+122149,11934.0,disease,dermatofibrosarcoma protuberans,MONDO
+122155,1422.0,disease,primary aldosteronism,MONDO
+122159,15917.0,disease,malignant glioma,MONDO
+122173,4953.0,disease,invasive ductal breast carcinoma,MONDO
+122174,5590.0,disease,breast ductal adenocarcinoma,MONDO
+122182,1325.0,disease,penile cancer,MONDO
+122183,6895.0,disease,penile neoplasm,MONDO
+122187,2087.0,disease,peritoneum cancer,MONDO
+122190,2229.0,disease,ovarian epithelial tumor,MONDO
+122191,5036.0,disease,gastric adenocarcinoma,MONDO
+122199,4958.0,disease,oral cavity squamous cell carcinoma,MONDO
+122200,536.0,disease,pharyngeal squamous cell carcinoma,MONDO
+122201,5595.0,disease,laryngeal squamous cell carcinoma,MONDO
+122202,5153.0,disease,cervical adenocarcinoma,MONDO
+122203,2158.0,disease,fallopian tube cancer,MONDO
+122204,6206.0,disease,fallopian tube carcinoma,MONDO
+122214,5058.0,disease,leiomyosarcoma,MONDO
+122215,9692.0,disease,primary myelofibrosis,MONDO
+122222,8380.0,disease,retinoblastoma,MONDO
+122234,5082.0,disease,prostate adenocarcinoma,MONDO
+122235,2120.0,disease,neuroendocrine carcinoma,MONDO
+122259,870.0,disease,childhood acute lymphoblastic leukemia,MONDO
+122262,2373.0,disease,benign mesothelioma,MONDO
+122285,4970.0,disease,adenocarcinoma,MONDO
+122287,3197.0,disease,granular cell carcinoma,MONDO
+122288,5606.0,disease,tubular adenocarcinoma,MONDO
+122289,3050.0,disease,lung large cell carcinoma,MONDO
+122291,9831.0,disease,malignant pancreatic neoplasm,MONDO
+122293,5192.0,disease,exocrine pancreatic carcinoma,MONDO
+122294,5140.0,disease,ovarian carcinoma,MONDO
+122296,5184.0,disease,pancreatic ductal adenocarcinoma,MONDO
+122306,7763.0,disease,nonpapillary renal cell carcinoma,MONDO
+122307,5206.0,disease,renal carcinoma,MONDO
+122308,3012.0,disease,sarcomatoid renal cell carcinoma,MONDO
+122309,5220.0,disease,collecting duct carcinoma,MONDO
+122341,6406.0,disease,sarcomatoid carcinoma,MONDO
+122364,3268.0,disease,mixed glioma,MONDO
+122365,3999.0,disease,juvenile pilocytic astrocytoma,MONDO
+122366,2505.0,disease,childhood astrocytic tumor,MONDO
+122367,4071.0,disease,childhood cerebral astrocytoma,MONDO
+122394,5580.0,disease,esophageal squamous cell carcinoma,MONDO
+122399,2352.0,disease,larynx cancer,MONDO
+122400,2358.0,disease,laryngeal carcinoma,MONDO
+122401,5517.0,disease,pharynx cancer,MONDO
+122416,5008.0,disease,colorectal adenocarcinoma,MONDO
+122427,4971.0,disease,adenoid cystic carcinoma,MONDO
+122428,3175.0,disease,salivary gland adenoid cystic carcinoma,MONDO
+122431,4669.0,disease,salivary gland cancer,MONDO
+122445,1569.0,disease,acoustic neuroma,MONDO
+122447,5051.0,disease,invasive lobular breast carcinoma,MONDO
+122448,552.0,disease,breast lobular carcinoma,MONDO
+122459,5061.0,disease,lung adenocarcinoma,MONDO
+122466,8627.0,disease,ureter cancer,MONDO
+122475,9807.0,disease,osteosarcoma (disease),MONDO
+122476,5815.0,disease,pancreatic neuroendocrine neoplasm,MONDO
+122480,2989.0,disease,benign fibrous histiocytoma,MONDO
+122481,4308.0,disease,meningeal sarcoma,MONDO
+122482,4330.0,disease,leptomeningeal sarcoma,MONDO
+122483,3054.0,disease,benign meningioma,MONDO
+122484,4145.0,disease,meningothelial meningioma,MONDO
+122485,4144.0,disease,fibrous meningioma,MONDO
+122486,4143.0,disease,psammomatous meningioma,MONDO
+122487,3918.0,disease,angiomatous meningioma,MONDO
+122488,4146.0,disease,transitional meningioma,MONDO
+122489,1275.0,disease,spinal meningioma,MONDO
+122491,2918.0,disease,clear cell meningioma,MONDO
+122492,4544.0,disease,chordoid meningioma,MONDO
+122493,10768.0,disease,gonadoblastoma,MONDO
+122494,15871.0,disease,benign breast phyllodes tumor,MONDO
+122495,3774.0,disease,cerebral convexity meningioma,MONDO
+122496,4022.0,disease,parasagittal meningioma,MONDO
+122497,4988.0,disease,breast adenocarcinoma,MONDO
+122498,5461.0,disease,endometrium adenocarcinoma,MONDO
+122499,10150.0,disease,head and neck squamous cell carcinoma,MONDO
+122500,2888.0,disease,intraorbital meningioma,MONDO
+122501,2772.0,disease,intraventricular meningioma,MONDO
+122502,4446.0,disease,olfactory groove meningioma,MONDO
+122503,3055.0,disease,secretory meningioma,MONDO
+122504,3056.0,disease,lymphoplasmacyte-rich meningioma,MONDO
+122505,3058.0,disease,microcystic meningioma,MONDO
+122510,15459.0,disease,nasopharyngeal carcinoma,MONDO
+122613,6804.0,disease,inflammatory breast carcinoma,MONDO
+122614,15798.0,disease,inflammatory myofibroblastic tumor,MONDO
+122615,5211.0,disease,ovarian serous adenocarcinoma,MONDO
+122617,4972.0,disease,adenoma,MONDO
+122618,5032.0,disease,follicular thyroid adenoma,MONDO
+122619,3435.0,disease,microcystic adenoma,MONDO
+122620,2533.0,disease,papillary adenoma,MONDO
+122654,6519.0,disease,rectal cancer,MONDO
+122655,2165.0,disease,rectal neoplasm,MONDO
+122656,2169.0,disease,rectum adenocarcinoma,MONDO
+122657,7959.0,disease,medulloblastoma,MONDO
+122658,2796.0,disease,melanotic medulloblastoma,MONDO
+122660,4716.0,disease,stomach carcinoma in situ,MONDO
+122661,6300.0,disease,medullomyoblastoma with myogenic differentiation,MONDO
+122663,2797.0,disease,childhood medulloblastoma,MONDO
+122664,2794.0,disease,adult medulloblastoma,MONDO
+122665,5814.0,disease,intestinal cancer,MONDO
+122666,2516.0,disease,digestive system cancer,MONDO
+122672,7650.0,disease,MALT lymphoma,MONDO
+122678,402.0,disease,small cell carcinoma,MONDO
+122695,2450.0,disease,prostatic adenoma,MONDO
+122696,994.0,disease,malignant prostate phyllodes tumor,MONDO
+122702,4631.0,disease,tongue cancer,MONDO
+122708,5628.0,disease,male breast carcinoma,MONDO
+122717,4977.0,disease,angioimmunoblastic T-cell lymphoma,MONDO
+122777,2939.0,disease,skin pigmented basal cell carcinoma,MONDO
+122782,2926.0,disease,clear cell sarcoma,MONDO
+122786,384.0,disease,bladder benign neoplasm,MONDO
+122787,4703.0,disease,bladder carcinoma in situ,MONDO
+122788,4041.0,disease,urothelial papilloma,MONDO
+122794,3924.0,disease,adrenal cortex adenoma,MONDO
+122795,6639.0,disease,adrenal cortex carcinoma,MONDO
+122843,2367.0,disease,kidney cancer,MONDO
+122844,6745.0,disease,endometrioid stromal sarcoma,MONDO
+122845,3315.0,disease,endometrium carcinoma in situ,MONDO
+122853,5893.0,disease,pancreatic endocrine carcinoma,MONDO
+122861,2546.0,disease,schwannoma,MONDO
+122862,2548.0,disease,cellular schwannoma,MONDO
+122863,2558.0,disease,melanotic neurilemmoma,MONDO
+122864,2559.0,disease,plexiform schwannoma,MONDO
+122865,3304.0,disease,plexiform neurofibroma (disease),MONDO
+122872,2715.0,disease,uterine cancer,MONDO
+122879,4647.0,disease,in situ carcinoma,MONDO
+122880,4671.0,disease,penis carcinoma in situ,MONDO
+122881,8667.0,disease,von Hippel-Lindau disease,MONDO
+122882,2363.0,disease,papilloma,MONDO
+122884,2454.0,disease,thyroid adenoma (disease),MONDO
+122885,2033.0,disease,cecum cancer,MONDO
+122886,5694.0,disease,cecal neoplasm,MONDO
+122887,6029.0,disease,cecum carcinoma,MONDO
+122888,1825.0,disease,squamous papilloma,MONDO
+122889,4267.0,disease,squamous papillomatosis,MONDO
+122890,5411.0,disease,gallbladder cancer,MONDO
+122892,9975.0,disease,reticulum cell sarcoma,MONDO
+122893,5813.0,disease,interdigitating dendritic cell sarcoma,MONDO
+122897,10434.0,disease,synovial sarcoma (disease),MONDO
+122899,3220.0,disease,gallbladder carcinoma,MONDO
+122900,6853.0,disease,mesenchymal chondrosarcoma,MONDO
+122901,8977.0,disease,chondrosarcoma (disease),MONDO
+122902,5004.0,disease,clear cell adenocarcinoma,MONDO
+122912,5611.0,disease,bladder transitional cell carcinoma,MONDO
+122986,6036.0,disease,granulosa cell tumor,MONDO
+122989,4438.0,disease,sporadic breast cancer,MONDO
+122990,2113.0,disease,peritoneal carcinoma,MONDO
+122995,2191.0,disease,syringoma,MONDO
+122996,2536.0,disease,skin papilloma,MONDO
+122997,2805.0,disease,hidradenoma,MONDO
+122999,6717.0,disease,cutaneous fibrous histiocytoma,MONDO
+123001,3193.0,disease,bile duct adenocarcinoma,MONDO
+123002,5496.0,disease,bile duct carcinoma,MONDO
+123003,3869.0,disease,childhood brain stem glioma,MONDO
+123004,2788.0,disease,papillary craniopharyngioma,MONDO
+123005,2787.0,disease,adamantinous craniopharyngioma,MONDO
+123007,5138.0,disease,lung carcinoma,MONDO
+123008,2806.0,disease,bronchogenic carcinoma,MONDO
+123009,1672.0,disease,bronchus cancer,MONDO
+123010,2032.0,disease,colon carcinoma,MONDO
+123016,2532.0,disease,squamous cell neoplasm,MONDO
+123025,5564.0,disease,embryonal neoplasm,MONDO
+123026,2510.0,disease,obsolete germ cell and embryonal cancer,MONDO
+123027,5040.0,disease,germ cell tumor,MONDO
+123029,2598.0,disease,germinoma (disease),MONDO
+123030,9993.0,disease,embryonal rhabdomyosarcoma (disease),MONDO
+123031,2578.0,disease,botryoid rhabdomyosarcoma,MONDO
+123081,5023.0,disease,ductal breast carcinoma in situ,MONDO
+123177,11908.0,disease,juvenile myelomonocytic leukemia,MONDO
+123179,386.0,disease,"digestive system neuroendocrine tumor, grade 1/2",MONDO
+123181,4614.0,disease,chronic monocytic leukemia,MONDO
+123208,4633.0,disease,"Hodgkin's lymphoma, mixed cellularity",MONDO
+123209,4620.0,disease,"Hodgkin's lymphoma, lymphocytic depletion",MONDO
+123210,4604.0,disease,"Hodgkin's lymphoma, lymphocytic-histiocytic predominance",MONDO
+123240,2912.0,disease,brainstem cancer,MONDO
+123242,3595.0,disease,sclerosing liposarcoma,MONDO
+123243,4510.0,disease,inflammatory liposarcoma,MONDO
+123244,6097.0,disease,atypical lipomatous tumor,MONDO
+123249,6890.0,disease,parathyroid gland adenoma,MONDO
+123250,12004.0,disease,parathyroid gland carcinoma,MONDO
+123259,3060.0,disease,biliary tract cancer,MONDO
+123260,5304.0,disease,biliary tract neoplasm (disease),MONDO
+123263,6456.0,disease,thymoma (disease),MONDO
+123265,6451.0,disease,thymic carcinoma,MONDO
+123266,5028.0,disease,esophageal adenocarcinoma,MONDO
+123267,3541.0,disease,adult acute lymphoblastic leukemia,MONDO
+123268,2547.0,disease,nerve sheath neoplasm,MONDO
+123269,15032.0,disease,intraneural perineurioma,MONDO
+123274,4996.0,disease,childhood acute myeloid leukemia,MONDO
+123300,550.0,disease,extra-adrenal sympathetic paraganglioma,MONDO
+123586,2927.0,disease,spindle cell sarcoma,MONDO
+123592,3356.0,disease,epithelioid leiomyosarcoma,MONDO
+123593,3359.0,disease,myxoid leiomyosarcoma,MONDO
+123595,4653.0,disease,"atypical chronic myeloid leukemia, BCR-ABL1 negative",MONDO
+123625,7564.0,disease,pilomatrixoma,MONDO
+123626,3413.0,disease,hair follicle neoplasm,MONDO
+123643,2038.0,disease,head and neck carcinoma,MONDO
+123652,5232.0,disease,large cell carcinoma,MONDO
+123674,4708.0,disease,esophagus carcinoma in situ,MONDO
+123694,13280.0,disease,myxoid liposarcoma,MONDO
+123925,2543.0,disease,adult oligodendroglioma,MONDO
+123926,2540.0,disease,childhood oligodendroglioma,MONDO
+123988,3210.0,disease,intrahepatic cholangiocarcinoma,MONDO
+123999,6486.0,disease,uveal melanoma,MONDO
+124008,448.0,disease,paraganglioma,MONDO
+124017,3470.0,disease,cellular ependymoma,MONDO
+124018,3474.0,disease,tanycytic ependymoma,MONDO
+124019,3475.0,disease,papillary ependymoma,MONDO
+124020,3476.0,disease,clear cell ependymoma,MONDO
+124055,5164.0,disease,fibrosarcoma (disease),MONDO
+124062,5462.0,disease,primitive neuroectodermal tumor,MONDO
+124063,3144.0,disease,medulloepithelioma,MONDO
+124064,4209.0,disease,cerebral primitive neuroectodermal tumor,MONDO
+124065,3145.0,disease,supratentorial primitive neuroectodermal tumor,MONDO
+124066,12825.0,disease,extraskeletal myxoid chondrosarcoma,MONDO
+124168,4707.0,disease,anal canal carcinoma in situ,MONDO
+124202,9994.0,disease,alveolar rhabdomyosarcoma (disease),MONDO
+124216,2489.0,disease,malignant breast phyllodes tumor,MONDO
+124290,8040.0,disease,transient myeloproliferative syndrome (disease),MONDO
+124367,3143.0,disease,angiokeratoma,MONDO
+124392,4064.0,disease,iris melanoma,MONDO
+124393,3878.0,disease,malignant choroid melanoma,MONDO
+124407,6055.0,disease,sex cord-stromal tumor,MONDO
+124447,5167.0,disease,fibroma,MONDO
+124473,5674.0,disease,bone giant cell tumor,MONDO
+124474,4997.0,disease,chondroblastoma (disease),MONDO
+124515,4608.0,disease,oropharynx cancer,MONDO
+124546,4957.0,disease,mucinous adenocarcinoma,MONDO
+124564,5966.0,disease,spleen cancer,MONDO
+124595,3088.0,disease,intramuscular hemangioma,MONDO
+124596,2360.0,disease,chondroma,MONDO
+124603,1402.0,disease,vaginal cancer,MONDO
+124604,15867.0,disease,vaginal carcinoma,MONDO
+124611,2971.0,disease,amelanotic melanoma,MONDO
+124612,3199.0,disease,anal carcinoma,MONDO
+124613,3046.0,disease,anus neoplasm,MONDO
+124614,1470.0,disease,anal margin squamous cell carcinoma,MONDO
+124657,7154.0,disease,arteriovenous malformations of the brain,MONDO
+124716,5843.0,disease,mediastinal cancer,MONDO
+124765,11366.0,disease,ovarian germ cell tumor,MONDO
+124766,2726.0,disease,cutaneous solitary mastocytoma,MONDO
+124768,544.0,disease,mucosal melanoma,MONDO
+124775,5494.0,disease,triple-negative breast carcinoma,MONDO
+124787,3424.0,disease,oncocytic adenoma,MONDO
+124818,6266.0,disease,Leydig cell tumor,MONDO
+124839,5525.0,disease,T-cell leukemia,MONDO
+124873,4251.0,disease,small intestine neoplasm,MONDO
+124904,3523.0,disease,gastrin-producing neuroendocrine tumor,MONDO
+124905,3525.0,disease,pancreatic gastrin-producing neuroendocrine tumor,MONDO
+124913,3789.0,disease,hereditary papillary renal cell carcinoma,MONDO
+124940,2129.0,disease,bone cancer,MONDO
+124949,11789.0,disease,familial meningioma,MONDO
+125048,5094.0,disease,hemangiopericytoma,MONDO
+125082,1406.0,disease,peripheral nervous system neoplasm,MONDO
+125083,4545.0,disease,adult malignant schwannoma,MONDO
+125084,4345.0,disease,childhood malignant schwannoma,MONDO
+125086,2675.0,disease,neurofibrosarcoma,MONDO
+125087,4540.0,disease,epithelioid malignant peripheral nerve sheath tumor,MONDO
+125094,8075.0,disease,neurofibromatosis type 3,MONDO
+125277,8401.0,disease,pleomorphic adenoma,MONDO
+125300,2071.0,disease,supratentorial cancer,MONDO
+125329,2271.0,disease,colon adenocarcinoma,MONDO
+125395,5106.0,disease,lipoma,MONDO
+125397,966.0,disease,pleomorphic lipoma,MONDO
+125456,2056.0,disease,breast fibroadenoma,MONDO
+125460,3073.0,disease,trilateral retinoblastoma,MONDO
+125631,2728.0,disease,rhabdoid tumor,MONDO
+125719,8978.0,disease,chordoma (disease),MONDO
+125759,3083.0,disease,venous hemangioma,MONDO
+125765,5006.0,disease,clear cell sarcoma of kidney,MONDO
+125766,3865.0,disease,acral lentiginous melanoma (disease),MONDO
+125773,11655.0,disease,alveolar soft part sarcoma (disease),MONDO
+125778,2928.0,disease,carcinosarcoma,MONDO
+125790,7566.0,disease,multiple self-healing squamous epithelioma,MONDO
+125825,9837.0,disease,choroid plexus papilloma,MONDO
+125890,2670.0,disease,ampulla of vater adenocarcinoma,MONDO
+125940,2839.0,disease,leather-bottle stomach,MONDO
+125974,3036.0,disease,mucoepidermoid carcinoma,MONDO
+126054,2601.0,disease,teratoma,MONDO
+126055,3517.0,disease,mature teratoma,MONDO
+126305,6975.0,disease,smooth muscle tumor,MONDO
+126448,9761.0,disease,cystic hygroma,MONDO
+126460,2707.0,disease,breast mucinous carcinoma,MONDO
+126505,2696.0,disease,Sertoli cell tumor,MONDO
+126506,2479.0,disease,Sertoli-Leydig cell tumor,MONDO
+126507,11014.0,disease,pleuropulmonary blastoma,MONDO
+126523,5563.0,disease,nut midline carcinoma,MONDO
+126587,5505.0,disease,dysembryoplastic neuroepithelial tumor,MONDO
+126666,2586.0,disease,thymus cancer,MONDO
+126667,2588.0,disease,thymoma type A,MONDO
+126741,11836.0,disease,thyroid Hurthle cell carcinoma,MONDO
+127450,6280.0,disease,lung sclerosing hemangioma,MONDO
+127451,5509.0,disease,histiocytoma,MONDO
+127568,4665.0,disease,nodular sclerosis classical Hodgkin lymphoma,MONDO
+127569,6085.0,disease,angiolipoma,MONDO
+127572,3825.0,disease,kidney oncocytoma,MONDO
+127587,2999.0,disease,central nervous system germinoma,MONDO
+127588,4216.0,disease,pineal region germinoma,MONDO
+127690,4991.0,disease,minimally invasive lung adenocarcinoma,MONDO
+142330,2698.0,disease,testicular gonadoblastoma (disease),MONDO
+142336,2697.0,disease,ovarian gonadoblastoma (disease),MONDO
+142398,5035.0,disease,ganglioneuroblastoma (disease),MONDO
+142399,3362.0,disease,cutaneous leiomyosarcoma (disease),MONDO
+142441,2093.0,disease,acanthoma (disease),MONDO
+142446,5289.0,disease,paranasal sinus neoplasm (disease),MONDO
+142447,2807.0,disease,bronchial neoplasm (disease),MONDO
+142451,541.0,disease,jejunal adenocarcinoma (disease),MONDO
+142452,2205.0,disease,vulvar melanoma (disease),MONDO
+142453,2829.0,disease,bartholin gland carcinoma,MONDO
+142454,2119.0,disease,ossifying fibroma (disease),MONDO
+142455,2735.0,disease,anal canal adenocarcinoma (disease),MONDO
+142461,3367.0,disease,gastric leiomyosarcoma (disease),MONDO
+142466,3308.0,disease,pleural mesothelioma,MONDO
+142468,3805.0,disease,malignant pericardial mesothelioma,MONDO
+142474,3002.0,disease,dysgerminoma (disease),MONDO
+142477,5207.0,disease,choriocarcinoma (disease),MONDO
+186676,6181.0,disease,digestive system carcinoma,MONDO
+186679,5033.0,disease,ganglioneuroma (disease),MONDO
