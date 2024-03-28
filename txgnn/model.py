@@ -80,8 +80,12 @@ class DistMultPredictor(nn.Module):
             self.diseaseid2id_etypes = {}
             self.diseases_profile_etypes = {}
             
+            disease_etypes_all = ['disease_disease', 'rev_disease_protein', 'disease_phenotype_positive', 'rev_exposure_disease']
+            disease_nodes_all = ['disease', 'gene/protein', 'effect/phenotype', 'exposure']
+            
             disease_etypes = ['disease_disease', 'rev_disease_protein']
             disease_nodes = ['disease', 'gene/protein']
+                        
             
             for etype in self.etypes_dd:
                 src, dst = etype[0], etype[2]
@@ -92,6 +96,8 @@ class DistMultPredictor(nn.Module):
                     
                 if sim_measure == 'all_nodes_profile':
                     diseases_profile = {i.item(): obtain_disease_profile(G, i, disease_etypes, disease_nodes) for i in all_disease_ids}
+                elif sim_measure == 'all_nodes_profile_more':
+                    diseases_profile = {i.item(): obtain_disease_profile(G, i, disease_etypes_all, disease_nodes_all) for i in all_disease_ids}
                 elif sim_measure == 'protein_profile':
                     diseases_profile = {i.item(): obtain_disease_profile(G, i, ['rev_disease_protein'], ['gene/protein']) for i in all_disease_ids}
                 elif sim_measure == 'protein_random_walk':
@@ -180,7 +186,7 @@ class DistMultPredictor(nn.Module):
                             h_disease['disease_query_id'] = dst_rel_idx
                             h_disease['disease_key_id'] = dst_rel_ids_keys
 
-                        if self.sim_measure in ['protein_profile', 'all_nodes_profile', 'protein_random_walk', 'bert', 'profile+bert']:
+                        if self.sim_measure in ['protein_profile', 'all_nodes_profile', 'protein_random_walk', 'bert', 'profile+bert', 'all_nodes_profile_more']:
 
                             try:
                                 sim = self.sim_all_etypes[etype][np.array([self.diseaseid2id_etypes[etype][i.item()] for i in h_disease['disease_query_id'][0]])]
@@ -188,12 +194,15 @@ class DistMultPredictor(nn.Module):
                                 
                                 disease_etypes = ['disease_disease', 'rev_disease_protein']
                                 disease_nodes = ['disease', 'gene/protein']
-            
+                                disease_etypes_all = ['disease_disease', 'rev_disease_protein', 'disease_phenotype_positive', 'rev_exposure_disease']
+                                disease_nodes_all = ['disease', 'gene/protein', 'effect/phenotype', 'exposure']
                                 ## new disease not seen in the training set
                                 for i in h_disease['disease_query_id'][0]:
                                     if i.item() not in self.diseases_profile_etypes[etype]:
                                         if self.sim_measure == 'all_nodes_profile':
                                             self.diseases_profile_etypes[etype][i.item()] = obtain_disease_profile(G, i, disease_etypes, disease_nodes)
+                                        elif self.sim_measure == 'all_nodes_profile_more':
+                                            self.diseases_profile_etypes[etype][i.item()] = obtain_disease_profile(G, i, disease_etypes_all, disease_nodes_all)    
                                         elif self.sim_measure == 'protein_profile':
                                             self.diseases_profile_etypes[etype][i.item()] = obtain_disease_profile(G, i, ['rev_disease_protein'], ['gene/protein'])
                                         elif self.sim_measure == 'protein_random_walk':
@@ -223,7 +232,7 @@ class DistMultPredictor(nn.Module):
                                 embed = h_disease['disease_key'][torch.topk(sim, self.k).indices[:, :]]
                             out = torch.mul(embed, coef.unsqueeze(dim = 2).to(self.device)).sum(dim = 1)
 
-                        if self.sim_measure in ['protein_profile', 'all_nodes_profile', 'protein_random_walk', 'bert', 'profile+bert']:
+                        if self.sim_measure in ['protein_profile', 'all_nodes_profile', 'all_nodes_profile_more', 'protein_random_walk', 'bert', 'profile+bert']:
                             # for protein profile, we are only looking at diseases for now...
                             if self.agg_measure == 'learn':
                                 coef_all = self.m(self.W_gate['disease'](torch.cat((h_disease['disease_query'], out), dim = 1)))
@@ -240,7 +249,6 @@ class DistMultPredictor(nn.Module):
                                 proto_emb = (1 - coef_all)*h_disease['disease_query'] + coef_all*out
                             elif self.agg_measure == '100proto':
                                 proto_emb = out
-
                             h['disease'][h_disease['disease_query_id']] = proto_emb
                         else:
                             if self.agg_measure == 'learn':
@@ -302,14 +310,19 @@ class AttHeteroRGCNLayer(nn.Module):
         src_type = edges._etype[0]
         etype = edges._etype[1]
         dst_type = edges._etype[2]
-        
-        if src_type == dst_type:
-            wh2 = torch.cat([edges.src['Wh_%s' % etype], edges.dst['Wh_%s' % etype]], dim=1)
-        else:
-            if etype[:3] == 'rev':
-                wh2 = torch.cat([edges.src['Wh_%s' % etype], edges.dst['Wh_%s' % etype[4:]]], dim=1)
+        try:
+            if src_type == dst_type:
+                #print(edges)
+                wh2 = torch.cat([edges.src['Wh_%s' % etype], edges.dst['Wh_%s' % etype]], dim=1)
             else:
-                wh2 = torch.cat([edges.src['Wh_%s' % etype], edges.dst['Wh_%s' % 'rev_' + etype]], dim=1)
+                if etype[:3] == 'rev':
+                    wh2 = torch.cat([edges.src['Wh_%s' % etype], edges.dst['Wh_%s' % etype[4:]]], dim=1)
+                else:
+                    wh2 = torch.cat([edges.src['Wh_%s' % etype], edges.dst['Wh_%s' % 'rev_' + etype]], dim=1)
+        except:
+            print(edges.src.keys())
+            print(edges.dst.keys())
+            raise ValueError
         a = self.attn_fc[etype](wh2)
         return {'e_%s' % etype: F.leaky_relu(a)}
 
@@ -330,9 +343,25 @@ class AttHeteroRGCNLayer(nn.Module):
             for srctype, etype, dsttype in etypes_all:
                 Wh = self.weight[etype](feat_dict[srctype])
                 G.nodes[srctype].data['Wh_%s' % etype] = Wh
-
+            
             for srctype, etype, dsttype in etypes_all:
-                G.apply_edges(self.edge_attention, etype=etype)
+                try:
+                    G.apply_edges(self.edge_attention, etype=etype)
+                except:
+                    print(etype)
+                    # Assuming 'etype' is your edge type of interest
+                    src, dst, eid = G.edges(etype=etype, form='all')
+
+                    print(src)
+                    print(dst)
+                    print(f"Edge type: {etype}")
+                    print(f"Source type: {srctype} Keys:", G.nodes[srctype].data.keys())
+                    print(f"Destination type: {dsttype} Keys:", G.nodes[dsttype].data.keys())
+                    if G.nodes[srctype].data:
+                        print("Keys:", G.nodes[srctype].data.keys())
+                    if G.nodes[dsttype].data:
+                        print("Keys:", G.nodes[dsttype].data.keys())
+                    raise ValueError
                 if return_att:
                     att[(srctype, etype, dsttype)] = G.edges[etype].data['e_%s' % etype].detach().cpu().numpy()
                 funcs[etype] = (self.message_func, self.reduce_func)
@@ -353,13 +382,12 @@ class HeteroRGCNLayer(nn.Module):
         self.gate_storage = {}
         self.gate_score_storage = {}
         self.gate_penalty_storage = {}
-    
-    
+            
     def add_graphmask_parameter(self, gate, baseline, layer):
         self.gate = gate
         self.baseline = baseline
         self.layer = layer
-    
+        
     def forward(self, G, feat_dict):
         funcs = {}
         etypes_all = [i for i in G.canonical_etypes if G.edges(etype = i)[0].shape[0] != 0]
@@ -372,6 +400,7 @@ class HeteroRGCNLayer(nn.Module):
        
         return {ntype : G.dstdata['h'][ntype] for ntype in list(G.dstdata['h'].keys())}
  
+
     def gm_online(self, edges):
         etype = edges._etype[1]
         srctype = edges._etype[0]
@@ -390,8 +419,10 @@ class HeteroRGCNLayer(nn.Module):
         self.penalty.append(penalty)
         
         self.num_masked += len(torch.where(gate.reshape(-1) != 1)[0])
-        
-        message = gate.unsqueeze(-1) * edges.src['Wh_%s' % etype] + (1 - gate.unsqueeze(-1)) * self.baseline[etype][self.layer].unsqueeze(0)
+        if self.no_base:
+            message = gate.unsqueeze(-1) * edges.src['Wh_%s' % etype]
+        else:
+            message = gate.unsqueeze(-1) * edges.src['Wh_%s' % etype] + (1 - gate.unsqueeze(-1)) * self.baseline[etype][self.layer].unsqueeze(0)
         
         if self.return_gates:
             self.gate_storage[etype] = copy.deepcopy(gate.to('cpu').detach())
@@ -399,12 +430,16 @@ class HeteroRGCNLayer(nn.Module):
             self.gate_score_storage[etype] = copy.deepcopy(gate_score.to('cpu').detach())
         return {'m': message}
     
+    
+    
     def message_func_no_replace(self, edges):
         etype = edges._etype[1]
         #self.msg_emb[etype] = edges.src['Wh_%s' % etype].to('cpu')
         return {'m': edges.src['Wh_%s' % etype]}
     
-    def graphmask_forward(self, G, feat_dict, graphmask_mode, return_gates):
+    
+    def graphmask_forward(self, G, feat_dict, graphmask_mode, return_gates, no_base):
+        self.no_base = no_base
         self.return_gates = return_gates
         self.penalty = []
         self.num_masked = 0
@@ -461,6 +496,7 @@ class HeteroRGCN(nn.Module):
         self.hidden_size = hidden_size
         self.out_size = out_size
         self.etypes = G.etypes
+        self.device = device
         
     def forward_minibatch(self, pos_G, neg_G, blocks, G, mode = 'train', pretrain_mode = False):
         input_dict = blocks[0].srcdata['inp']
@@ -503,27 +539,31 @@ class HeteroRGCN(nn.Module):
                 scores_neg, out_neg = self.pred(neg_G, G, h, pretrain_mode, mode = mode + '_neg')
                 return scores, scores_neg, out_pos, out_neg
     
-    def graphmask_forward(self, G, pos_graph, neg_graph, graphmask_mode = False, return_gates = False, only_relation = None):
+    def graphmask_forward(self, G, pos_graph, neg_graph, graphmask_mode = False, return_gates = False, only_relation = None, no_base = False):
+                    
+        
         with G.local_scope():
             input_dict = {ntype : G.nodes[ntype].data['inp'] for ntype in G.ntypes}
-            h_dict_l1, penalty_l1, num_masked_l1 = self.layer1.graphmask_forward(G, input_dict, graphmask_mode, return_gates)
+            h_dict_l1, penalty_l1, num_masked_l1 = self.layer1.graphmask_forward(G, input_dict, graphmask_mode, return_gates, no_base)
             h_dict = {k : F.leaky_relu(h) for k, h in h_dict_l1.items()}
-            h, penalty_l2, num_masked_l2 = self.layer2.graphmask_forward(G, h_dict, graphmask_mode, return_gates)         
+            h, penalty_l2, num_masked_l2 = self.layer2.graphmask_forward(G, h_dict, graphmask_mode, return_gates, no_base)         
             
             scores_pos, out_pos = self.pred(pos_graph, G, h, False, mode = 'train_pos', only_relation = only_relation)
             scores_neg, out_neg = self.pred(neg_graph, G, h, False, mode = 'train_neg', only_relation = only_relation)
             return scores_pos, scores_neg, penalty_l1 + penalty_l2, [num_masked_l1, num_masked_l2]
 
     
-    def enable_layer(self, layer):
+    def enable_layer(self, layer, graphmask = True):
         print("Enabling layer "+str(layer))
         
         for name in self.etypes:
-            for parameter in self.gates_all[name][layer].parameters():
-                parameter.requires_grad = True
-
-            self.baselines_all[name][layer].requires_grad = True
-    
+            if graphmask:
+                for parameter in self.gates_all[name][layer].parameters():
+                    parameter.requires_grad = True
+                self.baselines_all[name][layer].requires_grad = True
+            else:
+                for parameter in self.gates_all[name].parameters():
+                    parameter.requires_grad = True
     
     def count_layers(self):
         return 2
@@ -537,11 +577,12 @@ class HeteroRGCN(nn.Module):
     def get_gates_penalties(self):
         return [self.layer1.gate_penalty_storage, self.layer2.gate_penalty_storage]
     
-    def add_graphmask_parameters(self, G):
+    
+    def add_graphmask_parameters(self, G, threshold = 0.5, remove_key_parts = False, use_top_k = False, k = 0.05, gate_hidden_size = 32):
         gates_all, baselines_all = {}, {}
         hidden_size = self.hidden_size
         out_size = self.out_size
-        
+        print('gate_hidden_size: ', gate_hidden_size)
         for name in G.etypes:
             ## for each relation type
 
@@ -554,14 +595,14 @@ class HeteroRGCN(nn.Module):
 
             for v_dim, m_dim, h_dim in zip(vertex_embedding_dims, message_dims, h_dims):
                 gate_input_shape = [m_dim, m_dim]
-
+                
                 ### different layers have different gates
                 gate = torch.nn.Sequential(
-                    MultipleInputsLayernormLinear(gate_input_shape, 32),
+                    MultipleInputsLayernormLinear(gate_input_shape, gate_hidden_size),
                     nn.ReLU(),
-                    nn.Linear(32, 1),
+                    nn.Linear(gate_hidden_size, 1),
                     Squeezer(),
-                    SoftConcrete()
+                    SoftConcrete(threshold, remove_key_parts, use_top_k, k)
                 )
 
                 gates.append(gate)

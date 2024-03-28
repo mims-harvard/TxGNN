@@ -1,0 +1,69 @@
+node_index,node_id,node_type,node_name,node_source
+27230,8840,disease,ataxia telangiectasia,MONDO
+27253,8045,disease,spinal muscular atrophy-progressive myoclonic epilepsy syndrome,MONDO
+27352,11025,disease,Cayman type cerebellar ataxia,MONDO
+27423,12166,disease,autosomal dominant sensory ataxia 1,MONDO
+27665,10061,disease,autosomal recessive cerebellar ataxia-blindness-deafness syndrome,MONDO
+27793,14744,disease,acute infantile liver failure-cerebellar ataxia-peripheral sensory motor neuropathy syndrome,MONDO
+27797,13886,disease,nonprogressive cerebellar atxia with intellectual disability,MONDO
+27821,33043,disease,"spastic ataxia 8, autosomal recessive, with hypomyelinating leukodystrophy",MONDO
+27839,18155,disease,lateral sclerosis,MONDO
+27891,11950,disease,infantile-onset autosomal recessive nonprogressive cerebellar ataxia,MONDO
+28349,100095,disease,"neurodegeneration, childhood-onset, stress-induced, with variable ataxia and seizures",MONDO
+28396,7803,disease,multiple system atrophy,MONDO
+28473,8243,disease,Pick disease,MONDO
+28709,8890,disease,progressive bulbar palsy,MONDO
+28784,13802,disease,infantile cerebellar-retinal degeneration,MONDO
+28801,14231,disease,juvenile onset Parkinson disease 19A,MONDO
+28886,11771,disease,distal spinal muscular atrophy type 3,MONDO
+28888,10735,disease,Kennedy disease,MONDO
+29371,14531,disease,amyotrohpic lateral sclerosis type 22,MONDO
+29670,11706,disease,Kufor-Rakeb syndrome,MONDO
+29824,14572,disease,Lichtenstein-Knorr syndrome,MONDO
+29856,14846,disease,autosomal recessive cerebellar ataxia - epilepsy - intellectual disability syndrome due to TUD deficiency,MONDO
+29925,11397,disease,"autosomal dominant cerebellar ataxia, deafness and narcolepsy",MONDO
+30093,9830,disease,parkinsonian-pyramidal syndrome,MONDO
+30224,12297,disease,SPOAN syndrome,MONDO
+30231,12549,disease,"autosomal recessive ataxia, Beauce type",MONDO
+30572,10839,disease,autosomal dominant congenital benign spinal muscular atrophy,MONDO
+30598,7435,disease,dentatorubral-pallidoluysian atrophy,MONDO
+30616,12608,disease,autosomal recessive lower motor neuron disease with childhood onset,MONDO
+30858,10382,disease,fragile X-associated tremor/ataxia syndrome,MONDO
+31049,10041,disease,Charlevoix-Saguenay spastic ataxia,MONDO
+31128,11811,disease,autosomal recessive cerebellar ataxia-saccadic intrusion syndrome,MONDO
+31185,10338,disease,X-linked distal spinal muscular atrophy type 3,MONDO
+31245,7739,disease,Huntington disease,MONDO
+31473,32660,disease,"spinal muscular atrophy, lower extremity-predominant, 2b, prenatal onset, autosomal dominant",MONDO
+31507,8695,disease,chorea-acanthocytosis,MONDO
+31590,11638,disease,neuroferritinopathy,MONDO
+31948,902,disease,agenesis of the corpus callosum with peripheral neuropathy,MONDO
+31993,11412,disease,familial encephalopathy with neuroserpin inclusion bodies,MONDO
+32468,1945,disease,postencephalitic Parkinson disease,MONDO
+33241,18466,disease,hereditary late onset Parkinson disease,MONDO
+35693,5559,disease,neurodegenerative disease,MONDO
+36248,3182,disease,anterior horn disease,MONDO
+36404,24432,disease,nerve plexus disease,MONDO
+37050,2562,disease,demyelinating disease,MONDO
+37444,4004,disease,motor nerve neuritis,MONDO
+37652,5574,disease,tauopathy,MONDO
+37707,510,disease,synucleinopathy,MONDO
+37722,5301,disease,multiple sclerosis,MONDO
+38156,16227,disease,hereditary episodic ataxia,MONDO
+38158,100309,disease,hereditary ataxia,MONDO
+38416,19046,disease,leukodystrophy,MONDO
+38458,15362,disease,autosomal dominant distal hereditary motor neuropathy,MONDO
+38503,16987,disease,neuroacanthocytosis,MONDO
+38548,16612,disease,X-linked cerebellar ataxia,MONDO
+38919,15363,disease,autosomal recessive distal hereditary motor neuropathy,MONDO
+39700,18687,disease,progressive muscular atrophy,MONDO
+39885,437,disease,cerebellar ataxia,MONDO
+83960,11401,disease,Alzheimer disease without neurofibrillary tangles,MONDO
+84092,16430,disease,Balo concentric sclerosis,MONDO
+84168,5314,disease,relapsing-remitting multiple sclerosis,MONDO
+84280,4279,disease,glossopharyngeal motor neuropathy,MONDO
+95124,8945,disease,myoclonic cerebellar dyssynergia,MONDO
+95212,452,disease,progressive relapsing multiple sclerosis,MONDO
+95242,563,disease,GRID2-related autosomal dominant spinocerebellar ataxia,MONDO
+96670,4280,disease,asymmetric motor neuropathy,MONDO
+97477,6692,disease,central pontine myelinolysis,MONDO
+97876,13029,disease,cerebellar ataxia type 9,MONDO

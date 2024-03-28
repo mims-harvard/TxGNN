@@ -131,12 +131,24 @@ class TxGNN:
         print('Creating minibatch pretraining dataloader...')
         train_eid_dict = {etype: self.G.edges(form = 'eid', etype =  etype) for etype in self.G.canonical_etypes}
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
+        rel_unique = self.df.relation.unique()
+        reverse_etypes = {}
+        for rel in rel_unique:
+            if 'rev_' in rel:
+                reverse_etypes[rel] = rel[4:]
+            elif 'rev_' + rel in rel_unique:
+                reverse_etypes[rel] = 'rev_' + rel
+            else:
+                reverse_etypes[rel] = rel
+        
         dataloader = dgl.dataloading.EdgeDataLoader(
             self.G, train_eid_dict, sampler,
             negative_sampler=Minibatch_NegSampler(self.G, 1, 'fix_dst'),
             batch_size=batch_size,
             shuffle=True,
             drop_last=False,
+            #exclude='reverse_types',
+            #reverse_etypes = reverse_etypes,
             num_workers=0)
         
         optimizer = torch.optim.AdamW(self.model.parameters(), lr = learning_rate)
@@ -475,7 +487,9 @@ class TxGNN:
                               epochs_per_layer = 1000,
                               penalty_scaling = 1,
                               moving_average_window_size = 100,
-                              valid_per_n = 5):
+                              valid_per_n = 5,
+                              no_base = False,
+                              gate_hidden_size = 32):
         
         self.relation = relation
         
@@ -500,7 +514,7 @@ class TxGNN:
             self.graphmask_model = copy.deepcopy(self.best_model)
             self.best_graphmask_model = copy.deepcopy(self.graphmask_model)
             ## add all the parameters for graphmask
-            self.graphmask_model.add_graphmask_parameters(self.G)
+            self.graphmask_model.add_graphmask_parameters(self.G, gate_hidden_size = gate_hidden_size)
         else:
             print("Training from checkpoint/pretrained model...")
         
@@ -530,13 +544,13 @@ class TxGNN:
             for epoch in range(epochs_per_layer):
                 self.graphmask_model.train()
                 neg_graph = neg_sampler(self.G)
-                original_predictions_pos, original_predictions_neg, _, _ = self.graphmask_model.graphmask_forward(self.G, self.G, neg_graph, graphmask_mode = False, only_relation = relation)
+                original_predictions_pos, original_predictions_neg, _, _ = self.graphmask_model.graphmask_forward(self.G, self.G, neg_graph, graphmask_mode = False, only_relation = relation, no_base = no_base)
 
                 pos_score = torch.cat([original_predictions_pos[i] for i in etypes_train])
                 neg_score = torch.cat([original_predictions_neg[i] for i in etypes_train])
                 original_predictions = torch.sigmoid(torch.cat((pos_score, neg_score))).to('cpu')
 
-                updated_predictions_pos, updated_predictions_neg, penalty, num_masked = self.graphmask_model.graphmask_forward(self.G, self.G, neg_graph, graphmask_mode = True, only_relation = relation)
+                updated_predictions_pos, updated_predictions_neg, penalty, num_masked = self.graphmask_model.graphmask_forward(self.G, self.G, neg_graph, graphmask_mode = True, only_relation = relation, no_base = no_base)
                 pos_score = torch.cat([updated_predictions_pos[i] for i in etypes_train])
                 neg_score = torch.cat([updated_predictions_neg[i] for i in etypes_train])
                 updated_predictions = torch.sigmoid(torch.cat((pos_score, neg_score)))
@@ -579,19 +593,19 @@ class TxGNN:
                 del original_predictions, updated_predictions, f, g, loss, pos_score, neg_score, loss_pred_ori, loss_pred, neg_graph
                 
                 if epoch % valid_per_n == 0:
-                    loss_sum = evaluate_graphmask(self.graphmask_model, self.G, self.g_valid_pos, self.g_valid_neg, relation, epoch, mode = 'validation', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, device = self.device, weight_bias_track = self.weight_bias_track, wandb = self.wandb)
+                    loss_sum = evaluate_graphmask(self.graphmask_model, self.G, self.g_valid_pos, self.g_valid_neg, relation, epoch, mode = 'validation', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, device = self.device, weight_bias_track = self.weight_bias_track, wandb = self.wandb, no_base = no_base)
                     
                     if loss_sum < best_loss_sum:
                         # takes the best checkpoint
                         best_loss_sum = loss_sum
                         self.best_graphmask_model = copy.deepcopy(self.graphmask_model)
             
-        loss_sum, metrics = evaluate_graphmask(self.best_graphmask_model, self.G, self.g_test_pos, self.g_test_neg, relation, epoch, mode = 'testing', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, device = self.device, weight_bias_track = self.weight_bias_track, wandb = self.wandb)
+        loss_sum, metrics = evaluate_graphmask(self.best_graphmask_model, self.G, self.g_test_pos, self.g_test_neg, relation, epoch, mode = 'testing', allowance = allowance, penalty_scaling = penalty_scaling, etypes_train = etypes_train, device = self.device, weight_bias_track = self.weight_bias_track, wandb = self.wandb, no_base = no_base)
         
         if self.weight_bias_track == 'True':
             self.wandb.log(metrics)
         return metrics
-    
+        
     def save_graphmask_model(self, path):
         if not os.path.exists(path):
             os.mkdir(path)
@@ -604,7 +618,9 @@ class TxGNN:
        
         torch.save(self.best_graphmask_model.state_dict(), os.path.join(path, 'graphmask_model.pt'))
         
-    def load_pretrained_graphmask(self, path):
+        
+        
+    def load_pretrained_graphmask(self, path, threshold = 0.5, remove_key_parts = False, use_top_k = False, k = 0.05, gate_hidden_size = 32):
         ## load config file
         with open(os.path.join(path, 'config.pkl'), 'rb') as f:
             config = pickle.load(f)
@@ -615,7 +631,7 @@ class TxGNN:
             self.graphmask_model = copy.deepcopy(self.best_model)
             self.best_graphmask_model = copy.deepcopy(self.graphmask_model)
             ## add all the parameters for graphmask
-            self.graphmask_model.add_graphmask_parameters(self.G)
+            self.graphmask_model.add_graphmask_parameters(self.G, threshold, remove_key_parts, use_top_k, k, gate_hidden_size)
         
         state_dict = torch.load(os.path.join(path, 'graphmask_model.pt'), map_location = torch.device('cpu'))
         if next(iter(state_dict))[:7] == 'module.':
@@ -632,14 +648,33 @@ class TxGNN:
         self.best_graphmask_model = self.graphmask_model
     
     
-    def retrieve_gates_scores_penalties(self):
-        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = self.graphmask_model.graphmask_forward(self.G, self.G, self.G, graphmask_mode = True, only_relation = self.relation, return_gates = True)
+    
+    def retrieve_gates_scores_penalties(self, relation, no_base = False):
+        self.g_test_pos, self.g_test_neg = evaluate_graph_construct(self.df_test, self.G, 'fix_dst', 1, self.device)
+
+        self.G = self.G.to(self.device)
+        self.graphmask_model = self.graphmask_model.eval()
+        
+        neg_sampler = Full_Graph_NegSampler(self.G, 1, 'fix_dst', self.device)
+        neg_graph = neg_sampler(self.G)
+        original_predictions_pos, original_predictions_neg, _, _ = self.graphmask_model.graphmask_forward(self.G, self.G, neg_graph, graphmask_mode = False, only_relation = relation, no_base = no_base)
+        
+        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = self.graphmask_model.graphmask_forward(self.G, self.G, neg_graph, graphmask_mode = True, only_relation = relation, return_gates = True, no_base = no_base)
         gates = self.graphmask_model.get_gates()
         scores = self.graphmask_model.get_gates_scores()
         penalties = self.graphmask_model.get_gates_penalties()
+        whole_graph = [original_predictions_pos, original_predictions_neg, updated_predictions_pos, updated_predictions_neg, num_masked, gates, scores, penalties]
         
-        return gates, scores, penalties
-    
+        original_predictions_pos, original_predictions_neg, _, _ = self.graphmask_model.graphmask_forward(self.G, self.g_test_pos, self.g_test_neg, graphmask_mode = False, only_relation = relation, no_base = no_base)
+        
+        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = self.graphmask_model.graphmask_forward(self.G, self.g_test_pos, self.g_test_neg, graphmask_mode = True, only_relation = relation, return_gates = True, no_base = no_base)
+        gates = self.graphmask_model.get_gates()
+        scores = self.graphmask_model.get_gates_scores()
+        penalties = self.graphmask_model.get_gates_penalties()
+        test_graph = [original_predictions_pos, original_predictions_neg, updated_predictions_pos, updated_predictions_neg, num_masked, gates, scores, penalties]
+        
+        return whole_graph, test_graph
+                
     def retrieve_save_gates(self, path):
         _, scores, _ = self.retrieve_gates_scores_penalties()
         

@@ -21,17 +21,20 @@ class TxData:
             os.mkdir(data_folder_path)
             
         self.data_folder = data_folder_path # the data folder, contains the kg.csv
-        data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/6180626', os.path.join(self.data_folder, 'kg.csv'))
-        data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/6180617', os.path.join(self.data_folder, 'node.csv'))
-        data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/6180616', os.path.join(self.data_folder, 'edges.csv'))
+        data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/7144484', os.path.join(self.data_folder, 'kg.csv'))
+        data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/7144482', os.path.join(self.data_folder, 'node.csv'))
+        data_download_wrapper('https://dataverse.harvard.edu/api/access/datafile/7144483', os.path.join(self.data_folder, 'edges.csv'))
         
         
     def prepare_split(self, split = 'complex_disease',
                      disease_eval_idx = None,
                      seed = 42,
-                     no_kg = False):
+                     no_kg = False,
+                     test_size = 0.05,
+                     mask_ratio = 0.1, 
+                     one_hop = False):
         
-        if split not in ['random', 'complex_disease', 'disease_eval', 'cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland', 'full_graph', 'downstream_pred']:
+        if split not in ['random', 'complex_disease', 'complex_disease_cv', 'disease_eval', 'cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland','autoimmune', 'metabolic_disorder', 'diabetes', 'neurodigenerative', 'full_graph', 'downstream_pred', 'few_edeges_to_kg', 'few_edeges_to_indications']:
             raise ValueError("Please select one of the following supported splits: 'random', 'complex_disease', 'disease_eval', 'cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland'")
             
         if disease_eval_idx is not None:
@@ -39,8 +42,18 @@ class TxData:
             print('disease eval index is not none, use the individual disease split...')
         self.split = split
         
-        if split in ['cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland']:
-            kg_path = os.path.join(self.data_folder, split + '_kg', 'kg_directed.csv')
+        if split in ['cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland', 'autoimmune', 'metabolic_disorder', 'diabetes', 'neurodigenerative']:
+            
+            if test_size != 0.05:
+                folder_name = split + '_kg' + '_frac' + str(test_size)
+            elif one_hop:
+                folder_name = split + '_kg' + '_one_hop_ratio' + str(mask_ratio)
+            else:
+                folder_name = split + '_kg'
+           
+            if not os.path.exists(os.path.join(self.data_folder, folder_name)):
+                os.mkdir(os.path.join(self.data_folder, folder_name))
+            kg_path = os.path.join(self.data_folder, folder_name, 'kg_directed.csv')
         else:
             kg_path = os.path.join(self.data_folder, 'kg_directed.csv')
             
@@ -50,7 +63,7 @@ class TxData:
         else:
             if os.path.exists(os.path.join(self.data_folder, 'kg.csv')):
                 print('First time usage... Mapping TxData raw KG to directed csv... it takes several minutes...')
-                preprocess_kg(self.data_folder, split)
+                preprocess_kg(self.data_folder, split, test_size,one_hop, mask_ratio)
                 df = pd.read_csv(kg_path)
             else:
                 raise ValueError("KG file path does not exist...")
@@ -64,6 +77,10 @@ class TxData:
                                    13335., 12896., 12879., 12909.,  4815., 12766., 12653.]
         elif no_kg:
             split_data_path = os.path.join(self.data_folder, self.split + '_no_kg_' + str(seed))
+        elif test_size != 0.05:
+            split_data_path = os.path.join(self.data_folder, self.split + '_' + str(seed)) + '_frac' + str(test_size)
+        elif one_hop:
+            split_data_path = os.path.join(self.data_folder, self.split + '_' + str(seed)) + '_one_hop_ratio' + str(mask_ratio)
         else:
             split_data_path = os.path.join(self.data_folder, self.split + '_' + str(seed))
         
@@ -82,7 +99,7 @@ class TxData:
             df_valid = pd.read_csv(os.path.join(split_data_path, 'valid.csv'))
             df_test = pd.read_csv(os.path.join(split_data_path, 'test.csv'))
         
-        if split not in ['random', 'complex_disease', 'disease_eval', 'full_graph', 'downstream_pred']:
+        if split not in ['random', 'complex_disease', 'complex_disease_cv', 'disease_eval', 'full_graph', 'downstream_pred', 'few_edeges_to_indications', 'few_edeges_to_kg']:
             # in disease area split
             df_test = process_disease_area_split(self.data_folder, df, df_test, split)
         

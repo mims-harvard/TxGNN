@@ -36,3 +36,7 @@ class TxEval:
 
         df_rel_dd = df_dd[df_dd.relation == relation]        
         return df_rel_dd.x_idx.unique()
+    
+    
+    def retrieve_all_disease_idxs(self):
+        return np.unique(self.df[self.df.x_type == 'disease'].x_idx.unique().tolist() + self.df[self.df.y_type == 'disease'].y_idx.unique().tolist())

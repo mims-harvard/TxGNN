@@ -16,9 +16,9 @@ class DataSplitter:
         self.grouped_diseases = pd.read_csv(os.path.join(dirname, 'kg_grouped_diseases_bert_map.csv'))
         
     def load_kg(self, pth=''):
-        kg = pd.read_csv(pth+'kg.csv', low_memory=False)
-        nodes = pd.read_csv(pth+'nodes.csv', low_memory=False)
-        edges = pd.read_csv(pth+'edges.csv', low_memory=False)
+        kg = pd.read_csv(os.path.join(pth, 'kg.csv'), low_memory=False)
+        nodes = pd.read_csv(os.path.join(pth, 'node.csv'), sep = '\t', low_memory=False)
+        edges = pd.read_csv(os.path.join(pth, 'edges.csv'), low_memory=False)
         return kg, nodes, edges
     
     def load_do(self): 
@@ -62,19 +62,18 @@ class DataSplitter:
         df = self.nodes.query('node_index in @node_idx')
         return df
     
-    def get_edge_group(self, nodes, test_size = 0.05, add_drug_dis=True): 
-        test_num_edges = round(self.edge_index.shape[1]*test_size)
-        
+    def get_one_hop_edge_group(self, nodes, mask_ratio = 0.1, add_drug_dis=True):
         if add_drug_dis: 
             x = self.edges.query('x_index in @nodes or y_index in @nodes').query('relation=="contraindication" or relation=="indication" or relation=="off-label use"')
             drug_dis_edges = x.get(['x_index','y_index']).values.T
-            num_random_edges = test_num_edges - drug_dis_edges.shape[1]
-        else: 
-            num_random_edges = test_num_edges
-            
+            print('drug_dis_edges.shape: ', drug_dis_edges.shape)
+    
         from torch_geometric.utils import k_hop_subgraph
-        subgraph_nodes, filtered_edge_index, node_map, edge_mask = k_hop_subgraph(list(nodes), 2, self.edge_index) #one hop neighborhood
-        sample_idx = np.random.choice(filtered_edge_index.shape[1], num_random_edges, replace=False)
+        subgraph_nodes, filtered_edge_index, node_map, edge_mask = k_hop_subgraph(list(nodes), 1, self.edge_index) #one hop 
+        print('filtered_edge_index.shape: ', filtered_edge_index.shape)
+        num_of_mask_edges = int(mask_ratio * filtered_edge_index.shape[1])
+        print('num_of_mask_edges: ', num_of_mask_edges)
+        sample_idx = np.random.choice(filtered_edge_index.shape[1], num_of_mask_edges, replace=False)
         sample_edges = filtered_edge_index[:, sample_idx].numpy()
         
         if add_drug_dis:
@@ -84,11 +83,52 @@ class DataSplitter:
         
         test_edges = np.unique(test_edges, axis=1)
         return test_edges 
+            
+    def get_edge_group(self, nodes, test_size = 0.05, add_drug_dis=True):
+        if add_drug_dis: 
+            x = self.edges.query('x_index in @nodes or y_index in @nodes').query('relation=="contraindication" or relation=="indication" or relation=="off-label use"')
+            drug_dis_edges = x.get(['x_index','y_index']).values.T
+            print('drug_dis_edges.shape: ', drug_dis_edges.shape)
         
-    def get_test_kg_for_disease(self, doid_code, test_size = 0.05, add_drug_dis=True): 
+        print('test_size: ', test_size)
+        if test_size > 1:
+            print('using test size as static number of edges')
+            test_num_edges = test_size + drug_dis_edges.shape[1]
+        else:
+            test_num_edges = round(self.edge_index.shape[1]*test_size)
+            print('test_num_edges: ', test_num_edges)
+        
+        if add_drug_dis: 
+            num_random_edges = test_num_edges - drug_dis_edges.shape[1]
+        else: 
+            num_random_edges = test_num_edges
+            
+        from torch_geometric.utils import k_hop_subgraph
+        subgraph_nodes, filtered_edge_index, node_map, edge_mask = k_hop_subgraph(list(nodes), 2, self.edge_index) #one hop neighborhood
+        print('filtered_edge_index.shape: ', filtered_edge_index.shape)
+        sample_idx = np.random.choice(filtered_edge_index.shape[1], num_random_edges, replace=False)
+        print('num_random_edges: ', num_random_edges)
+        sample_edges = filtered_edge_index[:, sample_idx].numpy()
+        print('sample_idx.shape: ', sample_idx.shape)
+        print('sample_edges.shape: ', sample_edges.shape)
+        
+        if add_drug_dis:
+            test_edges = np.concatenate([drug_dis_edges, sample_edges], axis=1)
+        else: 
+            test_edges = sample_edges
+        
+        test_edges = np.unique(test_edges, axis=1)
+        return test_edges 
+        
+    def get_test_kg_for_disease(self, doid_code, test_size = 0.05, add_drug_dis=True, one_hop = False, mask_ratio = 0.1): 
         disease_nodes = self.get_nodes_for_doid(doid_code)
-        disease_edges = self.get_edge_group(disease_nodes, test_size = test_size, add_drug_dis=add_drug_dis)
+        if one_hop:
+            disease_edges = self.get_one_hop_edge_group(disease_nodes, mask_ratio = mask_ratio, add_drug_dis=add_drug_dis)
+        else:
+            disease_edges = self.get_edge_group(disease_nodes, test_size = test_size, add_drug_dis=add_drug_dis)
         disease_edges = pd.DataFrame(disease_edges.T, columns=['x_index','y_index'])
+        print(disease_edges.columns.values)
+        print(self.kg.columns.values)
         select_kg = pd.merge(self.kg, disease_edges, 'right').drop_duplicates()
         return select_kg
     

@@ -1,0 +1,56 @@
+node_index,node_id,node_type,node_name,node_source
+28478,7179,disease,autoimmune disease,MONDO
+28764,10030,disease,Sjogren syndrome,MONDO
+29182,7915,disease,systemic lupus erythematosus (disease),MONDO
+29894,7699,disease,Hashimoto thyroiditis,MONDO
+30256,7140,disease,antiphospholipid syndrome,MONDO
+30483,11776,disease,CINCA syndrome,MONDO
+30486,8661,disease,vitiligo,MONDO
+30511,9303,disease,anti-glomerular basement membrane disease,MONDO
+30998,8219,disease,pemphigus vulgaris,MONDO
+31513,10580,disease,immune dysregulation-polyendocrinopathy-enteropathy-X-linked syndrome,MONDO
+31753,14405,disease,STING-associated vasculopathy with onset in infancy,MONDO
+32154,8218,disease,Hailey-Hailey disease,MONDO
+32190,16474,disease,drug-induced lupus erythematosus,MONDO
+32202,18088,disease,familial Mediterranean fever,MONDO
+32381,18746,disease,mucous membrane pemphigoid,MONDO
+32669,6558,disease,pemphigoid gestationis,MONDO
+33029,18465,disease,insulin autoimmune syndrome,MONDO
+33103,16030,disease,Evans syndrome,MONDO
+33194,19082,disease,bullous pemphigoid,MONDO
+33368,18092,disease,Vogt-Koyanagi-Harada disease,MONDO
+33400,19100,disease,neuromyelitis optica,MONDO
+35743,2977,disease,autoimmune disease of the nervous system,MONDO
+35847,590,disease,autoimmune disease of peripheral nervous system,MONDO
+36293,586,disease,autoimmune disease of exocrine system,MONDO
+37163,603,disease,autoimmune disease of cardiovascular system,MONDO
+37584,602,disease,autoimmune disease of blood,MONDO
+37688,30701,disease,autoimmune cardiomyopathy,MONDO
+37689,17841,disease,autoimmune disease with skin involvement,MONDO
+37698,588,disease,autoimmune disease of gastrointestinal tract,MONDO
+37699,568,disease,autoimmune disease of central nervous system,MONDO
+37704,569,disease,autoimmune disease of endocrine system,MONDO
+37722,5301,disease,multiple sclerosis,MONDO
+37789,30700,disease,autoimmune glomerulonephritis,MONDO
+37866,589,disease,autoimmune disease of musculoskeletal system,MONDO
+37867,774,disease,autoimmune neuropathy,MONDO
+38016,6594,disease,pemphigus,MONDO
+38654,30703,disease,autoimmune vasculitis,MONDO
+38784,5364,disease,Graves disease,MONDO
+38941,5130,disease,celiac disease,MONDO
+39127,17287,disease,IgG4-related disease,MONDO
+39159,587,disease,"autoimmune disease of ear, nose and throat",MONDO
+39272,16218,disease,Guillain-Barre syndrome,MONDO
+39441,31012,disease,autoimmune uveitis,MONDO
+39705,601,disease,autoimmune disease of urogenital tract,MONDO
+84092,16430,disease,Balo concentric sclerosis,MONDO
+84168,5314,disease,relapsing-remitting multiple sclerosis,MONDO
+95008,5851,disease,Miller Fisher syndrome,MONDO
+95212,452,disease,progressive relapsing multiple sclerosis,MONDO
+95274,687,disease,diffuse alopecia areata,MONDO
+95619,1629,disease,Jaccoud syndrome,MONDO
+96127,3136,disease,anti-basement membrane glomerulonephritis,MONDO
+98632,19191,disease,IgG4-related dacryoadenitis and sialadenitis,MONDO
+99656,30702,disease,autoimmune atherosclerosis,MONDO
+99666,31013,disease,autoimmune optic neuritis,MONDO
+99667,31014,disease,autoimmune gastritis,MONDO

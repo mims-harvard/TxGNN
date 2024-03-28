@@ -59,8 +59,8 @@ def data_download_wrapper(url, save_path):
         dataverse_download(url, save_path)
         print("Done!")
         
-def preprocess_kg(path, split):
-    if split in ['cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland']:
+def preprocess_kg(path, split, test_size = 0.05, one_hop = False, mask_ratio = 0.1):
+    if split in ['cell_proliferation', 'mental_health', 'cardiovascular', 'anemia', 'adrenal_gland','autoimmune', 'metabolic_disorder', 'diabetes', 'neurodigenerative']:
         
         print('Generating disease area using ontology... might take several minutes...')
         name2id = { 
@@ -68,21 +68,34 @@ def preprocess_kg(path, split):
                     'mental_health': '150',
                     'cardiovascular': '1287',
                     'anemia': '2355',
-                    'adrenal_gland': '9553'
+                    'adrenal_gland': '9553',
+                    'autoimmune': '417',
+                    'metabolic_disorder': '655',
+                    'diabetes': '9351',
+                    'neurodigenerative': '1289'
                   }
 
         ds = DataSplitter(kg_path = path)
 
-        test_kg = ds.get_test_kg_for_disease(name2id[split], test_size = 0.05)
+        test_kg = ds.get_test_kg_for_disease(name2id[split], test_size = test_size, one_hop = one_hop, mask_ratio = mask_ratio)
         all_kg = ds.kg
         all_kg['split'] = 'train'
         test_kg['split'] = 'test'
         df = pd.concat([all_kg, test_kg]).drop_duplicates(subset = ['x_index', 'y_index'], keep = 'last').reset_index(drop = True)
-
-        path = os.path.join(path, split + '_kg')
+        
+        print('test size: ', test_size)
+        if test_size != 0.05:
+            folder_name = split + '_kg_frac' + str(test_size)
+        elif one_hop:
+            folder_name = split + '_kg' + '_one_hop_ratio' + str(mask_ratio)
+        else:
+            folder_name = split + '_kg'
+        
+        path = os.path.join(path, folder_name)
+        
         if not os.path.exists(path):
             os.mkdir(path)
-
+        print('save kg.csv to ', os.path.join(path, 'kg.csv'))
         df.to_csv(os.path.join(path, 'kg.csv'), index = False)
         df = df[['x_type', 'x_id', 'relation', 'y_type', 'y_id', 'split']]
 
@@ -122,7 +135,8 @@ def preprocess_kg(path, split):
         df.loc[df.x_type == i, 'x_idx'] = df[df.x_type == i]['x_id'].apply(lambda x: names2idx[x])
         df.loc[df.y_type == i, 'y_idx'] = df[df.y_type == i]['y_id'].apply(lambda x: names2idx[x])
         idx_map[i] = names2idx
-
+        
+    print('save kg_directed.csv...')
     df.to_csv(os.path.join(path, 'kg_directed.csv'), index = False)
 
 def random_fold(df, fold_seed, frac):
@@ -214,12 +228,167 @@ def complex_disease_fold(df, fold_seed, frac):
     return {'train': df_train.reset_index(drop = True), 
             'valid': df_valid.reset_index(drop = True), 
             'test': df_test.reset_index(drop = True)}
+        
+def few_edeges_to_kg_fold(df, fold_seed, frac):
+    
+    dd_rel_types = ['contraindication', 'indication', 'off-label use']
+    df_not_dd = df[~df.relation.isin(dd_rel_types)]
+    df_dd = df[df.relation.isin(dd_rel_types)]
+    
+    disease2num_neighbors_1 = dict(df_not_dd[df_not_dd.x_type == 'disease'].groupby('x_idx').y_id.agg(len))
+    disease2num_neighbors_2 = dict(df_not_dd[df_not_dd.y_type == 'disease'].groupby('y_idx').x_id.agg(len))
+
+    disease2num_neighbors = {}
+
+    # Iterating through keys in both dictionaries
+    for key in set(disease2num_neighbors_1).union(disease2num_neighbors_2):
+        disease2num_neighbors[key] = disease2num_neighbors_1.get(key, 0) + disease2num_neighbors_2.get(key, 0)
+    
+    disease_with_less_than_3_connections_in_kg = np.array([i for i,j in disease2num_neighbors.items() if j <= 3])
+    unique_diseases = df_dd.y_idx.unique()
+    train_val_diseases = np.setdiff1d(unique_diseases, disease_with_less_than_3_connections_in_kg)
+    test = np.intersect1d(unique_diseases, disease_with_less_than_3_connections_in_kg)
+    print('Number of testing diseases: ', len(test))
+    np.random.seed(fold_seed)
+    np.random.shuffle(train_val_diseases)
+    train, valid = np.split(train_val_diseases, [int(frac[0]*len(unique_diseases))])
+    print('Number of train diseases: ', len(train))
+    print('Number of valid diseases: ', len(valid))
+    
+    df_dd_train = df_dd[df_dd.y_idx.isin(train)]
+    df_dd_valid = df_dd[df_dd.y_idx.isin(valid)]
+    df_dd_test = df_dd[df_dd.y_idx.isin(test)]
+    
+    df = df_not_dd
+    train_frac, val_frac, test_frac = frac
+    df_train = pd.DataFrame()
+    df_valid = pd.DataFrame()
+    df_test = pd.DataFrame()
+
+    for i in df.relation.unique():
+        df_temp = df[df.relation == i]
+        test = df_temp.sample(frac = test_frac, replace = False, random_state = fold_seed)
+        train_val = df_temp[~df_temp.index.isin(test.index)]
+        val = train_val.sample(frac = val_frac/(1-test_frac), replace = False, random_state = 1)
+        train = train_val[~train_val.index.isin(val.index)]
+        df_train = df_train.append(train)
+        df_valid = df_valid.append(val)
+        df_test = df_test.append(test) 
+    
+    df_train = pd.concat([df_train, df_dd_train])
+    df_valid = pd.concat([df_valid, df_dd_valid])
+    df_test = pd.concat([df_test, df_dd_test])
+    
+    return {'train': df_train.reset_index(drop = True), 
+            'valid': df_valid.reset_index(drop = True), 
+            'test': df_test.reset_index(drop = True)}
+    
+    
+def few_edeges_to_indications_fold(df, fold_seed, frac):
+    
+    dd_rel_types = ['contraindication', 'indication', 'off-label use']
+    df_not_dd = df[~df.relation.isin(dd_rel_types)]
+    df_dd = df[df.relation.isin(dd_rel_types)]
+    
+    disease2num_indications = dict(df_dd[(df_dd.y_type == 'disease') & (df_dd.relation == 'indication')].groupby('x_idx').y_id.agg(len))
+    
+    disease_with_less_than_3_indications_in_kg = np.array([i for i,j in disease2num_indications.items() if j <= 3])
+    unique_diseases = df_dd.y_idx.unique()
+    train_val_diseases = np.setdiff1d(unique_diseases, disease_with_less_than_3_indications_in_kg)
+    test = np.intersect1d(unique_diseases, disease_with_less_than_3_indications_in_kg)
+    print('Number of testing diseases: ', len(test))
+    np.random.seed(fold_seed)
+    np.random.shuffle(train_val_diseases)
+    train, valid = np.split(train_val_diseases, [int(frac[0]*len(unique_diseases))])
+    print('Number of train diseases: ', len(train))
+    print('Number of valid diseases: ', len(valid))
+    
+    df_dd_train = df_dd[df_dd.y_idx.isin(train)]
+    df_dd_valid = df_dd[df_dd.y_idx.isin(valid)]
+    df_dd_test = df_dd[df_dd.y_idx.isin(test)]
+    
+    df = df_not_dd
+    train_frac, val_frac, test_frac = frac
+    df_train = pd.DataFrame()
+    df_valid = pd.DataFrame()
+    df_test = pd.DataFrame()
+
+    for i in df.relation.unique():
+        df_temp = df[df.relation == i]
+        test = df_temp.sample(frac = test_frac, replace = False, random_state = fold_seed)
+        train_val = df_temp[~df_temp.index.isin(test.index)]
+        val = train_val.sample(frac = val_frac/(1-test_frac), replace = False, random_state = 1)
+        train = train_val[~train_val.index.isin(val.index)]
+        df_train = df_train.append(train)
+        df_valid = df_valid.append(val)
+        df_test = df_test.append(test) 
+    
+    df_train = pd.concat([df_train, df_dd_train])
+    df_valid = pd.concat([df_valid, df_dd_valid])
+    df_test = pd.concat([df_test, df_dd_test])
+    
+    return {'train': df_train.reset_index(drop = True), 
+            'valid': df_valid.reset_index(drop = True), 
+            'test': df_test.reset_index(drop = True)}
+    
+def create_fold_cv(df, split_num, num_splits):
+    dd_rel_types = ['contraindication', 'indication', 'off-label use']
+    df_not_dd = df[~df.relation.isin(dd_rel_types)]
+    df_dd = df[df.relation.isin(dd_rel_types)] 
+    
+    unique_diseases = df_dd.y_idx.unique()
+    np.random.seed(42)
+    np.random.shuffle(unique_diseases)
+    
+    from sklearn.model_selection import KFold
+    kf = KFold(n_splits=num_splits)
+    
+    split_num_idx = {}
+    
+    for i, (train_index, test_index) in enumerate(kf.split(unique_diseases)):
+        train_index, valid_index, _ = np.split(train_index, [int(0.9*len(train_index)), int(len(train_index))])
+        split_num_idx[i+1] = {'train': unique_diseases[train_index],
+                              'valid': unique_diseases[valid_index],
+                              'test': unique_diseases[test_index]
+                             }
+        
+    train, valid, test = split_num_idx[split_num]['train'], split_num_idx[split_num]['valid'], split_num_idx[split_num]['test']
+    df_dd_train = df_dd[df_dd.y_idx.isin(train)]
+    df_dd_valid = df_dd[df_dd.y_idx.isin(valid)]
+    df_dd_test = df_dd[df_dd.y_idx.isin(test)]
+    
+    df = df_not_dd
+    train_frac, val_frac, test_frac = [0.83125, 0.11875, 0.05]
+    df_train = pd.DataFrame()
+    df_valid = pd.DataFrame()
+    df_test = pd.DataFrame()
+
+    for i in df.relation.unique():
+        df_temp = df[df.relation == i]
+        test = df_temp.sample(frac = test_frac, replace = False, random_state = split_num)
+        train_val = df_temp[~df_temp.index.isin(test.index)]
+        val = train_val.sample(frac = val_frac/(1-test_frac), replace = False, random_state = 1)
+        train = train_val[~train_val.index.isin(val.index)]
+        df_train = df_train.append(train)
+        df_valid = df_valid.append(val)
+        df_test = df_test.append(test) 
+    
+    df_train = pd.concat([df_train, df_dd_train])
+    df_valid = pd.concat([df_valid, df_dd_valid])
+    df_test = pd.concat([df_test, df_dd_test])
+    
+    return df_train.reset_index(drop = True), df_valid.reset_index(drop = True), df_test.reset_index(drop = True)
+    
     
 def create_fold(df, fold_seed = 100, frac = [0.7, 0.1, 0.2], method = 'random', disease_idx = 0.0):
     if method == 'random':
         out = random_fold(df, fold_seed, frac)
     elif method == 'complex_disease':
         out = complex_disease_fold(df, fold_seed, frac)
+    elif method == 'few_edeges_to_kg':
+        out = few_edeges_to_kg_fold(df, fold_seed, [0.7, 0.1, 0.2])
+    elif method == 'few_edeges_to_indications':
+        out = few_edeges_to_indications_fold(df, fold_seed, [0.7, 0.1, 0.2])
     elif method == 'downstream_pred':
         out = disease_eval_fold(df, fold_seed, disease_idx)        
     elif method == 'disease_eval':
@@ -237,7 +406,13 @@ def create_fold(df, fold_seed = 100, frac = [0.7, 0.1, 0.2], method = 'random', 
 
 
 def create_split(df, split, disease_eval_index, split_data_path, seed):
-    df_train, df_valid, df_test = create_fold(df, fold_seed = seed, frac = [0.83125, 0.11875, 0.05], method = split, disease_idx = disease_eval_index)
+    print('split_data_path: ', split_data_path)
+    if split == 'complex_disease_cv':
+        if seed < 1 or seed > 20:
+            raise ValueError('Complex disease cross validation 20 folds, select seed from 1-20.')
+        df_train, df_valid, df_test = create_fold_cv(df, split_num = seed, num_splits = 20)
+    else:
+        df_train, df_valid, df_test = create_fold(df, fold_seed = seed, frac = [0.83125, 0.11875, 0.05], method = split, disease_idx = disease_eval_index)
 
     unique_rel = df[['x_type', 'relation', 'y_type']].drop_duplicates()
     df_train = reverse_rel_generation(df, df_train, unique_rel)
@@ -358,11 +533,12 @@ def evaluate_graph_construct(df_valid, g, neg_sampler, k, device):
     for etype in g.canonical_etypes:
         try:
             df_temp = df_in[df_in.relation == etype[1]]
+            src = torch.Tensor(df_temp.x_idx.values).to(device).to(dtype = torch.int64)
+            dst = torch.Tensor(df_temp.y_idx.values).to(device).to(dtype = torch.int64)
+            out.update({etype: (src, dst)})
         except:
             print(etype[1])
-        src = torch.Tensor(df_temp.x_idx.values).to(device).to(dtype = torch.int64)
-        dst = torch.Tensor(df_temp.y_idx.values).to(device).to(dtype = torch.int64)
-        out.update({etype: (src, dst)})
+        
     g_valid = dgl.heterograph(out, num_nodes_dict={ntype: g.number_of_nodes(ntype) for ntype in g.ntypes})
     
     ng = Full_Graph_NegSampler(g_valid, k, neg_sampler, device)
@@ -451,7 +627,46 @@ def evaluate_fb(model, g_pos, g_neg, G, dd_etypes, device, return_embed = False,
     else:
         return get_all_metrics_fb(pred_score_pos, pred_score_neg, scores.reshape(-1,).detach().cpu().numpy(), labels, G, True), loss.item()
     
-def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch, etypes_train, allowance, penalty_scaling, device, mode = 'validation', weight_bias_track = False, wandb = None):
+    
+    
+def evaluate_gnnexplainer(model, G, g_valid_pos, g_valid_neg, only_relation, epoch, etypes_train, penalty_scaling, device, mode = 'validation', weight_bias_track = False, wandb = None):
+    loss_fct = nn.MSELoss()
+    model.eval()
+    G = G.to(device)
+    with torch.no_grad():
+        original_predictions_pos, original_predictions_neg, _, _ = model.gnnexplainer_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = False, only_relation = only_relation)
+        pos_score = torch.cat([original_predictions_pos[i] for i in etypes_train])
+        neg_score = torch.cat([original_predictions_neg[i] for i in etypes_train])
+        original_predictions = torch.sigmoid(torch.cat((pos_score, neg_score))).to('cpu')
+
+        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = model.gnnexplainer_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = True, only_relation = only_relation)
+        pos_score = torch.cat([updated_predictions_pos[i] for i in etypes_train])
+        neg_score = torch.cat([updated_predictions_neg[i] for i in etypes_train])
+        updated_predictions = torch.sigmoid(torch.cat((pos_score, neg_score)))
+
+        labels = [1] * len(pos_score) + [0] * len(neg_score)
+        loss_pred = F.binary_cross_entropy(updated_predictions, torch.Tensor(labels).float().to(device)).item()
+
+        original_predictions = original_predictions.to(device)
+        loss_pred_ori = F.binary_cross_entropy(original_predictions, torch.Tensor(labels).float().to(device)).item()
+
+        loss = loss_fct(original_predictions, updated_predictions)
+        total_loss = loss + penalty * penalty_scaling        
+        
+        print("----- " + mode + " Result -----")
+        print("Running epoch {0:n} of GNNExplainer training. Mean divergence={1:.4f}, mean penalty={2:.4f}, bce_update={3:.4f}, bce_original={4:.4f}, num_masked_l1={5:.4f}, num_masked_l2={6:.4f}".format(
+            epoch,
+            float(loss.item()),
+            float((penalty * penalty_scaling).item()),
+            loss_pred,
+            loss_pred_ori,
+            num_masked[0]/G.number_of_edges(),
+            num_masked[1]/G.number_of_edges())
+        )
+        return float(loss.item()) + float((penalty * penalty_scaling).item())
+    
+    
+def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch, etypes_train, allowance, penalty_scaling, device, mode = 'validation', weight_bias_track = False, wandb = None, no_base = False):
     model.eval()
     G = G.to(device)
     with torch.no_grad():
@@ -460,7 +675,7 @@ def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch,
         g_valid_pos = g_valid_pos.to(device)
         g_valid_neg = g_valid_neg.to(device)
 
-        original_predictions_pos, original_predictions_neg, _, _ = model.graphmask_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = False, only_relation = only_relation)
+        original_predictions_pos, original_predictions_neg, _, _ = model.graphmask_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = False, only_relation = only_relation, no_base = no_base)
 
         pos_score = torch.cat([original_predictions_pos[i] for i in etypes_train])
         neg_score = torch.cat([original_predictions_neg[i] for i in etypes_train])
@@ -468,7 +683,86 @@ def evaluate_graphmask(model, G, g_valid_pos, g_valid_neg, only_relation, epoch,
 
         original_predictions = original_predictions.to('cpu')
 
-        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = model.graphmask_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = True, only_relation = only_relation)
+        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = model.graphmask_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = True, only_relation = only_relation, no_base = no_base)
+        pos_score = torch.cat([updated_predictions_pos[i] for i in etypes_train])
+        neg_score = torch.cat([updated_predictions_neg[i] for i in etypes_train])
+        updated_predictions = torch.sigmoid(torch.cat((pos_score, neg_score)))
+
+        labels = [1] * len(pos_score) + [0] * len(neg_score)
+        loss_pred = F.binary_cross_entropy(updated_predictions, torch.Tensor(labels).float().to(device)).item()
+
+        # loss is the divergence with original predictions
+        G = G.to('cpu')
+        original_predictions = original_predictions.to(device)
+        loss_pred_ori = F.binary_cross_entropy(original_predictions, torch.Tensor(labels).float().to(device)).item()
+
+        loss = loss_fct(original_predictions, updated_predictions)
+
+        g = torch.relu(loss - allowance).mean()
+        f = penalty * penalty_scaling
+
+        g_valid_pos = g_valid_pos.to('cpu')
+        g_valid_neg = g_valid_neg.to('cpu')
+        
+        print("----- " + mode + " Result -----")
+        print("Epoch {0:n}, Mean divergence={1:.4f}, mean penalty={2:.4f}, bce_update={3:.4f}, bce_original={4:.4f}, num_masked_l1={5:.4f}, num_masked_l2={6:.4f}".format(
+            epoch,
+            float(loss.mean().item()),
+            float(f),
+            loss_pred,
+            loss_pred_ori,
+            num_masked[0]/G.number_of_edges(),
+            num_masked[1]/G.number_of_edges())
+        )
+        print("-------------------------------")
+        
+        if mode == 'testing':
+            test_metrics = {}
+            pred_update = updated_predictions.detach().cpu().numpy()
+            pred_ori = original_predictions.detach().cpu().numpy()
+            y_ = np.array(labels)
+            
+            test_metrics['test auroc original'] = roc_auc_score(y_, pred_ori)
+            test_metrics['test auprc original'] = average_precision_score(y_, pred_ori)
+            test_metrics['test auroc update'] = roc_auc_score(y_, pred_update)
+            test_metrics['test auprc update'] = average_precision_score(y_, pred_update)
+            test_metrics['test %masked_L1'] = num_masked[0]/G.number_of_edges()
+            test_metrics['test %masked_L2'] = num_masked[1]/G.number_of_edges()
+            
+        if weight_bias_track:
+            wandb.log({mode + ' divergence': float(loss.mean().item()),
+                       mode + ' penalty': float(f),
+                       mode + ' bce_masked': loss_pred,
+                       mode + ' bce_original': loss_pred_ori,
+                       mode + ' %masked_L1': num_masked[0]/G.number_of_edges(),
+                       mode + ' %masked_L2': num_masked[1]/G.number_of_edges()})
+
+        g_, f_ = float(loss.mean().item()), float(f)
+        del original_predictions, updated_predictions, f, g, loss, pos_score, neg_score
+    if mode == 'testing':
+        return g_ + f_ , test_metrics
+    else:
+        return g_ + f_
+    
+    
+def evaluate_ib(model, G, g_valid_pos, g_valid_neg, only_relation, epoch, etypes_train, allowance, penalty_scaling, device, mode = 'validation', weight_bias_track = False, wandb = None, no_base = False):
+    model.eval()
+    G = G.to(device)
+    with torch.no_grad():
+        loss_fct = nn.MSELoss()
+
+        g_valid_pos = g_valid_pos.to(device)
+        g_valid_neg = g_valid_neg.to(device)
+
+        original_predictions_pos, original_predictions_neg, _, _ = model.ib_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = False, only_relation = only_relation, no_base = no_base)
+
+        pos_score = torch.cat([original_predictions_pos[i] for i in etypes_train])
+        neg_score = torch.cat([original_predictions_neg[i] for i in etypes_train])
+        original_predictions = torch.sigmoid(torch.cat((pos_score, neg_score)))
+
+        original_predictions = original_predictions.to('cpu')
+
+        updated_predictions_pos, updated_predictions_neg, penalty, num_masked = model.ib_forward(G, g_valid_pos, g_valid_neg, graphmask_mode = True, only_relation = only_relation, no_base = no_base)
         pos_score = torch.cat([updated_predictions_pos[i] for i in etypes_train])
         neg_score = torch.cat([updated_predictions_neg[i] for i in etypes_train])
         updated_predictions = torch.sigmoid(torch.cat((pos_score, neg_score)))
@@ -1167,4 +1461,129 @@ def disease_centric_evaluation(df, df_train, df_valid, df_test, data_path, G, mo
             return out
         else:
             return pd.DataFrame.from_dict(results)
-   
+        
+def find_two_hops(x_idx_value, x_type_value, df):
+
+    # Identify 1-hop neighbors
+    one_hop = df[((df['x_idx'] == x_idx_value) & (df['x_type'] == x_type_value)) | 
+                 ((df['y_idx'] == x_idx_value) & (df['y_type'] == x_type_value))]
+
+    # Collect all unique neighbor pairs
+    neighbors = set(zip(one_hop['x_idx'], one_hop['x_type'])) | set(zip(one_hop['y_idx'], one_hop['y_type']))
+
+    # Create a DataFrame from neighbors
+    neighbors_df = pd.DataFrame(list(neighbors), columns=['idx', 'type'])
+
+    # Find 2-hop neighbors by joining
+    two_hop = df.merge(neighbors_df, left_on=['x_idx', 'x_type'], right_on=['idx', 'type'])
+    two_hop = two_hop.append(df.merge(neighbors_df, left_on=['y_idx', 'y_type'], right_on=['idx', 'type']))
+
+    # Combine 1-hop and 2-hop neighbors and remove duplicates
+    return pd.concat([one_hop, two_hop]).drop_duplicates()
+
+import torch
+import numpy as np
+import dgl
+
+def remove_random_edges(hetero_graph, K):
+    removed_edges = {}
+    for etype in hetero_graph.canonical_etypes:
+        num_existing_edges = hetero_graph.number_of_edges(etype)
+        num_edges_to_remove = int(K / 100 * num_existing_edges)
+
+        np.random.seed(42)
+        edges_to_remove = np.random.choice(num_existing_edges, num_edges_to_remove, replace=False)
+        edge_ids = torch.tensor(edges_to_remove, dtype=torch.int64).to(hetero_graph.device)
+
+        hetero_graph.remove_edges(edge_ids, etype=etype)
+        removed_edges[etype] = edge_ids
+        
+    return hetero_graph, removed_edges
+
+
+def remove_relation_type(hetero_graph, relation_type):
+    # Check if the relation type is valid
+    if relation_type not in hetero_graph.etypes:
+        print(f"Relation type {relation_type} not found in the graph.")
+        return hetero_graph
+
+    # Find all canonical edge types that correspond to the relation type
+    etypes_to_remove = [etype for etype in hetero_graph.canonical_etypes if etype[1] == relation_type]
+    etypes_to_remove += [etype for etype in hetero_graph.canonical_etypes if etype[1] == 'rev_' + relation_type]
+
+    # Check if any etypes were found
+    if not etypes_to_remove:
+        print(f"No edge types found for relation type {relation_type}.")
+        return hetero_graph
+
+    # Remove edges of these types
+    for etype in etypes_to_remove:
+        num_edges = hetero_graph.number_of_edges(etype)
+        edge_ids = torch.arange(num_edges, dtype=torch.int64).to(hetero_graph.device)
+        hetero_graph.remove_edges(edge_ids, etype=etype)
+    
+    return hetero_graph
+
+
+def add_random_edges(hetero_graph, K):
+    added_edges = {}
+    for etype in hetero_graph.canonical_etypes:
+        src_type, rel_type, dst_type = etype
+
+        num_src_nodes = hetero_graph.number_of_nodes(src_type)
+        num_dst_nodes = hetero_graph.number_of_nodes(dst_type)
+        num_existing_edges = hetero_graph.number_of_edges(etype)
+        
+        num_edges_to_add = int(K / 100 * num_existing_edges)
+
+        np.random.seed(42)
+        src_random_nodes = np.random.randint(0, num_src_nodes, num_edges_to_add)
+        dst_random_nodes = np.random.randint(0, num_dst_nodes, num_edges_to_add)
+
+        src_tensor = torch.tensor(src_random_nodes, dtype=torch.int64).to(hetero_graph.device)
+        dst_tensor = torch.tensor(dst_random_nodes, dtype=torch.int64).to(hetero_graph.device)
+
+        hetero_graph.add_edges(src_tensor, dst_tensor, etype=etype)
+        added_edges[etype] = (src_tensor, dst_tensor)
+        
+    return hetero_graph, added_edges
+
+import torch
+import numpy as np
+import dgl
+
+import torch
+import numpy as np
+import dgl
+
+def randomize_edges(hetero_graph):
+    randomized_edges = {}
+    for etype in hetero_graph.canonical_etypes:
+        src_type, rel_type, dst_type = etype
+
+        # Number of nodes for each node type
+        num_src_nodes = hetero_graph.number_of_nodes(src_type)
+        num_dst_nodes = hetero_graph.number_of_nodes(dst_type)
+
+        # Number of existing edges for this relation
+        num_edges = hetero_graph.number_of_edges(etype)
+
+        # Generate random edges
+        np.random.seed(42)
+        src_random_nodes = np.random.randint(0, num_src_nodes, num_edges)
+        dst_random_nodes = np.random.randint(0, num_dst_nodes, num_edges)
+
+        # Convert to tensors and move to the same device as the graph
+        src_tensor = torch.tensor(src_random_nodes, dtype=torch.int64).to(hetero_graph.device)
+        dst_tensor = torch.tensor(dst_random_nodes, dtype=torch.int64).to(hetero_graph.device)
+        edge_ids = torch.arange(num_edges, dtype=torch.int64).to(hetero_graph.device)
+
+        # Remove existing edges
+        hetero_graph.remove_edges(edge_ids, etype=etype)
+
+        # Add new random edges
+        hetero_graph.add_edges(src_tensor, dst_tensor, etype=etype)
+
+        randomized_edges[etype] = (src_tensor, dst_tensor)
+
+    return hetero_graph, randomized_edges

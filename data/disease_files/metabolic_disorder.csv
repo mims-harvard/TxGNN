@@ -1,0 +1,287 @@
+node_index,node_id,node_type,node_name,node_source
+27251,9705,disease,carnitine palmitoyl transferase 1A deficiency,MONDO
+27271,14820,disease,mitochondrial DNA depletion syndrome 14 (cardioencephalomyopathic type),MONDO
+27302,13681,disease,alpha-methylacyl-CoA racemase deficiency,MONDO
+27334,12556,disease,DK1-CDG,MONDO
+27341,9609,disease,methylcobalamin deficiency type cblG,MONDO
+27355,11760,disease,Scheie syndrome,MONDO
+27400,8919,disease,systemic primary carnitine deficiency disease,MONDO
+27474,9254,disease,fucosidosis,MONDO
+27476,7745,disease,Gilbert syndrome,MONDO
+27479,9612,disease,methylmalonic aciduria due to methylmalonyl-CoA mutase deficiency,MONDO
+27502,9387,disease,familial lipoprotein lipase deficiency,MONDO
+27539,9354,disease,methylcobalamin deficiency type cblE,MONDO
+27550,10149,disease,transcobalamin II deficiency,MONDO
+27553,10028,disease,sialuria,MONDO
+27583,9548,disease,renal hypomagnesemia 5 with ocular involvement,MONDO
+27589,9292,disease,glycogen storage disease due to glycogen branching enzyme deficiency,MONDO
+27676,7744,disease,cholesterol-ester transfer protein deficiency,MONDO
+27755,18637,disease,familial chylomicronemia syndrome,MONDO
+27782,10794,disease,NARP syndrome,MONDO
+27783,12885,disease,SRD5A3-CDG,MONDO
+27802,12301,disease,"mitochondrial DNA depletion syndrome, myopathic form",MONDO
+27842,7369,disease,hereditary coproporphyria,MONDO
+27843,8294,disease,acute intermittent porphyria,MONDO
+27894,11759,disease,Hurler-Scheie syndrome,MONDO
+27895,11629,disease,MOGS-CDG,MONDO
+27903,10089,disease,isolated sulfite oxidase deficiency,MONDO
+28030,11772,disease,B4GALT1-CDG,MONDO
+28042,8224,disease,hyperkalemic periodic paralysis,MONDO
+28056,8774,disease,2-aminoadipic 2-oxoadipic aciduria,MONDO
+28057,11229,disease,ethylmalonic encephalopathy,MONDO
+28079,9737,disease,galactosialidosis,MONDO
+28134,11308,disease,gracile syndrome,MONDO
+28148,12635,disease,COG8-CDG,MONDO
+28273,8723,disease,very long chain acyl-CoA dehydrogenase deficiency,MONDO
+28289,11612,disease,glycine encephalopathy,MONDO
+28291,12503,disease,thiopurine S-methyltransferase deficiency,MONDO
+28360,9902,disease,cutaneous porphyria,MONDO
+28370,8935,disease,cerebellar ataxia-hypogonadism syndrome,MONDO
+28449,13661,disease,combined malonic and methylmalonic acidemia,MONDO
+28466,9475,disease,isovaleric acidemia,MONDO
+28485,9258,disease,classic galactosemia,MONDO
+28518,10204,disease,lysosomal acid lipase deficiency,MONDO
+28541,13968,disease,PGM1-CDG,MONDO
+28555,9665,disease,biotinidase deficiency,MONDO
+28579,11758,disease,Hurler syndrome,MONDO
+28580,12996,disease,AGAT deficiency,MONDO
+28588,10083,disease,succinic semialdehyde dehydrogenase deficiency,MONDO
+28670,13869,disease,adenine phosphoribosyltransferase deficiency,MONDO
+28676,11182,disease,trimethylaminuria (disease),MONDO
+28723,9351,disease,homocarnosinosis,MONDO
+28735,9515,disease,Norum disease,MONDO
+28759,11257,disease,MPI-CDG,MONDO
+28766,13810,disease,COG6-CGD,MONDO
+28786,9666,disease,holocarboxylase synthetase deficiency,MONDO
+28819,9111,disease,dihydropyrimidinuria,MONDO
+28860,10099,disease,Tay-Sachs disease AB variant,MONDO
+28894,12637,disease,COG1-CDG,MONDO
+28900,10188,disease,familial isolated deficiency of vitamin E,MONDO
+28906,12396,disease,exercise-induced hyperinsulinism,MONDO
+28930,13971,disease,leukoencephalopathy-thalamus and brainstem anomalies-high lactate syndrome,MONDO
+28937,12381,disease,hyperinsulinism due to INSR deficiency,MONDO
+28961,10379,disease,Brunner syndrome,MONDO
+28972,13325,disease,COG5-CDG,MONDO
+29036,9285,disease,gamma-glutamyl transpeptidase deficiency,MONDO
+29070,11628,disease,propionic acidemia,MONDO
+29112,10797,disease,Pearson syndrome,MONDO
+29116,14976,disease,lethal left ventricular non-compaction-seizures-hypotonia-cataract-developmental delay syndrome,MONDO
+29121,14943,disease,mitochondrial DNA depletion syndrome 15 (hepatocerebral type);,MONDO
+29141,12517,disease,atypical Gaucher disease due to saposin C deficiency,MONDO
+29186,9376,disease,carbamoyl phosphate synthetase I deficiency disease,MONDO
+29254,9259,disease,gamma-glutamylcysteine synthetase deficiency,MONDO
+29286,13404,disease,hypermethioninemia with deficiency of S-adenosylhomocysteine hydrolase,MONDO
+29302,9388,disease,hyperlysinemia (disease),MONDO
+29414,12084,disease,aromatic L-amino acid decarboxylase deficiency,MONDO
+29436,9240,disease,formiminoglutamic aciduria,MONDO
+29437,13836,disease,familial steroid-resistant nephrotic syndrome with sensorineural deafness,MONDO
+29438,11969,disease,ALG8-CDG,MONDO
+29444,10088,disease,mucosulfatidosis,MONDO
+29451,13110,disease,neurodegenerative syndrome due to cerebral folate transport deficiency,MONDO
+29457,8297,disease,variegate porphyria,MONDO
+29483,8846,disease,atransferrinemia,MONDO
+29493,14790,disease,TMEM199-CDG,MONDO
+29504,12719,disease,encephalopathy due to prosaposin deficiency,MONDO
+29513,9252,disease,essential fructosuria,MONDO
+29592,9238,disease,hereditary folate malabsorption,MONDO
+29631,10035,disease,Smith-Lemli-Opitz syndrome,MONDO
+29645,12791,disease,"mitochondrial DNA depletion syndrome, encephalomyopathic form with methylmalonic aciduria",MONDO
+29649,8922,disease,Sengers syndrome,MONDO
+29651,10017,disease,sea-blue histiocyte syndrome,MONDO
+29708,9058,disease,cystathioninuria (disease),MONDO
+29712,9380,disease,Dubin-Johnson syndrome,MONDO
+29713,12211,disease,MPDU1-CDG,MONDO
+29748,13281,disease,COG4-CDG,MONDO
+29761,11012,disease,African iron overload,MONDO
+29765,14162,disease,infantile hypertrophic cardiomyopathy due to MRPL44 deficiency,MONDO
+29803,8861,disease,3-methylcrotonyl-CoA carboxylase 1 deficiency,MONDO
+29807,14561,disease,"3-methylglutaconic aciduria with cataracts, neurologic involvement and neutropenia",MONDO
+29832,8814,disease,hyperargininemia,MONDO
+29857,9723,disease,Leigh syndrome,MONDO
+29923,9109,disease,lysinuric protein intolerance,MONDO
+29957,100255,disease,adenosine kinase deficiency,MONDO
+29972,12172,disease,mitochondrial trifunctional protein deficiency,MONDO
+29977,11342,disease,SLC35A1-CDG,MONDO
+29978,10298,disease,Lesch-Nyhan syndrome,MONDO
+29994,9218,disease,Farber lipogranulomatosis,MONDO
+30019,8862,disease,3-methylcrotonyl-CoA carboxylase 2 deficiency,MONDO
+30045,14270,disease,STT3A-CDG,MONDO
+30055,13531,disease,PSPH deficiency,MONDO
+30083,7700,disease,hawkinsinuria,MONDO
+30143,8783,disease,Tangier disease,MONDO
+30217,13870,disease,TMEM165-CDG,MONDO
+30227,13166,disease,GABA aminotransferase deficiency,MONDO
+30238,8753,disease,alkaptonuria,MONDO
+30246,14562,disease,neonatal encephalomyopathy-cardiomyopathy-respiratory distress syndrome,MONDO
+30261,10281,disease,Danon disease,MONDO
+30268,13789,disease,DDOST-CDG,MONDO
+30273,8910,disease,carboxypeptidase N deficiency,MONDO
+30277,9110,disease,dicarboxylic aminoaciduria,MONDO
+30287,9068,disease,cytochrome-c oxidase deficiency disease,MONDO
+30297,10613,disease,inborn glycerol kinase deficiency,MONDO
+30312,12512,disease,fatal mitochondrial disease due to combined oxidative phosphorylation defect type 3,MONDO
+30347,10543,disease,Barth syndrome,MONDO
+30365,9115,disease,congenital lactase deficiency,MONDO
+30366,11945,disease,Gaucher disease perinatal lethal,MONDO
+30373,8810,disease,familial apolipoprotein C-II deficiency,MONDO
+30385,9919,disease,peroxisomal acyl-CoA oxidase deficiency,MONDO
+30467,14109,disease,NGLY1-deficiency,MONDO
+30474,14746,disease,SLC39A8-CDG,MONDO
+30524,9747,disease,Navajo neurohepatopathy,MONDO
+30542,9251,disease,"fructose-1,6-bisphosphatase deficiency",MONDO
+30553,9393,disease,ornithine translocase deficiency,MONDO
+30571,12783,disease,RFT1-CDG,MONDO
+30577,13208,disease,cirrhosis - dystonia - polycythemia - hypermanganesemia syndrome,MONDO
+30578,9499,disease,Krabbe disease,MONDO
+30591,12407,disease,pyridoxal phosphate-responsive seizures,MONDO
+30605,9255,disease,galactokinase deficiency,MONDO
+30614,11783,disease,ALG12-CDG,MONDO
+30632,12391,disease,neuronal ceroid lipofuscinosis 8 northern epilepsy variant,MONDO
+30653,9282,disease,multiple acyl-CoA dehydrogenase deficiency,MONDO
+30677,9070,disease,D-glyceric aciduria,MONDO
+30683,8760,disease,beta-ketothiolase deficiency,MONDO
+30704,11717,disease,hyperinsulinism-hyperammonemia syndrome,MONDO
+30711,13282,disease,alpha 1-antitrypsin deficiency,MONDO
+30717,10305,disease,creatine transporter deficiency,MONDO
+30791,10490,disease,SSR4-CDG,MONDO
+30819,10437,disease,severe X-linked mitochondrial encephalomyopathy,MONDO
+30822,13877,disease,mitochondrial pyruvate carrier deficiency,MONDO
+30829,8815,disease,argininosuccinic aciduria,MONDO
+30849,12596,disease,PSAT deficiency,MONDO
+30853,14261,disease,growth and developmental delay-hypotonia-vision impairment-lactic acidosis syndrome,MONDO
+30860,9123,disease,dopamine beta-hydroxylase deficiency,MONDO
+30862,10998,disease,ALG3-CDG,MONDO
+30864,11730,disease,fumaric aciduria,MONDO
+30869,9562,disease,beta-mannosidosis,MONDO
+30873,10578,disease,deafness dystonia syndrome,MONDO
+30875,12117,disease,ALG9-CDG,MONDO
+30905,9528,disease,chylomicron retention disease,MONDO
+30919,13837,disease,deafness-encephaloneuropathy-obesity-valvulopathy syndrome,MONDO
+30923,10572,disease,occipital horn syndrome,MONDO
+30980,9527,disease,"lipase deficiency, combined",MONDO
+30982,13341,disease,methylmalonic acidemia due to transcobalamin receptor defect,MONDO
+30985,8908,disease,MGAT2-CDG,MONDO
+30993,10907,disease,familial hypertryptophanemia,MONDO
+31085,12784,disease,autosomal recessive ataxia due to ubiquinone deficiency,MONDO
+31120,9855,disease,d-bifunctional protein deficiency,MONDO
+31130,7068,disease,adenylosuccinate lyase deficiency,MONDO
+31151,10478,disease,SLC35A2-CDG,MONDO
+31165,10651,disease,Menkes disease,MONDO
+31217,12718,disease,hypotonia with lactic acidemia and hyperammonemia,MONDO
+31257,10130,disease,dihydropyrimidine dehydrogenase deficiency,MONDO
+31259,7327,disease,"chylomicronemia, familial, due to circulating inhibitor of lipoprotein lipase",MONDO
+31272,8722,disease,short chain acyl-CoA dehydrogenase deficiency,MONDO
+31296,12191,disease,hepatoencephalopathy due to combined oxidative phosphorylation defect type 1,MONDO
+31298,9797,disease,orotic aciduria,MONDO
+31305,8721,disease,medium chain acyl-CoA dehydrogenase deficiency,MONDO
+31331,14789,disease,CCDC115-CDG,MONDO
+31359,13865,disease,mitochondrial hypertrophic cardiomyopathy with lactic acidosis due to MTO1 deficiency,MONDO
+31373,8221,disease,prolidase deficiency,MONDO
+31384,10526,disease,Fabry disease,MONDO
+31418,13875,disease,"3-methylglutaconic aciduria with deafness, encephalopathy, and Leigh-like syndrome",MONDO
+31434,13349,disease,ALG11-CDG,MONDO
+31502,10200,disease,Wilson disease,MONDO
+31537,10060,disease,infantile onset spinocerebellar ataxia,MONDO
+31541,8948,disease,cerebrotendinous xanthomatosis,MONDO
+31566,9530,disease,lipoid proteinosis,MONDO
+31585,9846,disease,pentosuria,MONDO
+31606,9281,disease,glutaryl-CoA dehydrogenase deficiency,MONDO
+31615,9852,disease,congenital intrinsic factor deficiency,MONDO
+31661,10100,disease,Tay-Sachs disease,MONDO
+31702,11326,disease,"citrullinemia, type II, adult-onset",MONDO
+31733,9863,disease,BH4-deficient hyperphenylalaninemia A,MONDO
+31742,8830,disease,aspartylglucosaminuria,MONDO
+31768,12481,disease,mevalonic aciduria,MONDO
+31780,9257,disease,galactose epimerase deficiency,MONDO
+31796,11236,disease,hyperinsulinism due to glucokinase deficiency,MONDO
+31807,8907,disease,PMM2-CDG,MONDO
+31820,8692,disease,abetalipoproteinemia,MONDO
+31855,9867,disease,lethal congenital glycogen storage disease of heart,MONDO
+31865,12052,disease,ALG1-CDG,MONDO
+31885,13840,disease,encephalopathy-hypertrophic cardiomyopathy-renal tubular disease syndrome,MONDO
+31900,11964,disease,DPAGT1-CDG,MONDO
+31907,9324,disease,Hartnup disease,MONDO
+31927,11698,disease,glycine N-methyltransferase deficiency,MONDO
+31935,11835,disease,sensory ataxic neuropathy-dysarthria-ophthalmoparesis syndrome,MONDO
+31937,8713,disease,acrodermatitis enteropathica,MONDO
+31949,11933,disease,ALG2-CDG,MONDO
+31956,8974,disease,Greenberg dysplasia,MONDO
+31962,9949,disease,pyruvate carboxylase deficiency disease,MONDO
+31976,8918,disease,carnitine-acylcarnitine translocase deficiency,MONDO
+31982,10703,disease,ornithine carbamoyltransferase deficiency,MONDO
+32008,13970,disease,branched-chain keto acid dehydrogenase kinase deficiency,MONDO
+32009,13571,disease,acatalasia,MONDO
+32057,13534,disease,apolipoprotein c-III deficiency,MONDO
+32060,11176,disease,intestinal hypomagnesemia 1,MONDO
+32064,11152,disease,PHGDH deficiency,MONDO
+32090,9114,disease,congenital sucrase-isomaltase deficiency,MONDO
+32145,12999,disease,guanidinoacetate methyltransferase deficiency,MONDO
+32157,14271,disease,STT3B-CDG,MONDO
+32211,18251,disease,glycogen storage disease due to phosphorylase kinase deficiency,MONDO
+32469,16239,disease,cystinosis,MONDO
+32608,15515,disease,carnitine palmitoyltransferase II deficiency,MONDO
+32614,15454,disease,multiple carboxylase deficiency,MONDO
+32680,19148,disease,Wolman disease,MONDO
+32691,19149,disease,cholesteryl ester storage disease,MONDO
+32774,100133,disease,mitochondrial complex I deficiency,MONDO
+32874,19609,disease,Zellweger syndrome,MONDO
+32977,19142,disease,inherited porphyria,MONDO
+32984,19169,disease,pyruvate dehydrogenase deficiency,MONDO
+33162,19799,disease,hepatoerythropoietic porphyria,MONDO
+33179,15104,disease,porphyria cutanea tarda,MONDO
+33331,18950,disease,3-methylcrotonyl-CoA carboxylase deficiency,MONDO
+33353,18106,disease,hereditary xanthinuria,MONDO
+33578,2615,disease,xanthomatosis (disease),MONDO
+33610,1822,disease,hypolipoproteinemia (disease),MONDO
+33633,2274,disease,monoclonal paraproteinemia disease,MONDO
+35440,4069,disease,inborn mitochondrial metabolism disorder,MONDO
+35475,19245,disease,lysosomal lipid storage disorder,MONDO
+35508,2525,disease,inherited lipid metabolism disorder,MONDO
+35515,19052,disease,inborn errors of metabolism,MONDO
+35645,5528,disease,inborn vitamin metabolic disorder,MONDO
+35661,4736,disease,inherited amino acid metabolic disorder,MONDO
+35969,4689,disease,inborn metal metabolism disorder,MONDO
+36372,5775,disease,G6PD deficiency,MONDO
+36457,19255,disease,sphingolipidosis,MONDO
+36470,688,disease,inherited organic acidemia,MONDO
+36579,2273,disease,plasma protein metabolism disease,MONDO
+36648,19214,disease,inborn carbohydrate metabolic disorder,MONDO
+37603,4737,disease,homocystinuria (disease),MONDO
+37764,1336,disease,familial hyperlipidemia,MONDO
+38042,5523,disease,steroid inherited metabolic disorder,MONDO
+38312,2408,disease,hereditary hyperbilirubinemia,MONDO
+38419,995,disease,familial periodic paralysis,MONDO
+38500,17774,disease,hypobetalipoproteinemia,MONDO
+38506,2561,disease,lysosomal storage disease,MONDO
+38542,4739,disease,urea cycle disorder,MONDO
+38602,19238,disease,inborn disorder of pyrimidine metabolism,MONDO
+38607,4905,disease,intestinal disaccharidase deficiency,MONDO
+38641,6507,disease,hereditary hemochromatosis,MONDO
+38659,19228,disease,inborn disorder of histidine metabolism,MONDO
+38660,698,disease,gamma-amino butyric acid metabolism disorder,MONDO
+38766,17720,disease,GM2 gangliosidosis,MONDO
+38786,15611,disease,neutral lipid storage disease,MONDO
+38803,456,disease,cerebral creatine deficiency syndrome,MONDO
+38917,14471,disease,mitochondrial proton-transporting ATP synthase complex deficiency,MONDO
+38920,15487,disease,fatal infantile encephalocardiomyopathy,MONDO
+38929,17338,disease,fatal multiple mitochondrial dysfunctions syndrome,MONDO
+38936,351,disease,disorder of methionine catabolism,MONDO
+38985,19053,disease,peroxisomal disease,MONDO
+39003,18151,disease,coenzyme Q10 deficiency,MONDO
+39044,2012,disease,methylmalonic acidemia,MONDO
+39408,18100,disease,familial primary hypomagnesemia,MONDO
+39410,19254,disease,inborn disorder of purine or pyrimidine metabolism,MONDO
+39413,17719,disease,gangliosidosis,MONDO
+39445,421,disease,inborn serine deficiency,MONDO
+39564,424,disease,inborn vitamin B12 deficiency (disease),MONDO
+39628,15448,disease,mitochondrial complex III deficiency,MONDO
+83884,1761,disease,favism,MONDO
+83898,1807,disease,obsolete familial combined hyperlipidemia,MONDO
+83900,5190,disease,macroglobulinemia,MONDO
+84131,7027,disease,non-alcoholic steatohepatitis,MONDO
+94789,4743,disease,hyperhomocysteinemia,MONDO
+94976,10781,disease,"ataxia and polyneuropathy, adult-onset",MONDO
+94977,27069,disease,"mitochondrial complex 5 (ATP synthase) deficiency, mitochondrial type 1",MONDO
+95870,2272,disease,polyclonal hypergammaglobulinemia,MONDO
+96325,3640,disease,verruciform xanthoma of skin,MONDO
+98074,16103,disease,isolated asymptomatic elevation of creatine phosphokinase,MONDO

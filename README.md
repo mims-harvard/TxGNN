@@ -4,11 +4,11 @@ This repository hosts the official implementation of TxGNN, a model for identify
 
 TxGNN is a graph neural network pre-trained on a comprehensive knowledge graph of 17,080 clinically-recognized diseases and 7,957 therapeutic candidates. The model can process various therapeutic tasks, such as indication and contraindication prediction, in a unified formulation. Once trained, we show that TxGNN can perform zero-shot inference on new diseases without additional parameters or fine-tuning on ground truth labels.
 
-### MedRxiv preprint is at [https://www.medrxiv.org/content/10.1101/2023.03.19.23287458](https://www.medrxiv.org/content/10.1101/2023.03.19.23287458)
+### MedRxiv preprint is at [https://www.medrxiv.org/content/10.1101/2023.03.19.23287458v2](https://www.medrxiv.org/content/10.1101/2023.03.19.23287458v2)
 
 ### TxGNN Explorer of model predictions and explanations is at [http://txgnn.org](http://txgnn.org/)
 
-![TxGNN](https://zitniklab.hms.harvard.edu/img/TxGNN-method.png)
+![TxGNN](fig/txgnn_fig1.png)
 
 ### Installation 
 
@@ -58,6 +58,8 @@ Instead of initializing a new model, you can also load a saved model:
 ```python
 TxGNN.load_pretrained('./model_ckpt')
 ```
+
+We provide an example pre-trained model weight at [here](https://drive.google.com/file/d/1fxTFkjo2jvmz9k6vesDbCeucQjGRojLj/view).
 
 To do pre-training using link prediction for all edge types, you can type:
 
@@ -137,7 +139,7 @@ TxGNN.load_pretrained_graphmask('./graphmask_model_ckpt')
 There are numerous splits prepared in TxGNN. You can switch among them in the `TxData.prepare_split(split = 'XXX', seed = 42)` function.
 
 - `complex_disease` is the systematic split in the paper, where we first sample a set of diseases and then move all of their treatments to test set such that these diseases have zero treatments in training.
-- Disease area split first obtains a set of diseases in a disease area using disease ontology and move all of their treatments to the test set and then further removes a fraction of local neighborhood around these diseases to simulate the lack of molecular mechanism characterization of these diseases. There are five disease areas: `cell_proliferation`, `mental_health`, `cardiovascular`, `anemia`, `adrenal_gland`
+- Disease area split first obtains a set of diseases in a disease area using disease ontology and move all of their treatments to the test set and then further removes a fraction of local neighborhood around these diseases to simulate the lack of molecular mechanism characterization of these diseases. There are nine disease areas: `cell_proliferation`, `mental_health`, `cardiovascular`, `anemia`, `adrenal_gland`, `autoimmune`, `metabolic_disorder`, `diabetes`, `neurodigenerative`
 - `random` is namely random splits which it randomly shuffles across drug-disease pairs. In the end, most of diseases have seen some treatments in the training set.
 
 During deployment, when evaluate a specific disease, you may want to just mask this disease and use all of the other diseases. In this case, you can use `TxData.prepare_split(split = 'disease_eval', disease_eval_idx = 'XX')` where `disease_eval_idx` is the index of the disease of interest. 
